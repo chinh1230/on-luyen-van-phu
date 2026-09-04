@@ -39,7 +39,7 @@
     }
     .flying-phoenix {
       position: absolute;
-      opacity: 0.88;
+      opacity: 0.85;
       filter: drop-shadow(0 8px 16px rgba(225, 29, 72, 0.4)) drop-shadow(0 0 10px rgba(251, 191, 36, 0.5));
     }
     .flying-phoenix svg {
@@ -48,9 +48,8 @@
       transform-origin: 45% 45%;
       animation: flapPhoenix 1.2s infinite alternate ease-in-out;
     }
-    .phoenix-track-1 { width: 120px; height: 95px; top: 5%; animation: flyAcrossP1 26s linear infinite; }
-    .phoenix-track-2 { width: 100px; height: 80px; top: 22%; animation: flyAcrossP2 30s linear infinite 5s; }
-    .phoenix-track-3 { width: 110px; height: 88px; top: 45%; animation: flyAcrossP1 28s linear infinite 13s; }
+    .phoenix-track-1 { width: 110px; height: 88px; top: 5%; animation: flyAcrossP1 26s linear infinite; }
+    .phoenix-track-2 { width: 95px; height: 76px; top: 22%; animation: flyAcrossP2 30s linear infinite 5s; }
 
     @keyframes flapPhoenix {
       0% { transform: scaleY(1) rotate(0deg); }
@@ -58,17 +57,86 @@
       100% { transform: scaleY(0.35) rotate(-6deg); }
     }
     @keyframes flyAcrossP1 {
-      0% { left: -140px; transform: translateY(0) rotate(4deg) scale(0.95); }
-      25% { transform: translateY(-35px) rotate(-3deg) scale(1.05); }
-      50% { transform: translateY(28px) rotate(5deg) scale(1); }
-      75% { transform: translateY(-20px) rotate(-1deg) scale(1.1); }
-      100% { left: 105vw; transform: translateY(0) rotate(4deg) scale(0.95); }
+      0% { left: -140px; transform: translateY(0) rotate(4deg); }
+      50% { transform: translateY(24px) rotate(5deg); }
+      100% { left: 105vw; transform: translateY(0) rotate(4deg); }
     }
     @keyframes flyAcrossP2 {
-      0% { right: -140px; transform: scaleX(-1) translateY(0) rotate(4deg) scale(0.9); }
-      30% { transform: scaleX(-1) translateY(36px) rotate(-3deg) scale(1.05); }
-      60% { transform: scaleX(-1) translateY(-30px) rotate(5deg) scale(1); }
-      100% { right: 105vw; transform: scaleX(-1) translateY(0) rotate(4deg) scale(0.9); }
+      0% { right: -140px; transform: scaleX(-1) translateY(0); }
+      50% { transform: scaleX(-1) translateY(-25px); }
+      100% { right: 105vw; transform: scaleX(-1) translateY(0); }
+    }
+
+    /* NHÂN VẬT HOẠT HÌNH BIỂU CẢM ĐÁNG YÊU (MASCOT) */
+    .mascot-companion-fixed {
+      position: fixed;
+      bottom: 60px;
+      right: 20px;
+      z-index: 80;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      pointer-events: auto;
+      transition: transform 0.25s ease;
+    }
+    .mascot-companion-fixed:hover {
+      transform: translateY(-4px);
+    }
+    .mascot-speech-bubble {
+      background: #ffffff;
+      border: 2px solid #f43f5e;
+      border-radius: 16px;
+      padding: 6px 12px;
+      font-size: 11.5px;
+      font-weight: 800;
+      color: #881337;
+      box-shadow: 0 8px 20px -4px rgba(225, 29, 72, 0.25);
+      position: relative;
+      margin-bottom: 6px;
+      max-width: 170px;
+      text-align: center;
+      animation: bubbleFloat 3s infinite ease-in-out;
+    }
+    .mascot-speech-bubble::after {
+      content: '';
+      position: absolute;
+      bottom: -6px;
+      right: 20px;
+      width: 10px;
+      height: 10px;
+      background: #ffffff;
+      border-right: 2px solid #f43f5e;
+      border-bottom: 2px solid #f43f5e;
+      transform: rotate(45deg);
+    }
+    @keyframes bubbleFloat {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-4px); }
+    }
+
+    .mascot-character-body {
+      width: 70px;
+      height: 70px;
+      border-radius: 24px;
+      background: linear-gradient(135deg, #fff1f2, #ffe4e6);
+      border: 3px solid #f43f5e;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 10px 25px -5px rgba(225, 29, 72, 0.4), 0 0 12px rgba(251, 191, 36, 0.5);
+      cursor: pointer;
+      user-select: none;
+      animation: cuteWiggle 3.5s infinite ease-in-out;
+      position: relative;
+    }
+    @keyframes cuteWiggle {
+      0%, 100% { transform: rotate(0deg) scale(1); }
+      25% { transform: rotate(-5deg) scale(1.04); }
+      75% { transform: rotate(5deg) scale(1.04); }
+    }
+    .mascot-face-emoji {
+      font-size: 38px;
+      transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     }
 
     .app-shell {
@@ -171,7 +239,7 @@
       backdrop-filter: blur(12px);
       padding: 6px 14px;
       border-radius: 999px;
-      font-size: 11.5px;
+      font-size: 11px;
       color: #fef08a;
       font-weight: 800;
       box-shadow: 0 8px 24px rgba(136, 19, 55, 0.4);
@@ -363,7 +431,7 @@
   </style>
 </head>
 <body>
-  <!-- PHƯỢNG HOÀNG BAY -->
+  <!-- BẦU TRỜI PHƯỢNG HOÀNG LỬA -->
   <div class="phoenix-sky">
     <div class="flying-phoenix phoenix-track-1">
       <svg viewBox="0 0 100 80">
@@ -386,6 +454,20 @@
         <path fill="url(#phGrad1)" d="M50,30 Q35,5 15,12 Q30,22 42,32 Q20,28 5,38 Q22,42 40,40 Q15,48 2,62 Q20,54 42,46 Q28,65 18,80 Q36,65 48,50 Q54,65 60,80 Q56,60 52,46 Q70,54 90,62 Q75,48 55,40 Q75,42 92,38 Q75,28 55,32 Q68,22 82,12 Q62,5 50,30 Z"/>
         <circle cx="50" cy="22" r="3.5" fill="#fde047"/>
       </svg>
+    </div>
+  </div>
+
+  <!-- LINH VẬT HOẠT HÌNH CỔ VŨ ĐÁNG YÊU (GÓC DƯỚI MÀN HÌNH) -->
+  <div class="mascot-companion-fixed" onclick="petMascot()">
+    <div id="mascot-bubble" class="mascot-speech-bubble">
+      Xin chào em! Cố lên nhé! ✨
+    </div>
+    <div class="mascot-character-body" title="Chạm vào tớ để nhận lời khen ngợi!">
+      <span id="mascot-emoji" class="mascot-face-emoji">🦉</span>
+      <span class="absolute -top-1 -right-1 flex h-3.5 w-3.5">
+        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-amber-400 opacity-75"></span>
+        <span class="relative inline-flex rounded-full h-3.5 w-3.5 bg-amber-500 text-[8px] text-white font-black items-center justify-center">★</span>
+      </span>
     </div>
   </div>
 
@@ -477,11 +559,11 @@
         </header>
 
         <main class="px-5 pb-6 pt-4 sm:px-7 sm:pb-7">
-          <!-- VIEW 1: FORM CÀI ĐẶT -->
+          <!-- VIEW 1: THÔNG TIN HỌC SINH -->
           <section id="setup-view" class="view active">
             <div class="mb-4 border-b border-rose-100 pb-2.5">
               <h2 class="text-lg sm:text-xl font-black text-rose-950">Thông tin học sinh tham gia</h2>
-              <p class="text-xs sm:text-sm font-medium text-slate-500">Mô hình xoắn ốc liên môn: Kiến thức lớp trên được củng cố lớp dưới!</p>
+              <p class="text-xs sm:text-sm font-medium text-slate-500">Học sinh hoàn thành bài ôn luyện sẽ tích lũy kinh nghiệm và mở khóa bạn đồng hành!</p>
             </div>
 
             <div class="mb-4 p-4 rounded-2xl bg-gradient-to-r from-rose-50 to-pink-50 border-2 border-rose-200">
@@ -570,7 +652,7 @@
             </form>
           </section>
 
-          <!-- VIEW 2: LÀM BÀI ÔN TẬP -->
+          <!-- VIEW 2: LÀM BÀI ÔN LUYỆN (KÈM LINH VẬT ĐỒNG HÀNH) -->
           <section id="quiz-view" class="view">
             <div id="palette" class="mb-4 flex flex-wrap justify-center gap-1.5"></div>
             <div class="mb-3 flex flex-wrap items-center justify-between gap-2">
@@ -578,14 +660,25 @@
               <span id="timer" class="inline-flex items-center gap-1.5 rounded-xl border-2 border-rose-400 bg-rose-100 px-3 py-1.5 text-sm font-black text-rose-700 shadow-sm animate-pulse"><i data-lucide="timer" class="h-4 w-4"></i>10:00</span>
               <span id="level-badge" class="rounded-xl border-2 border-amber-300 bg-amber-50 px-3 py-1.5 text-xs font-black text-amber-900"></span>
             </div>
-            <article class="rounded-3xl border-2 border-rose-100 bg-gradient-to-b from-rose-50/40 via-white to-white p-5 sm:p-6 shadow-md">
-              <div class="flex items-center justify-between">
-                <p id="question-number" class="text-xs font-black uppercase tracking-widest text-rose-600"></p>
+
+            <!-- THẺ CÂU HỎI KÈM KHUNG MASCOT BIỂU CẢM TRỰC TIẾP -->
+            <article class="rounded-3xl border-2 border-rose-100 bg-gradient-to-b from-rose-50/40 via-white to-white p-5 sm:p-6 shadow-md relative overflow-hidden">
+              <!-- Nhân vật phụ họa trên góc câu hỏi -->
+              <div class="flex items-center justify-between border-b border-rose-100 pb-2 mb-2">
+                <div class="flex items-center gap-2">
+                  <div id="quiz-mascot-icon" class="w-8 h-8 rounded-full bg-amber-100 border border-amber-300 flex items-center justify-center text-lg animate-bounce">
+                    🐱
+                  </div>
+                  <span id="quiz-mascot-msg" class="text-xs font-black text-rose-800">Cùng đọc kỹ đề bài nhé!</span>
+                </div>
                 <span id="question-source-tag" class="text-xs font-black px-3 py-1 rounded-full bg-rose-100 text-rose-800 border border-rose-300 shadow-sm"></span>
               </div>
-              <h2 id="question-title" class="mt-3 text-lg sm:text-xl font-black leading-snug text-slate-900"></h2>
+
+              <p id="question-number" class="text-xs font-black uppercase tracking-widest text-rose-600"></p>
+              <h2 id="question-title" class="mt-2 text-lg sm:text-xl font-black leading-snug text-slate-900"></h2>
               <div id="answers" class="mt-4 grid gap-2.5"></div>
             </article>
+
             <div class="mt-3 flex justify-end">
               <button id="hint-button" class="action-button inline-flex items-center gap-1 rounded-xl border-2 border-amber-300 bg-amber-50 px-3 py-1.5 text-xs font-black text-amber-900 shadow-sm" type="button">
                 <i data-lucide="lightbulb" class="h-4 w-4 text-amber-600"></i> Xem gợi ý
@@ -602,7 +695,7 @@
             </div>
           </section>
 
-          <!-- VIEW 3: KẾT QUẢ & NÚT THƯ GIÃN -->
+          <!-- VIEW 3: KẾT QUẢ VÀ NÚT CHƠI TRÍ TUỆ -->
           <section id="result-view" class="view">
             <div class="rounded-3xl border-2 border-rose-100 bg-gradient-to-b from-rose-50/70 via-white to-white p-6 text-center shadow-lg">
               <div class="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-gradient-to-tr from-amber-400 to-yellow-200 text-amber-900 mb-2 shadow-lg shadow-amber-300/40 border-2 border-white animate-bounce">
@@ -630,7 +723,7 @@
 
               <div class="mt-5 p-4 rounded-2xl bg-gradient-to-r from-amber-50 to-orange-50 border-2 border-amber-300 text-center">
                 <p class="text-xs font-black text-amber-950 uppercase tracking-wide">🎮 Phần thưởng thư giãn sau giờ học:</p>
-                <p class="text-xs text-amber-800 font-semibold mt-0.5">Thử thách trí nhớ ghép đôi kiến thức không trùng lặp!</p>
+                <p class="text-xs text-amber-800 font-semibold mt-0.5">Thử thách trí nhớ ghép đôi kiến thức hoàn toàn không trùng lặp!</p>
                 <button type="button" onclick="startMemoryGame()" class="action-button mt-3 inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-gradient-to-r from-amber-500 to-orange-500 text-white font-black text-sm shadow-lg shadow-orange-500/30">
                   <i data-lucide="play" class="h-4 w-4 fill-white"></i> Chơi Game Trí Tuệ Ngay
                 </button>
@@ -643,7 +736,7 @@
             </div>
           </section>
 
-          <!-- VIEW 4: TRÒ CHƠI TRÍ TUỆ (KHÔNG LẶP LẠI THẺ) -->
+          <!-- VIEW 4: TRÒ CHƠI TRÍ TUỆ (GHÉP THẺ) -->
           <section id="game-view" class="view">
             <div class="rounded-3xl border-2 border-emerald-200 bg-white p-5 shadow-lg">
               <div class="flex flex-wrap items-center justify-between gap-3 border-b border-emerald-100 pb-3 mb-4">
@@ -651,7 +744,7 @@
                   <h2 class="text-lg sm:text-xl font-black text-emerald-950 flex items-center gap-2">
                     <span>🧠</span> Trò Chơi Trí Tuệ: Ghép Đôi Tri Thức
                   </h2>
-                  <p class="text-xs text-slate-500 font-medium">Lật 2 thẻ ghép thành cặp tương ứng (Toán, Tiếng Anh, Khoa học...). Không trùng thẻ cũ giữa các ván!</p>
+                  <p class="text-xs text-slate-500 font-medium">Lật 2 thẻ ghép thành cặp tương ứng. Mỗi ván là một bộ thẻ hoàn toàn mới!</p>
                 </div>
                 <div class="flex items-center gap-2">
                   <span class="px-3 py-1.5 rounded-xl bg-emerald-100 text-emerald-900 text-xs font-black border border-emerald-300">
@@ -666,12 +759,11 @@
                 </div>
               </div>
 
-              <!-- LƯỚI THẺ BÀI -->
               <div id="memory-grid" class="grid grid-cols-3 sm:grid-cols-4 gap-3 max-w-lg mx-auto"></div>
 
               <div id="game-win-banner" class="mt-4 p-4 rounded-2xl bg-gradient-to-r from-emerald-500 to-teal-600 text-white text-center font-black hidden">
                 <p class="text-base">🎉 CHÚC MỪNG EM ĐÃ HOÀN THÀNH XUẤT SẮC TRÒ CHƠI!</p>
-                <p class="text-xs font-medium text-emerald-100 mt-1">Bấm "Đổi ván mới" để thử thách bộ câu hỏi hoàn toàn khác nhé!</p>
+                <p class="text-xs font-medium text-emerald-100 mt-1">Trí nhớ của em rất tuyệt vời! Bấm "Đổi ván mới" để thử thách tiếp nhé.</p>
               </div>
             </div>
           </section>
@@ -683,7 +775,7 @@
         </footer>
       </div>
 
-      <!-- CỘT PHẢI: ONLINE, KẾT BẠN & CHAT -->
+      <!-- CỘT PHẢI: ONLINE & CHAT TOÀN TRƯỜNG -->
       <aside class="side-panel space-y-4">
         <div class="side-card">
           <div class="flex items-center justify-between mb-2.5 border-b border-rose-100 pb-2">
@@ -721,7 +813,7 @@
     </div>
   </div>
 
-  <!-- CỬA SỔ NHẮN TIN RIÊNG -->
+  <!-- CỬA SỔ NHẮN TIN RIÊNG 1-1 -->
   <div id="private-chat-dock" class="private-chat-dock hidden">
     <div class="bg-gradient-to-r from-rose-700 to-red-600 p-3 text-white flex items-center justify-between">
       <div class="flex items-center gap-2">
@@ -782,7 +874,57 @@
       view.classList.add("active");
     }
 
-    /* KHO DỮ LIỆU GAME TRÍ TUỆ RỘNG LỚN & THUẬT TOÁN KHỬ TRÙNG LẶP */
+    /* HỆ THỐNG BIỂU CẢM CỦA LINH VẬT ĐỒNG HÀNH */
+    const MASCOT_MOODS = [
+      { emoji: "🦉", quote: "Học tập là hạt giống của hạnh phúc!" },
+      { emoji: "😸", quote: "Em làm bài rất cừ khôi đấy!" },
+      { emoji: "🧐", quote: "Hãy suy nghĩ thật kỹ trước khi chọn nha!" },
+      { emoji: "🥳", quote: "Hoan hô! Thêm một câu trả lời xuất sắc!" },
+      { emoji: "🦁", quote: "Chiến binh Văn Phú không ngại thử thách!" },
+      { emoji: "⭐", quote: "Điểm 10 đang chờ đón em đó!" }
+    ];
+    let currentMoodIdx = 0;
+
+    function setMascotMood(emoji, quote) {
+      const e = document.getElementById("mascot-emoji");
+      const q = document.getElementById("mascot-bubble");
+      if (e) {
+        e.textContent = emoji;
+        e.style.transform = "scale(1.3) rotate(-10deg)";
+        setTimeout(() => e.style.transform = "scale(1) rotate(0deg)", 300);
+      }
+      if (q) q.textContent = quote;
+    }
+
+    function petMascot() {
+      currentMoodIdx = (currentMoodIdx + 1) % MASCOT_MOODS.length;
+      const m = MASCOT_MOODS[currentMoodIdx];
+      setMascotMood(m.emoji, m.quote);
+      playDingSound(750);
+      showToast("💖 Bạn linh vật gửi lời chúc chăm ngoan tới em!");
+    }
+
+    function setQuizMascotReaction(type) {
+      const icon = document.getElementById("quiz-mascot-icon");
+      const msg = document.getElementById("quiz-mascot-msg");
+      if (!icon || !msg) return;
+
+      if (type === "selected") {
+        icon.textContent = "😸";
+        msg.textContent = "Lựa chọn rất quyết đoán! Hãy tiếp tục nhé!";
+        setMascotMood("😸", "Quyết định tuyệt vời! Cố lên nào!");
+      } else if (type === "hint") {
+        icon.textContent = "🧐";
+        msg.textContent = "Gợi ý đã sẵn sàng, em hãy đọc thật kỹ!";
+        setMascotMood("🧐", "Tập trung phân tích gợi ý nhé!");
+      } else if (type === "start") {
+        icon.textContent = "🦉";
+        msg.textContent = "Cùng đọc kỹ đề và chọn đáp án đúng nhất!";
+        setMascotMood("🦉", "Chúc em đạt điểm tuyệt đối nha!");
+      }
+    }
+
+    /* KHO DỮ LIỆU GAME TRÍ TUỆ & THUẬT TOÁN KHỬ TRÙNG LẶP */
     const EXTENDED_GAME_VAULT = [
       { id: "m1", val: "7 x 8", match: "56" },
       { id: "m2", val: "9 x 9", match: "81" },
@@ -871,6 +1013,7 @@
         card.onclick = () => flipMemoryCard(card);
         grid.appendChild(card);
       });
+      setMascotMood("🥳", "Tìm các cặp thẻ tương ứng nào em ơi!");
     }
 
     function flipMemoryCard(card) {
@@ -898,9 +1041,11 @@
           c2.classList.add("matched");
           matchedCount++;
           playDingSound(900);
+          setMascotMood("😸", "Đúng rồi! Trí nhớ của em rất cừ!");
 
           if (matchedCount === currentRoundPairs) {
             document.getElementById("game-win-banner").classList.remove("hidden");
+            setMascotMood("🥳", "Xuất sắc! Em đã hoàn thành toàn bộ bàn cờ!");
             if (typeof confetti === "function") confetti({ particleCount: 150, spread: 80, origin: { y: 0.6 } });
           }
           flippedCards = [];
@@ -912,11 +1057,11 @@
           c2.classList.remove("flipped");
           flippedCards = [];
           lockBoard = false;
-        }, 900);
+        }, 850);
       }
     }
 
-    // ÂM THANH CHUÔNG WEB AUDIO API
+    /* ÂM THANH CHUÔNG WEB AUDIO API */
     let audioCtx = null;
     function playDingSound(freq = 600) {
       try {
@@ -928,7 +1073,7 @@
         const gain = audioCtx.createGain();
         osc.type = 'sine';
         osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
-        osc.frequency.exponentialRampToValueAtTime(freq * 1.5, audioCtx.currentTime + 0.1);
+        osc.frequency.exponentialRampToValueAtTime(freq * 1.4, audioCtx.currentTime + 0.1);
 
         gain.gain.setValueAtTime(0, audioCtx.currentTime);
         gain.gain.linearRampToValueAtTime(0.3, audioCtx.currentTime + 0.02);
@@ -997,6 +1142,7 @@
 
       renderPublicChat();
       playDingSound(700);
+      setMascotMood("⭐", "Thành tích đáng tự hào quá!");
       showToast("✨ Đã chia sẻ vào Kênh chung!");
     }
 
@@ -1010,7 +1156,7 @@
     ];
 
     let publicChatLog = [
-      { avatar: "🧑‍🎓", isImg: false, name: "Minh Khang", className: "5A1", text: "Sau giờ kiểm tra các bạn nhớ chơi Game ghép thẻ trí tuệ nhé!" }
+      { avatar: "🧑‍🎓", isImg: false, name: "Minh Khang", className: "5A1", text: "Bạn cú mèo ở góc dưới nhắc bài siêu đáng yêu luôn á các bạn!" }
     ];
 
     function createAvatarHtml(avatarData, isImg) {
@@ -1029,6 +1175,7 @@
         isImageAvatar = true;
         document.getElementById("avatar-preview-box").innerHTML = `<img src="${selectedAvatar}" class="w-full h-full object-cover">`;
         updateAchievementUI();
+        setMascotMood("😸", "Ảnh đại diện mới của em trông tuyệt lắm!");
       };
       reader.readAsDataURL(file);
     }
@@ -1117,7 +1264,7 @@
       document.getElementById("private-chat-dock").classList.remove("hidden");
       
       if (!privateChatHistory[targetName]) {
-        privateChatHistory[targetName] = [{ sender: targetName, text: `Chào bạn! Làm bài xong cùng chơi Game trí tuệ nhé!` }];
+        privateChatHistory[targetName] = [{ sender: targetName, text: `Chào bạn! Cùng nhau ôn tập nhé!` }];
       }
       renderPrivateMessages();
     }
@@ -1160,7 +1307,7 @@
       playDingSound(750);
     }
 
-    // NGÂN HÀNG CÂU HỎI XOẮN ỐC TIỂU HỌC
+    /* NGÂN HÀNG CÂU HỎI TIỂU HỌC */
     const SUBJECT_QUESTION_VAULT = {
       1: [
         { sub: "Toán", q: "Kết quả của phép tính: 5 + 4 = ?", opt: ["9", "8", "10", "7"], a: "9", h: "Đếm thêm 4 từ số 5." },
@@ -1185,7 +1332,6 @@
       ]
     };
 
-    let records = [];
     let questions = [];
     let answers = {};
     let currentQuestion = 0;
@@ -1305,6 +1451,7 @@
         btn.textContent = `${String.fromCharCode(65 + idx)}. ${opt}`;
         btn.onclick = () => {
           answers[currentQuestion] = opt;
+          setQuizMascotReaction("selected");
           renderQuestion();
         };
         answersRoot.appendChild(btn);
@@ -1365,13 +1512,14 @@
       startTimer();
       renderQuestion();
       showView(quizView);
+      setQuizMascotReaction("start");
     }
 
     function confirmFinishQuiz() {
       const modal = document.getElementById("confirm-modal");
       const msg = document.getElementById("confirm-message");
       const count = Object.values(answers).filter(a => a && a !== "SKIPPED").length;
-      msg.textContent = count < TOTAL_QUESTIONS ? `Em mới hoàn thành ${count}/${TOTAL_QUESTIONS} câu. Em có muốn nộp bài luôn không?` : "Em đã trả lời các câu hỏi. Bấm nộp bài để xem điểm.";
+      msg.textContent = count < TOTAL_QUESTIONS ? `Em mới hoàn thành ${count}/${TOTAL_QUESTIONS} câu. Em có muốn nộp bài luôn không?` : "Em đã hoàn thành các câu hỏi. Bấm nộp bài để xem điểm.";
       modal.classList.remove("hidden");
     }
 
@@ -1400,6 +1548,7 @@
       document.getElementById("accuracy-value").textContent = acc + "%";
 
       showView(resultView);
+      setMascotMood("🥳", `Chúc mừng em đạt ${score} điểm! Giỏi lắm!`);
       showToast("🎉 Nộp bài thành công!");
     }
 
@@ -1410,6 +1559,7 @@
       const h = document.getElementById("hint-box");
       h.textContent = "💡 Gợi ý: " + questions[currentQuestion].hint;
       h.classList.toggle("hidden");
+      setQuizMascotReaction("hint");
     };
     document.getElementById("cancel-confirm-button").onclick = () => document.getElementById("confirm-modal").classList.add("hidden");
     document.getElementById("accept-confirm-button").onclick = finishQuiz;
