@@ -29,6 +29,7 @@
       overflow-x: hidden;
     }
 
+    /* PHƯỢNG HOÀNG BAY LƯỢN */
     .phoenix-sky {
       position: fixed;
       inset: 0;
@@ -232,6 +233,11 @@
       border-color: #f59e0b;
       box-shadow: 0 0 0 2px #fef08a, 0 0 12px rgba(245, 158, 11, 0.6);
     }
+    .user-avatar-badge img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
 
     .view { display: none; }
     .view.active { display: block; animation: viewIn .35s cubic-bezier(0.16, 1, 0.3, 1) both; }
@@ -310,7 +316,7 @@
       align-items: center;
       justify-content: center;
       text-align: center;
-      padding: 8px;
+      padding: 6px;
     }
     .memory-front {
       background: linear-gradient(135deg, #be123c, #e11d48);
@@ -357,6 +363,7 @@
   </style>
 </head>
 <body>
+  <!-- PHƯỢNG HOÀNG BAY -->
   <div class="phoenix-sky">
     <div class="flying-phoenix phoenix-track-1">
       <svg viewBox="0 0 100 80">
@@ -470,11 +477,11 @@
         </header>
 
         <main class="px-5 pb-6 pt-4 sm:px-7 sm:pb-7">
-          <!-- VIEW 1: FORM THÔNG TIN -->
+          <!-- VIEW 1: FORM CÀI ĐẶT -->
           <section id="setup-view" class="view active">
             <div class="mb-4 border-b border-rose-100 pb-2.5">
               <h2 class="text-lg sm:text-xl font-black text-rose-950">Thông tin học sinh tham gia</h2>
-              <p class="text-xs sm:text-sm font-medium text-slate-500">Hoàn thành bài kiểm tra để tích lũy kinh nghiệm mở khóa đặc quyền và game trí tuệ!</p>
+              <p class="text-xs sm:text-sm font-medium text-slate-500">Mô hình xoắn ốc liên môn: Kiến thức lớp trên được củng cố lớp dưới!</p>
             </div>
 
             <div class="mb-4 p-4 rounded-2xl bg-gradient-to-r from-rose-50 to-pink-50 border-2 border-rose-200">
@@ -491,7 +498,7 @@
 
                 <label class="action-button cursor-pointer inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-white border-2 border-rose-300 text-xs font-black text-rose-800 shadow-sm hover:bg-rose-50">
                   <i data-lucide="upload" class="h-4 w-4 text-rose-600"></i>
-                  Tải ảnh
+                  Tải ảnh từ máy / điện thoại
                   <input id="avatar-file-input" type="file" accept="image/*" class="hidden" onchange="handleCustomAvatarUpload(event)">
                 </label>
 
@@ -558,12 +565,12 @@
               </div>
               <p id="setup-error" class="mt-3 hidden rounded-xl border-2 border-rose-300 bg-rose-50 p-3 text-xs font-bold text-rose-700"></p>
               <button id="start-button" class="action-button mt-4 flex w-full items-center justify-center gap-2 rounded-2xl py-3.5 font-black text-white text-base shadow-xl shadow-rose-600/30" type="button" onclick="startQuizAction()" style="background: linear-gradient(135deg, #be123c 0%, #e11d48 50%, #f43f5e 100%);">
-                <i data-lucide="play-circle" class="h-5 w-5"></i> Bắt đầu ôn luyện (Bộ đề 10 câu)
+                <i data-lucide="play-circle" class="h-5 w-5"></i> Bắt đầu ôn luyện (Bộ đề 10 câu ngẫu nhiên)
               </button>
             </form>
           </section>
 
-          <!-- VIEW 2: LÀM BÀI ÔN LUYỆN -->
+          <!-- VIEW 2: LÀM BÀI ÔN TẬP -->
           <section id="quiz-view" class="view">
             <div id="palette" class="mb-4 flex flex-wrap justify-center gap-1.5"></div>
             <div class="mb-3 flex flex-wrap items-center justify-between gap-2">
@@ -595,7 +602,7 @@
             </div>
           </section>
 
-          <!-- VIEW 3: KẾT QUẢ & NÚT VÀO GAME -->
+          <!-- VIEW 3: KẾT QUẢ & NÚT THƯ GIÃN -->
           <section id="result-view" class="view">
             <div class="rounded-3xl border-2 border-rose-100 bg-gradient-to-b from-rose-50/70 via-white to-white p-6 text-center shadow-lg">
               <div class="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-gradient-to-tr from-amber-400 to-yellow-200 text-amber-900 mb-2 shadow-lg shadow-amber-300/40 border-2 border-white animate-bounce">
@@ -621,10 +628,9 @@
                 </div>
               </div>
 
-              <!-- KHUNG KÊU GỌI THƯ GIÃN VỚI TRÒ CHƠI TRÍ TUỆ -->
               <div class="mt-5 p-4 rounded-2xl bg-gradient-to-r from-amber-50 to-orange-50 border-2 border-amber-300 text-center">
                 <p class="text-xs font-black text-amber-950 uppercase tracking-wide">🎮 Phần thưởng thư giãn sau giờ học:</p>
-                <p class="text-xs text-amber-800 font-semibold mt-0.5">Thử thách trí nhớ ghép cặp kiến thức để rèn luyện tư duy!</p>
+                <p class="text-xs text-amber-800 font-semibold mt-0.5">Thử thách trí nhớ ghép đôi kiến thức không trùng lặp!</p>
                 <button type="button" onclick="startMemoryGame()" class="action-button mt-3 inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-gradient-to-r from-amber-500 to-orange-500 text-white font-black text-sm shadow-lg shadow-orange-500/30">
                   <i data-lucide="play" class="h-4 w-4 fill-white"></i> Chơi Game Trí Tuệ Ngay
                 </button>
@@ -637,7 +643,7 @@
             </div>
           </section>
 
-          <!-- VIEW 4: TRÒ CHƠI TRÍ TUỆ (GHÉP THẺ BÀI HỌC) -->
+          <!-- VIEW 4: TRÒ CHƠI TRÍ TUỆ (KHÔNG LẶP LẠI THẺ) -->
           <section id="game-view" class="view">
             <div class="rounded-3xl border-2 border-emerald-200 bg-white p-5 shadow-lg">
               <div class="flex flex-wrap items-center justify-between gap-3 border-b border-emerald-100 pb-3 mb-4">
@@ -645,14 +651,14 @@
                   <h2 class="text-lg sm:text-xl font-black text-emerald-950 flex items-center gap-2">
                     <span>🧠</span> Trò Chơi Trí Tuệ: Ghép Đôi Tri Thức
                   </h2>
-                  <p class="text-xs text-slate-500 font-medium">Lật 2 thẻ tương ứng (Ví dụ: "5 + 5" ghép với "10", "Apple" ghép với "Quả táo").</p>
+                  <p class="text-xs text-slate-500 font-medium">Lật 2 thẻ ghép thành cặp tương ứng (Toán, Tiếng Anh, Khoa học...). Không trùng thẻ cũ giữa các ván!</p>
                 </div>
-                <div class="flex items-center gap-3">
-                  <span class="px-3 py-1 rounded-xl bg-emerald-100 text-emerald-900 text-xs font-black border border-emerald-300">
+                <div class="flex items-center gap-2">
+                  <span class="px-3 py-1.5 rounded-xl bg-emerald-100 text-emerald-900 text-xs font-black border border-emerald-300">
                     Lượt lật: <span id="game-moves">0</span>
                   </span>
                   <button type="button" onclick="startMemoryGame()" class="action-button px-3 py-1.5 rounded-xl bg-amber-100 text-amber-900 border border-amber-300 font-black text-xs hover:bg-amber-200">
-                    🔄 Chơi lại
+                    🔄 Đổi ván mới
                   </button>
                   <button type="button" onclick="showView(setupView)" class="action-button px-3 py-1.5 rounded-xl bg-rose-100 text-rose-900 border border-rose-300 font-black text-xs hover:bg-rose-200">
                     ✕ Thoát
@@ -665,7 +671,7 @@
 
               <div id="game-win-banner" class="mt-4 p-4 rounded-2xl bg-gradient-to-r from-emerald-500 to-teal-600 text-white text-center font-black hidden">
                 <p class="text-base">🎉 CHÚC MỪNG EM ĐÃ HOÀN THÀNH XUẤT SẮC TRÒ CHƠI!</p>
-                <p class="text-xs font-medium text-emerald-100 mt-1">Trí nhớ của em rất tuyệt vời. Hãy tiếp tục giữ vững tinh thần chăm chỉ nhé!</p>
+                <p class="text-xs font-medium text-emerald-100 mt-1">Bấm "Đổi ván mới" để thử thách bộ câu hỏi hoàn toàn khác nhé!</p>
               </div>
             </div>
           </section>
@@ -776,21 +782,53 @@
       view.classList.add("active");
     }
 
-    // DỮ LIỆU GAME TRÍ TUỆ GHÉP ĐÔI (MEMORY MATCH)
-    const GAME_PAIRS = [
-      { id: 1, val: "6 x 7", match: "42" },
-      { id: 2, val: "Cat", match: "Con mèo" },
-      { id: 3, val: "Nước sôi", match: "100°C" },
-      { id: 4, val: "Sun", match: "Mặt trời" },
-      { id: 5, val: "8 x 9", match: "72" },
-      { id: 6, val: "Chữ nhật", match: "4 góc vuông" }
+    /* KHO DỮ LIỆU GAME TRÍ TUỆ RỘNG LỚN & THUẬT TOÁN KHỬ TRÙNG LẶP */
+    const EXTENDED_GAME_VAULT = [
+      { id: "m1", val: "7 x 8", match: "56" },
+      { id: "m2", val: "9 x 9", match: "81" },
+      { id: "m3", val: "1/2 của 100", match: "50" },
+      { id: "m4", val: "1 giờ", match: "60 phút" },
+      { id: "m5", val: "Hình vuông", match: "4 cạnh bằng nhau" },
+      { id: "m6", val: "1 km", match: "1000 m" },
+      { id: "m7", val: "25 x 4", match: "100" },
+      { id: "m8", val: "Số chẵn nhỏ nhất", match: "Số 0" },
+      { id: "e1", val: "School", match: "Trường học" },
+      { id: "e2", val: "Teacher", match: "Thầy / Cô giáo" },
+      { id: "e3", val: "Yellow", match: "Màu vàng" },
+      { id: "e4", val: "Book", match: "Quyển sách" },
+      { id: "e5", val: "Summer", match: "Mùa hè" },
+      { id: "e6", val: "Breakfast", match: "Bữa sáng" },
+      { id: "e7", val: "Friend", match: "Bạn bè" },
+      { id: "e8", val: "Library", match: "Thư viện" },
+      { id: "s1", val: "Nước đóng băng", match: "0°C" },
+      { id: "s2", val: "Quang hợp ở cây", match: "Cần ánh sáng" },
+      { id: "s3", val: "Mặt trời mọc ở", match: "Hướng Đông" },
+      { id: "s4", val: "Thủ đô Việt Nam", match: "Hà Nội" },
+      { id: "s5", val: "Chiến thắng Bạch Đằng", match: "Năm 938" },
+      { id: "s6", val: "Núi cao nhất VN", match: "Fansipan" },
+      { id: "s7", val: "Mắt người", match: "Cơ quan thị giác" },
+      { id: "s8", val: "Răng sữa trẻ em", match: "20 chiếc" }
     ];
 
-    let memoryCards = [];
+    let usedPairIds = [];
+
+    function getUniqueGamePairs(count = 6) {
+      let available = EXTENDED_GAME_VAULT.filter(p => !usedPairIds.includes(p.id));
+      if (available.length < count) {
+        usedPairIds = [];
+        available = [...EXTENDED_GAME_VAULT];
+      }
+      available.sort(() => Math.random() - 0.5);
+      const chosen = available.slice(0, count);
+      chosen.forEach(p => usedPairIds.push(p.id));
+      return chosen;
+    }
+
     let flippedCards = [];
     let matchedCount = 0;
     let gameMoves = 0;
     let lockBoard = false;
+    let currentRoundPairs = 6;
 
     function startMemoryGame() {
       showView(gameView);
@@ -805,17 +843,20 @@
       flippedCards = [];
       lockBoard = false;
 
+      const activePairs = getUniqueGamePairs(6);
+      currentRoundPairs = activePairs.length;
+
       let deck = [];
-      GAME_PAIRS.forEach(p => {
+      activePairs.forEach(p => {
         deck.push({ pairId: p.id, text: p.val });
         deck.push({ pairId: p.id, text: p.match });
       });
       deck.sort(() => Math.random() - 0.5);
 
-      deck.forEach((cardData, idx) => {
+      deck.forEach(c => {
         const card = document.createElement("div");
         card.className = "memory-card";
-        card.dataset.pairId = cardData.pairId;
+        card.dataset.pairId = c.pairId;
         card.innerHTML = `
           <div class="memory-inner">
             <div class="memory-front">
@@ -823,7 +864,7 @@
               <span class="text-[10px] font-black mt-1">VĂN PHÚ</span>
             </div>
             <div class="memory-back">
-              <span class="font-extrabold text-xs leading-tight">${cardData.text}</span>
+              <span class="font-extrabold text-xs leading-tight">${c.text}</span>
             </div>
           </div>
         `;
@@ -858,9 +899,9 @@
           matchedCount++;
           playDingSound(900);
 
-          if (matchedCount === GAME_PAIRS.length) {
+          if (matchedCount === currentRoundPairs) {
             document.getElementById("game-win-banner").classList.remove("hidden");
-            if (typeof confetti === "function") confetti({ particleCount: 140, spread: 80, origin: { y: 0.6 } });
+            if (typeof confetti === "function") confetti({ particleCount: 150, spread: 80, origin: { y: 0.6 } });
           }
           flippedCards = [];
           lockBoard = false;
@@ -875,6 +916,7 @@
       }
     }
 
+    // ÂM THANH CHUÔNG WEB AUDIO API
     let audioCtx = null;
     function playDingSound(freq = 600) {
       try {
@@ -884,7 +926,6 @@
 
         const osc = audioCtx.createOscillator();
         const gain = audioCtx.createGain();
-
         osc.type = 'sine';
         osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
         osc.frequency.exponentialRampToValueAtTime(freq * 1.5, audioCtx.currentTime + 0.1);
@@ -1119,6 +1160,7 @@
       playDingSound(750);
     }
 
+    // NGÂN HÀNG CÂU HỎI XOẮN ỐC TIỂU HỌC
     const SUBJECT_QUESTION_VAULT = {
       1: [
         { sub: "Toán", q: "Kết quả của phép tính: 5 + 4 = ?", opt: ["9", "8", "10", "7"], a: "9", h: "Đếm thêm 4 từ số 5." },
@@ -1143,7 +1185,7 @@
       ]
     };
 
-    let records = JSON.parse(localStorage.getItem('vh_records') || "[]");
+    let records = [];
     let questions = [];
     let answers = {};
     let currentQuestion = 0;
