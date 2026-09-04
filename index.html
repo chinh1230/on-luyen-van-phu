@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>Trường Tiểu Học Văn Phú - Cổng Ôn Luyện Kiến Thức & Trí Tuệ Trực Tuyến Độc Quyền</title>
+  <title>Trường Tiểu Học Văn Phú - Cổng Ôn Luyện Kiến Thức & Trí Tuệ Toàn Diện</title>
   <script src="https://cdn.tailwindcss.com/3.4.17"></script>
   <script src="https://cdn.jsdelivr.net/npm/lucide@0.577.0/dist/umd/lucide.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
@@ -499,7 +499,7 @@
           <section id="setup-view" class="view active">
             <div class="mb-3 border-b border-rose-100 pb-2">
               <h2 class="text-base sm:text-lg font-black text-rose-950">Thông tin học sinh ôn luyện</h2>
-              <p class="text-xs font-medium text-slate-500">Mô hình xoắn ốc: củng cố liên tục kiến thức các lớp dưới!</p>
+              <p class="text-xs font-medium text-slate-500">Mô hình xoắn ốc liên môn: Tích hợp đầy đủ tất cả các môn trong Chương trình Tiểu học GDPT 2018!</p>
             </div>
 
             <div class="mb-3 p-3 rounded-2xl bg-rose-50/70 border border-rose-200">
@@ -546,11 +546,11 @@
                 <div>
                   <label class="mb-1 block text-xs font-bold text-slate-700">Khối lớp</label>
                   <select id="grade" class="form-control">
-                    <option value="1">Khối 1 (Chỉ ôn kiến thức Lớp 1)</option>
-                    <option value="2">Khối 2 (Kiến thức Lớp 2 & Ôn Lớp 1)</option>
-                    <option value="3">Khối 3 (Kiến thức Lớp 3 & Ôn Lớp 2, 1)</option>
-                    <option value="4">Khối 4 (Kiến thức Lớp 4 & Ôn Lớp 3, 2, 1)</option>
-                    <option value="5" selected>Khối 5 (Kiến thức Lớp 5 & Tổng ôn Lớp 4, 3, 2, 1)</option>
+                    <option value="1">Khối 1 (Kiến thức lớp 1)</option>
+                    <option value="2">Khối 2 (Lớp 2 & Ôn lớp 1)</option>
+                    <option value="3">Khối 3 (Lớp 3 & Ôn lớp 2, 1)</option>
+                    <option value="4">Khối 4 (Lớp 4 & Ôn lớp 3, 2, 1)</option>
+                    <option value="5" selected>Khối 5 (Lớp 5 & Tổng ôn lớp 4, 3, 2, 1)</option>
                   </select>
                 </div>
                 <div>
@@ -567,12 +567,19 @@
                   </select>
                 </div>
                 <div>
-                  <label class="mb-1 block text-xs font-bold text-slate-700">Môn học ôn luyện</label>
-                  <select id="subject" class="form-control">
-                    <option value="Tất cả các môn">Tất cả các môn (Toán, Tiếng Việt, Tiếng Anh, Khoa học, LS-ĐL)</option>
-                    <option value="Toán">Chuyên đề Toán học nâng cao</option>
-                    <option value="Tiếng Việt">Chuyên đề Tiếng Việt nâng cao</option>
-                    <option value="Tiếng Anh">Chuyên đề Tiếng Anh (English)</option>
+                  <label class="mb-1 block text-xs font-bold text-slate-700">Môn học ôn luyện (Đầy đủ CT Tiểu học)</label>
+                  <select id="subject" class="form-control font-bold text-rose-950">
+                    <option value="Tất cả các môn">⭐ Tất cả các môn (Tổng hợp kiến thức liên môn toàn diện)</option>
+                    <option value="Toán">📐 Toán học</option>
+                    <option value="Tiếng Việt">📖 Tiếng Việt</option>
+                    <option value="Tiếng Anh">🌍 Tiếng Anh (English)</option>
+                    <option value="Khoa học - Tự nhiên">🔬 Khoa học / Tự nhiên & Xã hội</option>
+                    <option value="Lịch sử - Địa lí">🗺️ Lịch sử & Địa lí</option>
+                    <option value="Tin học & Công nghệ">💻 Tin học & Công nghệ</option>
+                    <option value="Âm nhạc">🎵 Âm nhạc</option>
+                    <option value="Mĩ thuật">🎨 Mĩ thuật</option>
+                    <option value="Giáo dục thể chất">⚽ Giáo dục thể chất (Thể dục)</option>
+                    <option value="Hoạt động trải nghiệm & Đạo đức">🌟 Hoạt động trải nghiệm & Đạo đức</option>
                   </select>
                 </div>
               </div>
@@ -648,12 +655,12 @@
                 </div>
               </div>
 
-              <!-- BẢNG PHÂN TÍCH TỪNG CHUYÊN ĐỀ CHI TIẾT -->
+              <!-- BẢNG PHÂN TÍCH ĐẦY ĐỦ CÁC MÔN HỌC -->
               <div class="mt-4 p-3.5 rounded-2xl bg-white border-2 border-rose-200 shadow-sm text-left">
                 <div class="flex items-center justify-between border-b border-rose-100 pb-2 mb-2">
                   <h3 class="font-black text-rose-950 text-xs sm:text-sm flex items-center gap-1.5">
                     <i data-lucide="pie-chart" class="h-4 w-4 text-rose-600"></i>
-                    Đánh giá năng lực theo từng chuyên đề
+                    Đánh giá năng lực theo từng môn học trong đề
                   </h3>
                   <span class="text-[10px] font-extrabold text-slate-500 bg-rose-50 px-2 py-0.5 rounded border border-rose-200">
                     Chi tiết bài làm
@@ -663,7 +670,7 @@
                   <table class="w-full text-xs text-left">
                     <thead>
                       <tr class="text-rose-900 border-b border-rose-100 bg-rose-50/60 font-black">
-                        <th class="p-1.5">Chuyên đề / Môn</th>
+                        <th class="p-1.5">Môn học</th>
                         <th class="p-1.5 text-center">Xuất hiện</th>
                         <th class="p-1.5 text-center">Đúng</th>
                         <th class="p-1.5 text-center">Tỉ lệ</th>
@@ -987,9 +994,9 @@
       { topic: "Lịch sử - Địa lí", word: "TUYENQUANG", clue: "Tỉnh nơi có Tân Trào và Trường Tiểu học Văn Phú?" },
       { topic: "Tiếng Việt", word: "CHAMCHI", clue: "Từ ghép chỉ đức tính siêng năng học tập của học sinh?" },
       { topic: "Khoa học", word: "QUANGHOP", clue: "Quá trình cây xanh nhờ ánh sáng mặt trời tạo chất dinh dưỡng?" },
-      { topic: "Tiếng Anh", word: "TEACHER", clue: "Từ tiếng Anh chỉ người thầy, người cô dạy dỗ học sinh?" },
-      { topic: "Toán học", word: "TAMGIAC", clue: "Hình học phẳng có 3 cạnh và 3 góc?" },
-      { topic: "Lịch sử", word: "NGOQUYEN", clue: "Vị anh hùng gắn liền chiến thắng cọc ngầm sông Bạch Đằng 938?" }
+      { topic: "Tin học", word: "BANPHIM", clue: "Thiết bị dùng để nhập chữ và số vào máy vi tính?" },
+      { topic: "Âm nhạc", word: "NOTNHAC", clue: "Ký hiệu dùng để ghi lại cao độ của âm thanh trong bài hát?" },
+      { topic: "Mĩ thuật", word: "MAUSAC", clue: "Yếu tố cơ bản gồm đỏ, vàng, lam giúp bức tranh sinh động?" }
     ];
 
     let currentCwIndex = 0;
@@ -1119,10 +1126,10 @@
     /* GAME GHÉP THẺ */
     const EXTENDED_GAME_VAULT = [
       { id: "m1", val: "7 x 8", match: "56" },
-      { id: "m2", val: "9 x 9", match: "81" },
-      { id: "m3", val: "1/2 của 100", match: "50" },
-      { id: "e1", val: "School", match: "Trường" },
-      { id: "e2", val: "Teacher", match: "Thầy/Cô" },
+      { id: "m2", val: "1 giờ", match: "60 phút" },
+      { id: "e1", val: "Teacher", match: "Thầy/Cô" },
+      { id: "t1", val: "Chuột máy tính", match: "Thiết bị trỏ" },
+      { id: "a1", val: "Nốt Đô", match: "Nốt Do (C)" },
       { id: "s1", val: "Nước sôi", match: "100°C" }
     ];
 
@@ -1341,7 +1348,7 @@
     ];
 
     let publicChatLog = [
-      { avatar: "🧑‍🎓", isImg: false, name: "Minh Khang", className: "5A1", text: "Trang web học trên điện thoại hay máy tính đều mượt mà luôn các bạn!" }
+      { avatar: "🧑‍🎓", isImg: false, name: "Minh Khang", className: "5A1", text: "Đầy đủ tất cả các môn Âm nhạc, Mĩ thuật, Tin học luôn rồi nha các bạn!" }
     ];
 
     function createAvatarHtml(avatarData, isImg) {
@@ -1492,48 +1499,78 @@
       playDingSound(750);
     }
 
-    /* NGÂN HÀNG CÂU HỎI XOẮN ỐC (TÍCH HỢP ĐẦY ĐỦ 20 CÂU NÂNG CAO LỚP 5) */
+    /* =========================================================================
+       NGÂN HÀNG CÂU HỎI TIỂU HỌC TOÀN DIỆN TẤT CẢ CÁC MÔN (CHƯƠNG TRÌNH 2018)
+       ========================================================================= */
     const SUBJECT_QUESTION_VAULT = {
       1: [
         { sub: "Toán", q: "Kết quả của phép tính: 5 + 4 = ?", opt: ["9", "8", "10", "7"], a: "9", h: "Đếm thêm 4 từ số 5." },
-        { sub: "Tiếng Việt", q: "Chọn từ viết ĐÚNG chính tả:", opt: ["xinh xắn", "sinh xắn", "xinh sắn", "sinh sắn"], a: "xinh xắn", h: "Bắt đầu bằng x." },
-        { sub: "Tiếng Anh", q: "'Quả táo' tiếng Anh là:", opt: ["Apple", "Banana", "Cat", "Dog"], a: "Apple", h: "Bắt đầu bằng chữ A." }
+        { sub: "Tiếng Việt", q: "Chọn từ viết ĐÚNG chính tả:", opt: ["xinh xắn", "sinh xắn", "xinh sắn", "sinh sắn"], a: "xinh xắn", h: "Bắt đầu bằng chữ x." },
+        { sub: "Tiếng Anh", q: "'Quả táo' trong tiếng Anh là gì?", opt: ["Apple", "Banana", "Cat", "Dog"], a: "Apple", h: "Bắt đầu bằng chữ A." },
+        { sub: "Khoa học - Tự nhiên", q: "(TN&XH 1) Đôi mắt giúp chúng ta làm gì?", opt: ["Nhìn thấy mọi vật", "Nghe âm thanh", "Ngửi mùi hương", "Nếm thức ăn"], a: "Nhìn thấy mọi vật", h: "Mắt là cơ quan thị giác." },
+        { sub: "Âm nhạc", q: "Trong các âm sau, âm nào là nốt nhạc cơ bản?", opt: ["Đô (Do)", "Tiếng còi xe", "Tiếng sấm", "Tiếng chuông gió"], a: "Đô (Do)", h: "Nốt đầu tiên trong 7 nốt nhạc cơ bản." },
+        { sub: "Mĩ thuật", q: "Trộn màu đỏ với màu vàng ta sẽ thu được màu gì?", opt: ["Màu cam", "Màu xanh lá", "Màu tím", "Màu đen"], a: "Màu cam", h: "Sự hòa trộn giữa 2 màu cơ bản nóng." },
+        { sub: "Giáo dục thể chất", q: "Khi có khẩu lệnh 'Nghiêm!', tư thế đứng đúng là:", opt: ["Đứng thẳng, hai tay áp nhẹ đùi", "Đứng gù lưng", "Ngồi xổm", "Chạy nhảy tự do"], a: "Đứng thẳng, hai tay áp nhẹ đùi", h: "Tư thế nghiêm chỉnh đội hình." },
+        { sub: "Hoạt động trải nghiệm & Đạo đức", q: "Khi nhận được sự giúp đỡ từ người khác, em cần nói gì?", opt: ["Cảm ơn", "Xin lỗi", "Không nói gì", "Nói lời chê bai"], a: "Cảm ơn", h: "Lời cảm ơn thể hiện sự biết ơn và lịch sự." }
       ],
       2: [
-        { sub: "Toán", q: "Tính: 48 + 26 = ?", opt: ["74", "72", "64", "76"], a: "74", h: "8 + 6 = 14 nhớ 1." },
-        { sub: "Tiếng Anh", q: "Màu 'Đỏ' tiếng Anh là:", opt: ["Red", "Blue", "Green", "Yellow"], a: "Red", h: "Màu đỏ." }
+        { sub: "Toán", q: "Tính kết quả: 48 + 26 = ?", opt: ["74", "72", "64", "76"], a: "74", h: "8 + 6 = 14 viết 4 nhớ 1." },
+        { sub: "Tiếng Việt", q: "Điền vào chỗ trống: 'Ăn quả nhớ kẻ trồng ...'", opt: ["cây", "hoa", "lá", "rừng"], a: "cây", h: "Câu thành ngữ về lòng biết ơn." },
+        { sub: "Tiếng Anh", q: "Số '10' trong tiếng Anh viết là:", opt: ["Ten", "Nine", "Eight", "Seven"], a: "Ten", h: "Số mười." },
+        { sub: "Khoa học - Tự nhiên", q: "(TN&XH 2) Cơ quan nào lọc máu để tạo ra nước tiểu?", opt: ["Thận", "Tim", "Dạ dày", "Phổi"], a: "Thận", h: "Cơ quan bài tiết nước tiểu chính." },
+        { sub: "Tin học & Công nghệ", q: "Thao tác cầm chuột máy tính bằng tay phải, ngón trỏ đặt ở đâu?", opt: ["Nút chuột trái", "Nút chuột phải", "Con lăn", "Bên hông chuột"], a: "Nút chuột trái", h: "Ngón trỏ điều khiển nút chính bên trái." },
+        { sub: "Âm nhạc", q: "Nhạc cụ nào sau đây phát ra âm thanh bằng cách gõ?", opt: ["Trống nhỏ", "Sáo trúc", "Đàn nhị", "Kèn"], a: "Trống nhỏ", h: "Dùng dùi gõ vào mặt da." },
+        { sub: "Mĩ thuật", q: "Đâu là ba màu cơ bản (màu gốc) trong hội họa?", opt: ["Đỏ, Vàng, Lam", "Xanh lá, Cam, Tím", "Đen, Trắng, Xám", "Hồng, Nâu, Vàng"], a: "Đỏ, Vàng, Lam", h: "Ba màu sinh ra các màu sắc khác." },
+        { sub: "Giáo dục thể chất", q: "Trước khi tập thể dục hoặc thi đấu thể thao, chúng ta bắt buộc phải làm gì?", opt: ["Khởi động kỹ các khớp", "Uống thật nhiều nước ngọt", "Ăn cơm thật no", "Đi ngủ"], a: "Khởi động kỹ các khớp", h: "Giúp làm nóng cơ thể và tránh chấn thương." }
       ],
       3: [
-        { sub: "Toán", q: "Tính: 8 x 7 = ?", opt: ["56", "54", "64", "48"], a: "56", h: "Bảng nhân 8." },
-        { sub: "Tiếng Anh", q: "I can ______.", opt: ["swim", "swimming", "swims", "swam"], a: "swim", h: "Sau can dùng nguyên thể." }
+        { sub: "Toán", q: "Tính nhanh: 8 x 7 = ?", opt: ["56", "54", "64", "48"], a: "56", h: "Bảng nhân 8." },
+        { sub: "Tiếng Việt", q: "Trong câu: 'Mặt trời đỏ rực như quả cầu lửa', từ so sánh là:", opt: ["như", "đỏ rực", "quả cầu", "mặt trời"], a: "như", h: "Từ dùng để nối vế so sánh." },
+        { sub: "Tiếng Anh", q: "What is your favorite color? - I like ______.", opt: ["Blue", "Cat", "Apple", "Book"], a: "Blue", h: "Hỏi về màu sắc yêu thích." },
+        { sub: "Tin học & Công nghệ", q: "(Tin học 3) Bộ phận nào của máy tính hiển thị kết quả làm việc cho em nhìn thấy?", opt: ["Màn hình", "Bàn phím", "Chuột", "Thân máy"], a: "Màn hình", h: "Màn hình là thiết bị xuất hình ảnh." },
+        { sub: "Tin học & Công nghệ", q: "(Công nghệ 3) Đèn học có tác dụng chính là gì?", opt: ["Cung cấp đủ ánh sáng khi học bài", "Làm mát phòng học", "Để trang trí", "Để sưởi ấm"], a: "Cung cấp đủ ánh sáng khi học bài", h: "Bảo vệ đôi mắt khi đọc sách." },
+        { sub: "Khoa học - Tự nhiên", q: "(TN&XH 3) Cơ quan nào trong cơ thể thực hiện chức năng tuần hoàn máu?", opt: ["Tim và các mạch máu", "Phổi và khí quản", "Dạ dày và ruột", "Não bộ"], a: "Tim và các mạch máu", h: "Tim bơm máu đi khắp cơ thể." },
+        { sub: "Hoạt động trải nghiệm & Đạo đức", q: "Khi tham gia giao thông trên xe máy, em phải đội mũ bảo hiểm vào lúc nào?", opt: ["Khi bắt đầu ngồi lên xe máy", "Chỉ khi nhìn thấy cảnh sát", "Khi trời mưa", "Không cần đội"], a: "Khi bắt đầu ngồi lên xe máy", h: "Đảm bảo an toàn tính mạng tuyệt đối." }
       ],
       4: [
-        { sub: "Toán", q: "Diện tích hình bình hành đáy 14 cm, cao 6 cm là:", opt: ["84 cm²", "42 cm²", "40 cm²", "94 cm²"], a: "84 cm²", h: "Đáy x chiều cao." },
-        { sub: "Tiếng Việt", q: "Từ đồng nghĩa với 'trung thực'?", opt: ["Ngay thẳng", "Gian dối", "Chăm chỉ", "Hiền lành"], a: "Ngay thẳng", h: "Thật thà ngay thẳng." }
+        { sub: "Toán", q: "Diện tích hình bình hành có đáy 14 cm, chiều cao 6 cm là:", opt: ["84 cm²", "42 cm²", "40 cm²", "94 cm²"], a: "84 cm²", h: "Diện tích = Đáy x Chiều cao." },
+        { sub: "Tiếng Việt", q: "Từ nào dưới đây đồng nghĩa với từ 'trung thực'?", opt: ["Ngay thẳng", "Gian dối", "Chăm chỉ", "Hiền lành"], a: "Ngay thẳng", h: "Thật thà, không gian dối." },
+        { sub: "Tiếng Anh", q: "Where ______ you from? - I am from Vietnam.", opt: ["are", "is", "am", "be"], a: "are", h: "Chủ ngữ 'you' đi với động từ to be 'are'." },
+        { sub: "Khoa học - Tự nhiên", q: "(Khoa học 4) Nước có thể tồn tại ở những thể nào?", opt: ["Rắn, lỏng và khí", "Chỉ ở thể lỏng", "Thể rắn và lỏng", "Chỉ ở thể khí"], a: "Rắn, lỏng và khí", h: "Nước đá (rắn), nước (lỏng), hơi nước (khí)." },
+        { sub: "Lịch sử - Địa lí", q: "(LS&ĐL 4) Chiến thắng Bạch Đằng năm 938 gắn liền với vị anh hùng nào?", opt: ["Ngô Quyền", "Đinh Bộ Lĩnh", "Lê Lợi", "Quang Trung"], a: "Ngô Quyền", h: "Chiến thuật cắm cọc ngầm." },
+        { sub: "Tin học & Công nghệ", q: "(Tin học 4) Thư mục trong máy tính dùng để làm gì?", opt: ["Lưu trữ và sắp xếp tệp tin ngăn nắp", "Gõ chữ", "Vẽ tranh", "Nghe nhạc"], a: "Lưu trữ và sắp xếp tệp tin ngăn nắp", h: "Quản lý dữ liệu khoa học." },
+        { sub: "Tin học & Công nghệ", q: "(Công nghệ 4) Để tạo ra một chậu hoa tái chế, em có thể tận dụng vật liệu nào?", opt: ["Vỏ chai nhựa đã qua sử dụng", "Bát sứ đắt tiền", "Sách giáo khoa", "Quần áo mới"], a: "Vỏ chai nhựa đã qua sử dụng", h: "Bảo vệ môi trường bằng cách tái chế đồ nhựa." },
+        { sub: "Âm nhạc", q: "Bài hát 'Quốc ca Việt Nam' do nhạc sĩ nào sáng tác?", opt: ["Văn Cao", "Phong Nhã", "Phạm Tuyên", "Hoàng Vân"], a: "Văn Cao", h: "Tiến quân ca của nhạc sĩ Văn Cao." }
       ],
       5: [
-        // 10 CÂU TOÁN NÂNG CAO LỚP 5
+        // TOÁN LỚP 5
         { sub: "Toán", q: "Một chiếc xe đạp bán với giá 1 200 000 đồng được lãi 20% theo giá vốn. Giá vốn chiếc xe đạp là:", opt: ["1 000 000 đồng", "960 000 đồng", "1 050 000 đồng", "1 100 000 đồng"], a: "1 000 000 đồng", h: "Giá bán ứng với 120% giá vốn." },
         { sub: "Toán", q: "Dãy số: 3; 7; 11; 15; ... Số hạng thứ 50 của dãy là:", opt: ["199", "203", "195", "201"], a: "199", h: "Số hạng thứ n = Số đầu + (n - 1) x khoảng cách." },
         { sub: "Toán", q: "Bể nước hình hộp chữ nhật thể tích 4,8 m³. Chiều dài 2 m, rộng 1,5 m. Chiều cao của bể là:", opt: ["1,6 m", "1,2 m", "1,8 m", "1,5 m"], a: "1,6 m", h: "Chiều cao = Thể tích : (Dài x Rộng)." },
-        { sub: "Toán", q: "Hai người cùng làm xong sau 6 giờ. Người thứ nhất làm một mình mất 10 giờ. Người thứ hai làm một mình mất:", opt: ["15 giờ", "12 giờ", "14 giờ", "16 giờ"], a: "15 giờ", h: "Trong 1 giờ người thứ hai làm: 1/6 - 1/10 công việc." },
         { sub: "Toán", q: "Nếu tăng bán kính hình tròn lên 20% thì diện tích hình tròn tăng thêm bao nhiêu phần trăm?", opt: ["44%", "20%", "40%", "24%"], a: "44%", h: "Diện tích mới = 1,2 x 1,2 = 1,44 lần ban đầu." },
-        { sub: "Toán", q: "Một người đi từ A lúc 7 giờ 15 phút đến B lúc 9 giờ 45 phút với vận tốc 42 km/h. Quãng đường AB dài:", opt: ["105 km", "95 km", "100 km", "110 km"], a: "105 km", h: "Thời gian đi là 2,5 giờ. s = v x t." },
-        { sub: "Toán", q: "Tính giá trị: A = 1/2 + 1/4 + 1/8 + 1/16 + 1/32 + 1/64", opt: ["63/64", "61/64", "1", "31/32"], a: "63/64", h: "Lấy A x 2 trừ đi A ta được 1 - 1/64." },
-        { sub: "Toán", q: "Tìm x, biết: (x + 1/2) : 3/4 = 8/3", opt: ["x = 3/2", "x = 1/2", "x = 2", "x = 5/4"], a: "x = 3/2", h: "x + 1/2 = 8/3 x 3/4 = 2." },
-        { sub: "Toán", q: "Con tàu xuôi dòng mất 4 giờ, ngược dòng mất 6 giờ. Vận tốc dòng nước là 3 km/h. Khúc sông dài:", opt: ["72 km", "60 km", "84 km", "90 km"], a: "72 km", h: "Hiệu vận tốc xuôi và ngược là 6 km/h. Tỉ số vận tốc là 3/2." },
-        { sub: "Toán", q: "Tuổi mẹ gấp 3 lần con. Sau 4 năm nữa, tổng tuổi hai mẹ con là 56. Tuổi con hiện nay là:", opt: ["12 tuổi", "10 tuổi", "14 tuổi", "11 tuổi"], a: "12 tuổi", h: "Tổng tuổi hiện nay là 48 tuổi." },
-        // 10 CÂU TIẾNG VIỆT NÂNG CAO LỚP 5
+        // TIẾNG VIỆT LỚP 5
         { sub: "Tiếng Việt", q: "Từ 'ăn' trong câu nào sau đây được dùng theo NGHĨA CHUYỂN?", opt: ["Tàu neo đậu ở bến để ăn than.", "Bé thích ăn quả ngọt.", "Mỗi bữa em ăn hai bát cơm.", "Cả nhà quây quần ăn bữa tối."], a: "Tàu neo đậu ở bến để ăn than.", h: "Ăn than nghĩa là tiếp nhận nhiên liệu." },
         { sub: "Tiếng Việt", q: "Câu: 'Vì trời mưa lớn nên con đường làng trơn trượt.' biểu thị mối quan hệ gì?", opt: ["Nguyên nhân - kết quả", "Điều kiện - kết quả", "Tương phản", "Tăng tiến"], a: "Nguyên nhân - kết quả", h: "Cặp quan hệ từ 'Vì ... nên'." },
         { sub: "Tiếng Việt", q: "Biện pháp tu từ trong câu: 'Mặt trời của bắp thì nằm trên đồi / Mặt trời của mẹ, em nằm trên lưng'?", opt: ["Ẩn dụ", "Nhân hóa", "So sánh", "Hoán dụ"], a: "Ẩn dụ", h: "'Mặt trời của mẹ' là hình ảnh ẩn dụ chỉ đứa con." },
-        { sub: "Tiếng Việt", q: "Nhóm từ nào dưới đây gồm toàn các TỪ ĐỒNG NGHĨA chỉ màu sắc?", opt: ["Đỏ au, đỏ hoe, đỏ rực, đỏ chót", "Xanh ngắt, xanh xao, vàng xuộm", "Trắng xóa, đen kịt, tím biếc", "Hồng đào, xanh rờn, nâu sẫm"], a: "Đỏ au, đỏ hoe, đỏ rực, đỏ chót", h: "Diễn tả các sắc độ khác nhau của màu đỏ." },
-        { sub: "Tiếng Việt", q: "Bộ phận chủ ngữ trong câu ghép: 'Mặt trời lên, sương tan dần.' là:", opt: ["Câu ghép 2 vế; Chủ ngữ 1: 'Mặt trời', Chủ ngữ 2: 'sương'", "Chủ ngữ là 'Mặt trời lên'", "Câu đơn có 2 vị ngữ", "Vị ngữ là 'tan dần'"], a: "Câu ghép 2 vế; Chủ ngữ 1: 'Mặt trời', Chủ ngữ 2: 'sương'", h: "Hai vế câu đẳng lập có chủ vị độc lập." },
-        { sub: "Tiếng Việt", q: "Cặp từ 'đậu' trong 'Hạt đậu nảy mầm' và 'Chim đậu trên cành' là:", opt: ["Từ đồng âm", "Từ nhiều nghĩa", "Từ đồng nghĩa", "Từ trái nghĩa"], a: "Từ đồng âm", h: "Một từ là danh từ cây trồng, một từ là động từ." },
-        { sub: "Tiếng Việt", q: "Từ 'ngọt' trong câu nào được dùng theo NGHĨA GỐC?", opt: ["Quả mít chín cây thơm ngọt lịm.", "Lời nói ngọt lạt dễ nghe.", "Nụ cười ngọt ngào của cô giáo.", "Đàn ghi-ta buông tiếng ngọt ngào."], a: "Quả mít chín cây thơm ngọt lịm.", h: "Nghĩa gốc cảm nhận vị giác của đường, mật." },
-        { sub: "Tiếng Việt", q: "Đại từ 'nó' trong câu: 'Lan rất yêu chú mèo con. Ngày nào nó cũng nằm sưởi nắng.' thay thế cho:", opt: ["Chú mèo con", "Lan", "Hiên nhà", "Ánh nắng"], a: "Chú mèo con", h: "Đại từ ngôi thứ ba thay thế cho con vật." },
-        { sub: "Tiếng Việt", q: "Nhóm từ nào dưới đây gồm toàn các TỪ LÁY?", opt: ["Mênh mông, thoang thoảng, róc rách, lung linh", "Mặt mũi, xe cộ, chùa chiền, chim chóc", "Bờ bãi, bạn bè, ruộng đồng, làng xóm", "Cây cối, đất đai, nhà cửa, góc gách"], a: "Mênh mông, thoang thoảng, róc rách, lung linh", h: "Các từ có sự lặp lại âm đầu, vần." },
-        { sub: "Tiếng Việt", q: "Trạng ngữ trong câu: 'Dưới gốc đa cổ thụ đầu làng, các cụ già ngồi đánh cờ.' chỉ:", opt: ["Nơi chốn", "Thời gian", "Mục đích", "Phương tiện"], a: "Nơi chốn", h: "Trả lời cho câu hỏi 'Ở đâu?'." }
+        // TIẾNG ANH LỚP 5
+        { sub: "Tiếng Anh", q: "What did you do yesterday? - I ______ football with my friends.", opt: ["played", "play", "plays", "playing"], a: "played", h: "Dấu hiệu thì quá khứ đơn 'yesterday'." },
+        { sub: "Tiếng Anh", q: "What would you like to be in the future? - I'd like to be a ______ because I want to teach children.", opt: ["teacher", "doctor", "farmer", "pilot"], a: "teacher", h: "Nghề dạy học là teacher." },
+        // KHOA HỌC LỚP 5
+        { sub: "Khoa học - Tự nhiên", q: "(Khoa học 5) Nguồn năng lượng nào sau đây là năng lượng sạch, tái tạo được?", opt: ["Năng lượng mặt trời, gió", "Than đá", "Dầu mỏ", "Khí đốt tự nhiên"], a: "Năng lượng mặt trời, gió", h: "Nguồn năng lượng tự nhiên vô tận." },
+        // LỊCH SỬ & ĐỊA LÍ LỚP 5
+        { sub: "Lịch sử - Địa lí", q: "(LS&ĐL 5) Di tích lịch sử Tân Trào (Tuyên Quang) gắn liền với sự kiện trọng đại nào?", opt: ["Quốc dân Đại hội Tân Trào (Tháng 8/1945)", "Chiến dịch Điện Biên Phủ 1954", "Khởi nghĩa Lam Sơn", "Hiệp định Paris"], a: "Quốc dân Đại hội Tân Trào (Tháng 8/1945)", h: "Thủ đô kháng chiến Tân Trào - Tuyên Quang." },
+        { sub: "Lịch sử - Địa lí", q: "(LS&ĐL 5) Châu lục nào có diện tích lớn nhất và dân số đông nhất thế giới?", opt: ["Châu Á", "Châu Âu", "Châu Phi", "Châu Mỹ"], a: "Châu Á", h: "Châu Á rộng lớn nhất." },
+        // TIN HỌC & CÔNG NGHỆ LỚP 5
+        { sub: "Tin học & Công nghệ", q: "(Tin học 5) Khi sử dụng Internet, hành động nào sau đây là ĐÚNG để bảo vệ thông tin cá nhân?", opt: ["Không chia sẻ mật khẩu tài khoản cho người lạ", "Công khai số điện thoại, địa chỉ nhà", "Mở mọi đường link lạ nhận được", "Tải tệp không rõ nguồn gốc"], a: "Không chia sẻ mật khẩu tài khoản cho người lạ", h: "Giữ an toàn thông tin trên không gian mạng." },
+        { sub: "Tin học & Công nghệ", q: "(Công nghệ 5) Trong mô hình lắp ghép kỹ thuật, bộ phận nào truyền chuyển động từ động cơ đến bánh xe?", opt: ["Trục và bánh răng (dây đai)", "Ốc vít", "Thanh chữ U", "Tấm chữ L"], a: "Trục và bánh răng (dây đai)", h: "Hệ thống truyền động cơ khí." },
+        // ÂM NHẠC LỚP 5
+        { sub: "Âm nhạc", q: "(Âm nhạc 5) Nhạc cụ truyền thống nào của Việt Nam chỉ có một dây nhưng phát ra âm thanh rất độc đáo?", opt: ["Đàn bầu (Độc huyền cầm)", "Đàn tranh", "Đàn t'rưng", "Đàn nguyệt"], a: "Đàn bầu (Độc huyền cầm)", h: "Đàn một dây độc đáo của dân tộc." },
+        // MĨ THUẬT LỚP 5
+        { sub: "Mĩ thuật", q: "(Mĩ thuật 5) Thể loại tranh vẽ phong cảnh thiên nhiên, núi non, làng quê được gọi là:", opt: ["Tranh phong cảnh", "Tranh tĩnh vật", "Tranh chân dung", "Tranh cổ động"], a: "Tranh phong cảnh", h: "Đề tài phong cảnh thiên nhiên." },
+        // GIÁO DỤC THỂ CHẤT LỚP 5
+        { sub: "Giáo dục thể chất", q: "(GDTC 5) Luyện tập thể dục thể thao đều đặn mang lại lợi ích gì lớn nhất cho học sinh?", opt: ["Tăng cường sức khỏe và nâng cao sức đề kháng", "Mau bị đói", "Làm mất thời gian", "Gây mệt mỏi kéo dài"], a: "Tăng cường sức khỏe và nâng cao sức đề kháng", h: "Rèn luyện thể lực toàn diện." },
+        // HOẠT ĐỘNG TRẢI NGHIỆM LỚP 5
+        { sub: "Hoạt động trải nghiệm & Đạo đức", q: "(HĐTN 5) Khi phát hiện bạn trong trường bị bắt nạt hoặc gặp nguy hiểm, em nên làm gì?", opt: ["Báo ngay cho thầy cô giáo hoặc người lớn tin cậy", "Đứng xem và quay video", "Cổ vũ reo hò", "Bỏ đi không quan tâm"], a: "Báo ngay cho thầy cô giáo hoặc người lớn tin cậy", h: "Hành động dũng cảm, đúng đắn giúp đỡ bạn bè." }
       ]
     };
 
@@ -1724,7 +1761,7 @@
       const modal = document.getElementById("confirm-modal");
       const msg = document.getElementById("confirm-message");
       const count = Object.values(answers).filter(a => a && a !== "SKIPPED").length;
-      msg.textContent = count < TOTAL_QUESTIONS ? `Em mới làm ${count}/${TOTAL_QUESTIONS} câu. Em có muốn nộp bài luôn không?` : "Bấm nộp bài để xem điểm và đánh giá chuyên đề.";
+      msg.textContent = count < TOTAL_QUESTIONS ? `Em mới làm ${count}/${TOTAL_QUESTIONS} câu. Em có muốn nộp bài luôn không?` : "Bấm nộp bài để xem điểm và đánh giá chi tiết tất cả các môn.";
       modal.classList.remove("hidden");
     }
 
@@ -1770,6 +1807,7 @@
       showToast("🎉 Nộp bài thành công!");
     }
 
+    /* BẢNG PHÂN TÍCH KẾT QUẢ ĐẦY ĐỦ CÁC MÔN HỌC */
     function renderSubjectBreakdown(stats) {
       const tbody = document.getElementById("subject-breakdown-body");
       if (!tbody) return;
@@ -1780,7 +1818,12 @@
         "Tiếng Việt": "📖",
         "Tiếng Anh": "🌍",
         "Khoa học - Tự nhiên": "🔬",
-        "Lịch sử - Địa lí": "🗺️"
+        "Lịch sử - Địa lí": "🗺️",
+        "Tin học & Công nghệ": "💻",
+        "Âm nhạc": "🎵",
+        "Mĩ thuật": "🎨",
+        "Giáo dục thể chất": "⚽",
+        "Hoạt động trải nghiệm & Đạo đức": "🌸"
       };
 
       for (const [sub, data] of Object.entries(stats)) {
