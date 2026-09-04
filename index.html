@@ -29,7 +29,7 @@
       overflow-x: hidden;
     }
 
-    /* PHƯỢNG HOÀNG BAY LƯỢN */
+    /* PHƯỢNG HOÀNG BAY */
     .phoenix-sky {
       position: fixed;
       inset: 0;
@@ -67,7 +67,7 @@
       100% { right: 105vw; transform: scaleX(-1) translateY(0); }
     }
 
-    /* NHÂN VẬT HOẠT HÌNH BIỂU CẢM ĐÁNG YÊU (MASCOT) */
+    /* MASCOT ĐỒNG HÀNH */
     .mascot-companion-fixed {
       position: fixed;
       bottom: 60px;
@@ -76,12 +76,10 @@
       display: flex;
       flex-direction: column;
       align-items: flex-end;
-      pointer-events: auto;
+      cursor: pointer;
       transition: transform 0.25s ease;
     }
-    .mascot-companion-fixed:hover {
-      transform: translateY(-4px);
-    }
+    .mascot-companion-fixed:hover { transform: translateY(-4px); }
     .mascot-speech-bubble {
       background: #ffffff;
       border: 2px solid #f43f5e;
@@ -113,30 +111,23 @@
       0%, 100% { transform: translateY(0); }
       50% { transform: translateY(-4px); }
     }
-
     .mascot-character-body {
-      width: 70px;
-      height: 70px;
-      border-radius: 24px;
+      width: 66px;
+      height: 66px;
+      border-radius: 22px;
       background: linear-gradient(135deg, #fff1f2, #ffe4e6);
       border: 3px solid #f43f5e;
       display: flex;
       align-items: center;
       justify-content: center;
       box-shadow: 0 10px 25px -5px rgba(225, 29, 72, 0.4), 0 0 12px rgba(251, 191, 36, 0.5);
-      cursor: pointer;
       user-select: none;
       animation: cuteWiggle 3.5s infinite ease-in-out;
-      position: relative;
     }
     @keyframes cuteWiggle {
       0%, 100% { transform: rotate(0deg) scale(1); }
       25% { transform: rotate(-5deg) scale(1.04); }
       75% { transform: rotate(5deg) scale(1.04); }
-    }
-    .mascot-face-emoji {
-      font-size: 38px;
-      transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     }
 
     .app-shell {
@@ -357,6 +348,38 @@
       background: linear-gradient(90deg, #ffe4e6 0%, #fecdd3 100%);
     }
 
+    /* GAME Ô CHỮ ĐOÁN TỪ */
+    .crossword-box {
+      width: 44px;
+      height: 48px;
+      border: 2.5px solid #fecdd3;
+      border-radius: 14px;
+      font-size: 20px;
+      font-weight: 900;
+      text-align: center;
+      text-transform: uppercase;
+      color: #881337;
+      background: #ffffff;
+      outline: none;
+      transition: all 0.2s ease;
+    }
+    .crossword-box:focus {
+      border-color: #e11d48;
+      background: #fff1f2;
+      transform: scale(1.08);
+      box-shadow: 0 0 0 4px rgba(225, 29, 72, 0.2);
+    }
+    .crossword-box.correct {
+      border-color: #10b981 !important;
+      background: #ecfdf5 !important;
+      color: #047857 !important;
+    }
+    .crossword-box.revealed {
+      border-color: #f59e0b !important;
+      background: #fef3c7 !important;
+      color: #b45309 !important;
+    }
+
     /* GAME THẺ NHỚ TRÍ TUỆ */
     .memory-card {
       aspect-ratio: 1;
@@ -431,7 +454,6 @@
   </style>
 </head>
 <body>
-  <!-- BẦU TRỜI PHƯỢNG HOÀNG LỬA -->
   <div class="phoenix-sky">
     <div class="flying-phoenix phoenix-track-1">
       <svg viewBox="0 0 100 80">
@@ -448,33 +470,22 @@
         <circle cx="50" cy="22" r="3.5" fill="#fde047"/>
       </svg>
     </div>
-    <div class="flying-phoenix phoenix-track-2">
-      <svg viewBox="0 0 100 80">
-        <use href="#phGrad1"/>
-        <path fill="url(#phGrad1)" d="M50,30 Q35,5 15,12 Q30,22 42,32 Q20,28 5,38 Q22,42 40,40 Q15,48 2,62 Q20,54 42,46 Q28,65 18,80 Q36,65 48,50 Q54,65 60,80 Q56,60 52,46 Q70,54 90,62 Q75,48 55,40 Q75,42 92,38 Q75,28 55,32 Q68,22 82,12 Q62,5 50,30 Z"/>
-        <circle cx="50" cy="22" r="3.5" fill="#fde047"/>
-      </svg>
-    </div>
   </div>
 
-  <!-- LINH VẬT HOẠT HÌNH CỔ VŨ ĐÁNG YÊU (GÓC DƯỚI MÀN HÌNH) -->
+  <!-- MASCOT BIỂU CẢM ĐỒNG HÀNH -->
   <div class="mascot-companion-fixed" onclick="petMascot()">
     <div id="mascot-bubble" class="mascot-speech-bubble">
       Xin chào em! Cố lên nhé! ✨
     </div>
     <div class="mascot-character-body" title="Chạm vào tớ để nhận lời khen ngợi!">
-      <span id="mascot-emoji" class="mascot-face-emoji">🦉</span>
-      <span class="absolute -top-1 -right-1 flex h-3.5 w-3.5">
-        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-amber-400 opacity-75"></span>
-        <span class="relative inline-flex rounded-full h-3.5 w-3.5 bg-amber-500 text-[8px] text-white font-black items-center justify-center">★</span>
-      </span>
+      <span id="mascot-emoji" class="text-3xl">🦉</span>
     </div>
   </div>
 
   <div class="app-shell">
     <div class="main-wrapper">
       
-      <!-- CỘT TRÁI -->
+      <!-- CỘT TRÁI: THÀNH TÍCH -->
       <aside class="side-panel space-y-4">
         <div class="side-card">
           <div class="flex items-center justify-between mb-3 text-rose-800 font-extrabold border-b border-rose-100 pb-2 text-sm">
@@ -548,10 +559,13 @@
               Chủ biên: Thầy Nguyễn Phan Duy Chinh
             </p>
             <div class="flex flex-wrap gap-2">
-              <button id="open-game-button" class="action-button inline-flex items-center gap-1 rounded-xl border-2 border-emerald-300 bg-emerald-50 px-3 py-1.5 text-xs font-black text-emerald-900 shadow-sm" type="button" onclick="startMemoryGame()">
-                <i data-lucide="gamepad-2" class="h-4 w-4 text-emerald-600"></i> Trò chơi trí tuệ
+              <button class="action-button inline-flex items-center gap-1 rounded-xl border-2 border-indigo-300 bg-indigo-50 px-3 py-1.5 text-xs font-black text-indigo-900 shadow-sm" type="button" onclick="startCrosswordGame()">
+                <i data-lucide="spell-check" class="h-4 w-4 text-indigo-600"></i> Nối ô chữ đoán từ
               </button>
-              <button id="home-button" class="action-button inline-flex items-center gap-1 rounded-xl border-2 border-amber-300 bg-amber-50 px-3 py-1.5 text-xs font-black text-amber-900 shadow-sm" type="button" onclick="showView(setupView)">
+              <button class="action-button inline-flex items-center gap-1 rounded-xl border-2 border-emerald-300 bg-emerald-50 px-3 py-1.5 text-xs font-black text-emerald-900 shadow-sm" type="button" onclick="startMemoryGame()">
+                <i data-lucide="gamepad-2" class="h-4 w-4 text-emerald-600"></i> Ghép thẻ đôi
+              </button>
+              <button class="action-button inline-flex items-center gap-1 rounded-xl border-2 border-amber-300 bg-amber-50 px-3 py-1.5 text-xs font-black text-amber-900 shadow-sm" type="button" onclick="showView(setupView)">
                 <i data-lucide="home" class="h-4 w-4 text-amber-600"></i> Trang chủ
               </button>
             </div>
@@ -559,11 +573,11 @@
         </header>
 
         <main class="px-5 pb-6 pt-4 sm:px-7 sm:pb-7">
-          <!-- VIEW 1: THÔNG TIN HỌC SINH -->
+          <!-- VIEW 1: FORM CÀI ĐẶT -->
           <section id="setup-view" class="view active">
             <div class="mb-4 border-b border-rose-100 pb-2.5">
               <h2 class="text-lg sm:text-xl font-black text-rose-950">Thông tin học sinh tham gia</h2>
-              <p class="text-xs sm:text-sm font-medium text-slate-500">Học sinh hoàn thành bài ôn luyện sẽ tích lũy kinh nghiệm và mở khóa bạn đồng hành!</p>
+              <p class="text-xs sm:text-sm font-medium text-slate-500">Mô hình xoắn ốc liên môn: Kiến thức lớp trên được củng cố lớp dưới!</p>
             </div>
 
             <div class="mb-4 p-4 rounded-2xl bg-gradient-to-r from-rose-50 to-pink-50 border-2 border-rose-200">
@@ -580,7 +594,7 @@
 
                 <label class="action-button cursor-pointer inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-white border-2 border-rose-300 text-xs font-black text-rose-800 shadow-sm hover:bg-rose-50">
                   <i data-lucide="upload" class="h-4 w-4 text-rose-600"></i>
-                  Tải ảnh từ máy / điện thoại
+                  Tải ảnh
                   <input id="avatar-file-input" type="file" accept="image/*" class="hidden" onchange="handleCustomAvatarUpload(event)">
                 </label>
 
@@ -589,7 +603,6 @@
                   <button type="button" class="avatar-btn" data-avatar="👧" onclick="selectPresetAvatar('👧', this)">👧</button>
                   <button type="button" class="avatar-btn" data-avatar="🧑‍🎓" onclick="selectPresetAvatar('🧑‍🎓', this)">🧑‍🎓</button>
                   <button type="button" class="avatar-btn" data-avatar="🐱" onclick="selectPresetAvatar('🐱', this)">🐱</button>
-                  <button type="button" class="avatar-btn" data-avatar="🦁" onclick="selectPresetAvatar('🦁', this)">🦁</button>
                 </div>
               </div>
             </div>
@@ -603,7 +616,6 @@
                     <option value="Trường TH Hồng Sơn">Trường TH Hồng Sơn</option>
                     <option value="Trường TH 19-8">Trường TH 19-8</option>
                     <option value="Trường TH Tân Trào">Trường TH Tân Trào</option>
-                    <option value="Trường TH Phan Thiết">Trường TH Phan Thiết</option>
                   </select>
                 </div>
                 <div>
@@ -652,7 +664,7 @@
             </form>
           </section>
 
-          <!-- VIEW 2: LÀM BÀI ÔN LUYỆN (KÈM LINH VẬT ĐỒNG HÀNH) -->
+          <!-- VIEW 2: LÀM BÀI ÔN TẬP -->
           <section id="quiz-view" class="view">
             <div id="palette" class="mb-4 flex flex-wrap justify-center gap-1.5"></div>
             <div class="mb-3 flex flex-wrap items-center justify-between gap-2">
@@ -660,10 +672,7 @@
               <span id="timer" class="inline-flex items-center gap-1.5 rounded-xl border-2 border-rose-400 bg-rose-100 px-3 py-1.5 text-sm font-black text-rose-700 shadow-sm animate-pulse"><i data-lucide="timer" class="h-4 w-4"></i>10:00</span>
               <span id="level-badge" class="rounded-xl border-2 border-amber-300 bg-amber-50 px-3 py-1.5 text-xs font-black text-amber-900"></span>
             </div>
-
-            <!-- THẺ CÂU HỎI KÈM KHUNG MASCOT BIỂU CẢM TRỰC TIẾP -->
             <article class="rounded-3xl border-2 border-rose-100 bg-gradient-to-b from-rose-50/40 via-white to-white p-5 sm:p-6 shadow-md relative overflow-hidden">
-              <!-- Nhân vật phụ họa trên góc câu hỏi -->
               <div class="flex items-center justify-between border-b border-rose-100 pb-2 mb-2">
                 <div class="flex items-center gap-2">
                   <div id="quiz-mascot-icon" class="w-8 h-8 rounded-full bg-amber-100 border border-amber-300 flex items-center justify-center text-lg animate-bounce">
@@ -673,7 +682,6 @@
                 </div>
                 <span id="question-source-tag" class="text-xs font-black px-3 py-1 rounded-full bg-rose-100 text-rose-800 border border-rose-300 shadow-sm"></span>
               </div>
-
               <p id="question-number" class="text-xs font-black uppercase tracking-widest text-rose-600"></p>
               <h2 id="question-title" class="mt-2 text-lg sm:text-xl font-black leading-snug text-slate-900"></h2>
               <div id="answers" class="mt-4 grid gap-2.5"></div>
@@ -721,12 +729,16 @@
                 </div>
               </div>
 
-              <div class="mt-5 p-4 rounded-2xl bg-gradient-to-r from-amber-50 to-orange-50 border-2 border-amber-300 text-center">
-                <p class="text-xs font-black text-amber-950 uppercase tracking-wide">🎮 Phần thưởng thư giãn sau giờ học:</p>
-                <p class="text-xs text-amber-800 font-semibold mt-0.5">Thử thách trí nhớ ghép đôi kiến thức hoàn toàn không trùng lặp!</p>
-                <button type="button" onclick="startMemoryGame()" class="action-button mt-3 inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-gradient-to-r from-amber-500 to-orange-500 text-white font-black text-sm shadow-lg shadow-orange-500/30">
-                  <i data-lucide="play" class="h-4 w-4 fill-white"></i> Chơi Game Trí Tuệ Ngay
-                </button>
+              <div class="mt-5 p-4 rounded-2xl bg-gradient-to-r from-amber-50 via-rose-50 to-indigo-50 border-2 border-rose-300 text-center">
+                <p class="text-xs font-black text-rose-950 uppercase tracking-wide">🎮 Chọn trò chơi trí tuệ để thư giãn:</p>
+                <div class="mt-3 flex flex-wrap justify-center gap-2.5">
+                  <button type="button" onclick="startCrosswordGame()" class="action-button inline-flex items-center gap-1.5 px-4 py-2.5 rounded-xl bg-gradient-to-r from-indigo-500 to-purple-600 text-white font-black text-xs shadow-lg shadow-indigo-500/25">
+                    <i data-lucide="spell-check" class="h-4 w-4"></i> Nối ô chữ đoán từ
+                  </button>
+                  <button type="button" onclick="startMemoryGame()" class="action-button inline-flex items-center gap-1.5 px-4 py-2.5 rounded-xl bg-gradient-to-r from-emerald-500 to-teal-600 text-white font-black text-xs shadow-lg shadow-emerald-500/25">
+                    <i data-lucide="gamepad-2" class="h-4 w-4"></i> Ghép thẻ cặp đôi
+                  </button>
+                </div>
               </div>
             </div>
 
@@ -736,13 +748,65 @@
             </div>
           </section>
 
-          <!-- VIEW 4: TRÒ CHƠI TRÍ TUỆ (GHÉP THẺ) -->
+          <!-- VIEW 4: TRÒ CHƠI NỐI Ô CHỮ & ĐOÁN TỪ (MỚI) -->
+          <section id="crossword-view" class="view">
+            <div class="rounded-3xl border-2 border-indigo-200 bg-white p-5 shadow-lg">
+              <div class="flex flex-wrap items-center justify-between gap-2 border-b border-indigo-100 pb-3 mb-4">
+                <div>
+                  <h2 class="text-lg sm:text-xl font-black text-indigo-950 flex items-center gap-2">
+                    <span>🧩</span> Trò Chơi: Nối Ô Chữ - Đoán Từ Kỳ Diệu
+                  </h2>
+                  <p class="text-xs text-slate-500 font-medium">Đọc kỹ gợi ý bên dưới và gõ ký tự vào từng ô chữ để hoàn thành câu đố!</p>
+                </div>
+                <div class="flex items-center gap-2">
+                  <span class="px-3 py-1.5 rounded-xl bg-indigo-100 text-indigo-900 text-xs font-black border border-indigo-300">
+                    Câu số: <span id="cw-current-idx">1</span> / <span id="cw-total-count">6</span>
+                  </span>
+                  <button type="button" onclick="startCrosswordGame()" class="action-button px-3 py-1.5 rounded-xl bg-amber-100 text-amber-900 border border-amber-300 font-black text-xs">
+                    🔄 Đổi từ khác
+                  </button>
+                  <button type="button" onclick="showView(setupView)" class="action-button px-3 py-1.5 rounded-xl bg-rose-100 text-rose-900 border border-rose-300 font-black text-xs">
+                    ✕ Thoát
+                  </button>
+                </div>
+              </div>
+
+              <!-- KHUNG GỢI Ý ĐỐ TỪ -->
+              <div class="p-4 rounded-2xl bg-indigo-50/70 border-2 border-indigo-200 mb-5">
+                <div class="flex items-center gap-2 mb-1">
+                  <span class="px-2 py-0.5 rounded-md bg-indigo-600 text-white text-[10.5px] font-black uppercase" id="cw-topic-tag">GỢI Ý</span>
+                  <span class="text-xs font-extrabold text-indigo-950">Gợi ý câu đố:</span>
+                </div>
+                <p id="cw-clue-text" class="text-sm font-black text-slate-800 leading-relaxed"></p>
+              </div>
+
+              <!-- HÀNG Ô CHỮ TƯƠNG TÁC -->
+              <div class="flex flex-wrap justify-center gap-2 my-6" id="cw-grid-boxes"></div>
+
+              <!-- NÚT ĐIỀU KHIỂN GAME Ô CHỮ -->
+              <div class="flex flex-wrap justify-center items-center gap-3">
+                <button type="button" onclick="revealOneLetter()" class="action-button inline-flex items-center gap-1.5 px-4 py-2.5 rounded-xl bg-amber-100 border-2 border-amber-300 text-amber-950 font-black text-xs shadow-sm hover:bg-amber-200">
+                  <i data-lucide="help-circle" class="h-4 w-4 text-amber-600"></i> Mở 1 chữ cái gợi ý
+                </button>
+                <button type="button" onclick="checkCrosswordWord()" class="action-button inline-flex items-center gap-1.5 px-6 py-2.5 rounded-xl bg-gradient-to-r from-indigo-600 to-purple-600 text-white font-black text-sm shadow-md shadow-indigo-600/30">
+                  <i data-lucide="check-circle-2" class="h-4 w-4"></i> Kiểm tra ô chữ
+                </button>
+                <button type="button" onclick="nextCrosswordWord()" id="cw-next-btn" class="action-button inline-flex items-center gap-1.5 px-4 py-2.5 rounded-xl bg-emerald-100 border-2 border-emerald-300 text-emerald-950 font-black text-xs shadow-sm hover:bg-emerald-200 hidden">
+                  Qua từ tiếp theo →
+                </button>
+              </div>
+
+              <div id="cw-msg-feedback" class="mt-4 p-3 rounded-xl text-center text-xs font-black hidden"></div>
+            </div>
+          </section>
+
+          <!-- VIEW 5: TRÒ CHƠI GHÉP THẺ TRÍ TUỆ -->
           <section id="game-view" class="view">
             <div class="rounded-3xl border-2 border-emerald-200 bg-white p-5 shadow-lg">
               <div class="flex flex-wrap items-center justify-between gap-3 border-b border-emerald-100 pb-3 mb-4">
                 <div>
                   <h2 class="text-lg sm:text-xl font-black text-emerald-950 flex items-center gap-2">
-                    <span>🧠</span> Trò Chơi Trí Tuệ: Ghép Đôi Tri Thức
+                    <span>🧠</span> Ghép Đôi Tri Thức (Thẻ Nhớ)
                   </h2>
                   <p class="text-xs text-slate-500 font-medium">Lật 2 thẻ ghép thành cặp tương ứng. Mỗi ván là một bộ thẻ hoàn toàn mới!</p>
                 </div>
@@ -758,12 +822,9 @@
                   </button>
                 </div>
               </div>
-
               <div id="memory-grid" class="grid grid-cols-3 sm:grid-cols-4 gap-3 max-w-lg mx-auto"></div>
-
               <div id="game-win-banner" class="mt-4 p-4 rounded-2xl bg-gradient-to-r from-emerald-500 to-teal-600 text-white text-center font-black hidden">
                 <p class="text-base">🎉 CHÚC MỪNG EM ĐÃ HOÀN THÀNH XUẤT SẮC TRÒ CHƠI!</p>
-                <p class="text-xs font-medium text-emerald-100 mt-1">Trí nhớ của em rất tuyệt vời! Bấm "Đổi ván mới" để thử thách tiếp nhé.</p>
               </div>
             </div>
           </section>
@@ -775,7 +836,7 @@
         </footer>
       </div>
 
-      <!-- CỘT PHẢI: ONLINE & CHAT TOÀN TRƯỜNG -->
+      <!-- CỘT PHẢI: ONLINE & CHAT -->
       <aside class="side-panel space-y-4">
         <div class="side-card">
           <div class="flex items-center justify-between mb-2.5 border-b border-rose-100 pb-2">
@@ -868,31 +929,166 @@
     const quizView = document.getElementById("quiz-view");
     const resultView = document.getElementById("result-view");
     const gameView = document.getElementById("game-view");
+    const crosswordView = document.getElementById("crossword-view");
 
     function showView(view) {
-      [setupView, quizView, resultView, gameView].forEach(item => item.classList.remove("active"));
+      [setupView, quizView, resultView, gameView, crosswordView].forEach(item => item.classList.remove("active"));
       view.classList.add("active");
     }
 
-    /* HỆ THỐNG BIỂU CẢM CỦA LINH VẬT ĐỒNG HÀNH */
+    /* KHO DỮ LIỆU GAME NỐI Ô CHỮ & ĐOÁN TỪ (CROSSWORD) */
+    const CROSSWORD_VAULT = [
+      {
+        topic: "Lịch sử - Địa lí",
+        word: "TUYENQUANG",
+        clue: "Tỉnh nơi có Thủ đô kháng chiến Tân Trào và Trường Tiểu học Văn Phú của chúng ta?"
+      },
+      {
+        topic: "Tiếng Việt",
+        word: "CHAMCHI",
+        clue: "Từ ghép chỉ đức tính siêng năng, cần cù học tập của học sinh?"
+      },
+      {
+        topic: "Khoa học",
+        word: "QUANGHOP",
+        clue: "Quá trình cây xanh nhờ ánh sáng mặt trời để tạo chất dinh dưỡng và khí oxy?"
+      },
+      {
+        topic: "Tiếng Anh",
+        word: "TEACHER",
+        clue: "Từ tiếng Anh chỉ người thầy, người cô dạy dỗ học sinh trên lớp?"
+      },
+      {
+        topic: "Toán học",
+        word: "TAMGIAC",
+        clue: "Hình học phẳng có 3 cạnh và 3 góc?"
+      },
+      {
+        topic: "Lịch sử",
+        word: "NGOQUYEN",
+        clue: "Vị anh hùng dân tộc lãnh đạo chiến thắng cọc ngầm trên sông Bạch Đằng năm 938?"
+      }
+    ];
+
+    let currentCwIndex = 0;
+    let currentCwData = null;
+
+    function startCrosswordGame() {
+      showView(crosswordView);
+      currentCwIndex = Math.floor(Math.random() * CROSSWORD_VAULT.length);
+      renderCrosswordWord();
+      setMascotMood("🧩", "Đoán ô chữ thử tài thông thái nào em!");
+    }
+
+    function renderCrosswordWord() {
+      currentCwData = CROSSWORD_VAULT[currentCwIndex];
+      document.getElementById("cw-current-idx").textContent = currentCwIndex + 1;
+      document.getElementById("cw-total-count").textContent = CROSSWORD_VAULT.length;
+      document.getElementById("cw-topic-tag").textContent = currentCwData.topic;
+      document.getElementById("cw-clue-text").textContent = currentCwData.clue;
+      
+      const nextBtn = document.getElementById("cw-next-btn");
+      const feedback = document.getElementById("cw-msg-feedback");
+      nextBtn.classList.add("hidden");
+      feedback.classList.add("hidden");
+
+      const grid = document.getElementById("cw-grid-boxes");
+      grid.innerHTML = "";
+
+      const wordLetters = currentCwData.word.split("");
+      wordLetters.forEach((char, i) => {
+        const input = document.createElement("input");
+        input.type = "text";
+        input.maxLength = 1;
+        input.className = "crossword-box";
+        input.dataset.index = i;
+        input.dataset.char = char;
+
+        // Tự động chuyển sang ô tiếp theo khi gõ
+        input.oninput = (e) => {
+          input.value = input.value.toUpperCase();
+          if (input.value && i < wordLetters.length - 1) {
+            grid.children[i + 1].focus();
+          }
+        };
+
+        // Bấm phím lùi (Backspace) để quay lại ô trước
+        input.onkeydown = (e) => {
+          if (e.key === "Backspace" && !input.value && i > 0) {
+            grid.children[i - 1].focus();
+          }
+        };
+
+        grid.appendChild(input);
+      });
+
+      if (grid.children.length > 0) grid.children[0].focus();
+    }
+
+    function checkCrosswordWord() {
+      const grid = document.getElementById("cw-grid-boxes");
+      const inputs = Array.from(grid.children);
+      const userWord = inputs.map(inp => inp.value.trim().toUpperCase()).join("");
+      const targetWord = currentCwData.word.toUpperCase();
+      const feedback = document.getElementById("cw-msg-feedback");
+      const nextBtn = document.getElementById("cw-next-btn");
+
+      feedback.classList.remove("hidden");
+
+      if (userWord === targetWord) {
+        inputs.forEach(inp => inp.classList.add("correct"));
+        feedback.className = "mt-4 p-3 rounded-xl text-center text-xs font-black bg-emerald-100 text-emerald-900 border border-emerald-300";
+        feedback.textContent = "🎉 CHÍNH XÁC! Em trả lời rất thông minh và nhận thêm 10 điểm tích lũy!";
+        nextBtn.classList.remove("hidden");
+        
+        myStats.totalAnswered += 1;
+        myStats.totalCorrect += 1;
+        updateAchievementUI();
+        playDingSound(900);
+        setMascotMood("🥳", "Tuyệt đỉnh! Ô chữ hoàn toàn chính xác!");
+        if (typeof confetti === "function") confetti({ particleCount: 100, spread: 70, origin: { y: 0.65 } });
+      } else {
+        feedback.className = "mt-4 p-3 rounded-xl text-center text-xs font-black bg-rose-100 text-rose-900 border border-rose-300";
+        feedback.textContent = "⚠️ Chưa chính xác rồi, em hãy kiểm tra lại từng ô chữ hoặc bấm mở gợi ý nhé!";
+        playDingSound(350);
+        setMascotMood("🧐", "Cố gắng lên, suy nghĩ thêm chút nữa!");
+      }
+    }
+
+    function revealOneLetter() {
+      const grid = document.getElementById("cw-grid-boxes");
+      const inputs = Array.from(grid.children);
+      const emptyOrWrong = inputs.filter(inp => inp.value.toUpperCase() !== inp.dataset.char);
+
+      if (emptyOrWrong.length > 0) {
+        const randomInp = emptyOrWrong[Math.floor(Math.random() * emptyOrWrong.length)];
+        randomInp.value = randomInp.dataset.char;
+        randomInp.classList.add("revealed");
+        playDingSound(700);
+        showToast("💡 Đã mở thêm 1 chữ cái gợi ý!");
+      } else {
+        showToast("Tất cả các chữ cái đã được mở!");
+      }
+    }
+
+    function nextCrosswordWord() {
+      currentCwIndex = (currentCwIndex + 1) % CROSSWORD_VAULT.length;
+      renderCrosswordWord();
+    }
+
+    /* LINH VẬT ĐỒNG HÀNH */
     const MASCOT_MOODS = [
       { emoji: "🦉", quote: "Học tập là hạt giống của hạnh phúc!" },
       { emoji: "😸", quote: "Em làm bài rất cừ khôi đấy!" },
       { emoji: "🧐", quote: "Hãy suy nghĩ thật kỹ trước khi chọn nha!" },
-      { emoji: "🥳", quote: "Hoan hô! Thêm một câu trả lời xuất sắc!" },
-      { emoji: "🦁", quote: "Chiến binh Văn Phú không ngại thử thách!" },
-      { emoji: "⭐", quote: "Điểm 10 đang chờ đón em đó!" }
+      { emoji: "🥳", quote: "Hoan hô! Thêm một câu trả lời xuất sắc!" }
     ];
     let currentMoodIdx = 0;
 
     function setMascotMood(emoji, quote) {
       const e = document.getElementById("mascot-emoji");
       const q = document.getElementById("mascot-bubble");
-      if (e) {
-        e.textContent = emoji;
-        e.style.transform = "scale(1.3) rotate(-10deg)";
-        setTimeout(() => e.style.transform = "scale(1) rotate(0deg)", 300);
-      }
+      if (e) e.textContent = emoji;
       if (q) q.textContent = quote;
     }
 
@@ -904,55 +1100,24 @@
       showToast("💖 Bạn linh vật gửi lời chúc chăm ngoan tới em!");
     }
 
-    function setQuizMascotReaction(type) {
-      const icon = document.getElementById("quiz-mascot-icon");
-      const msg = document.getElementById("quiz-mascot-msg");
-      if (!icon || !msg) return;
-
-      if (type === "selected") {
-        icon.textContent = "😸";
-        msg.textContent = "Lựa chọn rất quyết đoán! Hãy tiếp tục nhé!";
-        setMascotMood("😸", "Quyết định tuyệt vời! Cố lên nào!");
-      } else if (type === "hint") {
-        icon.textContent = "🧐";
-        msg.textContent = "Gợi ý đã sẵn sàng, em hãy đọc thật kỹ!";
-        setMascotMood("🧐", "Tập trung phân tích gợi ý nhé!");
-      } else if (type === "start") {
-        icon.textContent = "🦉";
-        msg.textContent = "Cùng đọc kỹ đề và chọn đáp án đúng nhất!";
-        setMascotMood("🦉", "Chúc em đạt điểm tuyệt đối nha!");
-      }
-    }
-
-    /* KHO DỮ LIỆU GAME TRÍ TUỆ & THUẬT TOÁN KHỬ TRÙNG LẶP */
+    /* GAME GHÉP THẺ ĐÔI (MEMORY) KHÔNG TRÙNG LẶP */
     const EXTENDED_GAME_VAULT = [
       { id: "m1", val: "7 x 8", match: "56" },
       { id: "m2", val: "9 x 9", match: "81" },
       { id: "m3", val: "1/2 của 100", match: "50" },
       { id: "m4", val: "1 giờ", match: "60 phút" },
-      { id: "m5", val: "Hình vuông", match: "4 cạnh bằng nhau" },
-      { id: "m6", val: "1 km", match: "1000 m" },
-      { id: "m7", val: "25 x 4", match: "100" },
-      { id: "m8", val: "Số chẵn nhỏ nhất", match: "Số 0" },
       { id: "e1", val: "School", match: "Trường học" },
-      { id: "e2", val: "Teacher", match: "Thầy / Cô giáo" },
-      { id: "e3", val: "Yellow", match: "Màu vàng" },
-      { id: "e4", val: "Book", match: "Quyển sách" },
-      { id: "e5", val: "Summer", match: "Mùa hè" },
-      { id: "e6", val: "Breakfast", match: "Bữa sáng" },
-      { id: "e7", val: "Friend", match: "Bạn bè" },
-      { id: "e8", val: "Library", match: "Thư viện" },
+      { id: "e2", val: "Teacher", match: "Thầy / Cô" },
       { id: "s1", val: "Nước đóng băng", match: "0°C" },
-      { id: "s2", val: "Quang hợp ở cây", match: "Cần ánh sáng" },
-      { id: "s3", val: "Mặt trời mọc ở", match: "Hướng Đông" },
-      { id: "s4", val: "Thủ đô Việt Nam", match: "Hà Nội" },
-      { id: "s5", val: "Chiến thắng Bạch Đằng", match: "Năm 938" },
-      { id: "s6", val: "Núi cao nhất VN", match: "Fansipan" },
-      { id: "s7", val: "Mắt người", match: "Cơ quan thị giác" },
-      { id: "s8", val: "Răng sữa trẻ em", match: "20 chiếc" }
+      { id: "s2", val: "Thủ đô Việt Nam", match: "Hà Nội" }
     ];
 
     let usedPairIds = [];
+    let flippedCards = [];
+    let matchedCount = 0;
+    let gameMoves = 0;
+    let lockBoard = false;
+    let currentRoundPairs = 6;
 
     function getUniqueGamePairs(count = 6) {
       let available = EXTENDED_GAME_VAULT.filter(p => !usedPairIds.includes(p.id));
@@ -965,12 +1130,6 @@
       chosen.forEach(p => usedPairIds.push(p.id));
       return chosen;
     }
-
-    let flippedCards = [];
-    let matchedCount = 0;
-    let gameMoves = 0;
-    let lockBoard = false;
-    let currentRoundPairs = 6;
 
     function startMemoryGame() {
       showView(gameView);
@@ -1013,12 +1172,10 @@
         card.onclick = () => flipMemoryCard(card);
         grid.appendChild(card);
       });
-      setMascotMood("🥳", "Tìm các cặp thẻ tương ứng nào em ơi!");
     }
 
     function flipMemoryCard(card) {
       if (lockBoard || card.classList.contains("flipped") || card.classList.contains("matched")) return;
-
       card.classList.add("flipped");
       flippedCards.push(card);
       playDingSound(600);
@@ -1041,12 +1198,10 @@
           c2.classList.add("matched");
           matchedCount++;
           playDingSound(900);
-          setMascotMood("😸", "Đúng rồi! Trí nhớ của em rất cừ!");
 
           if (matchedCount === currentRoundPairs) {
             document.getElementById("game-win-banner").classList.remove("hidden");
-            setMascotMood("🥳", "Xuất sắc! Em đã hoàn thành toàn bộ bàn cờ!");
-            if (typeof confetti === "function") confetti({ particleCount: 150, spread: 80, origin: { y: 0.6 } });
+            if (typeof confetti === "function") confetti({ particleCount: 140, spread: 80, origin: { y: 0.6 } });
           }
           flippedCards = [];
           lockBoard = false;
@@ -1061,7 +1216,7 @@
       }
     }
 
-    /* ÂM THANH CHUÔNG WEB AUDIO API */
+    /* ÂM THANH CHUÔNG */
     let audioCtx = null;
     function playDingSound(freq = 600) {
       try {
@@ -1142,7 +1297,6 @@
 
       renderPublicChat();
       playDingSound(700);
-      setMascotMood("⭐", "Thành tích đáng tự hào quá!");
       showToast("✨ Đã chia sẻ vào Kênh chung!");
     }
 
@@ -1156,7 +1310,7 @@
     ];
 
     let publicChatLog = [
-      { avatar: "🧑‍🎓", isImg: false, name: "Minh Khang", className: "5A1", text: "Bạn cú mèo ở góc dưới nhắc bài siêu đáng yêu luôn á các bạn!" }
+      { avatar: "🧑‍🎓", isImg: false, name: "Minh Khang", className: "5A1", text: "Trò chơi ô chữ mới đoán từ cực vui luôn các bạn ơi!" }
     ];
 
     function createAvatarHtml(avatarData, isImg) {
@@ -1175,7 +1329,6 @@
         isImageAvatar = true;
         document.getElementById("avatar-preview-box").innerHTML = `<img src="${selectedAvatar}" class="w-full h-full object-cover">`;
         updateAchievementUI();
-        setMascotMood("😸", "Ảnh đại diện mới của em trông tuyệt lắm!");
       };
       reader.readAsDataURL(file);
     }
@@ -1264,7 +1417,7 @@
       document.getElementById("private-chat-dock").classList.remove("hidden");
       
       if (!privateChatHistory[targetName]) {
-        privateChatHistory[targetName] = [{ sender: targetName, text: `Chào bạn! Cùng nhau ôn tập nhé!` }];
+        privateChatHistory[targetName] = [{ sender: targetName, text: `Chào bạn! Chúng mình cùng nhau học tập nhé!` }];
       }
       renderPrivateMessages();
     }
@@ -1451,7 +1604,6 @@
         btn.textContent = `${String.fromCharCode(65 + idx)}. ${opt}`;
         btn.onclick = () => {
           answers[currentQuestion] = opt;
-          setQuizMascotReaction("selected");
           renderQuestion();
         };
         answersRoot.appendChild(btn);
@@ -1512,14 +1664,13 @@
       startTimer();
       renderQuestion();
       showView(quizView);
-      setQuizMascotReaction("start");
     }
 
     function confirmFinishQuiz() {
       const modal = document.getElementById("confirm-modal");
       const msg = document.getElementById("confirm-message");
       const count = Object.values(answers).filter(a => a && a !== "SKIPPED").length;
-      msg.textContent = count < TOTAL_QUESTIONS ? `Em mới hoàn thành ${count}/${TOTAL_QUESTIONS} câu. Em có muốn nộp bài luôn không?` : "Em đã hoàn thành các câu hỏi. Bấm nộp bài để xem điểm.";
+      msg.textContent = count < TOTAL_QUESTIONS ? `Em mới hoàn thành ${count}/${TOTAL_QUESTIONS} câu. Em có muốn nộp bài luôn không?` : "Em đã trả lời các câu hỏi. Bấm nộp bài để xem điểm.";
       modal.classList.remove("hidden");
     }
 
@@ -1548,7 +1699,6 @@
       document.getElementById("accuracy-value").textContent = acc + "%";
 
       showView(resultView);
-      setMascotMood("🥳", `Chúc mừng em đạt ${score} điểm! Giỏi lắm!`);
       showToast("🎉 Nộp bài thành công!");
     }
 
@@ -1559,7 +1709,6 @@
       const h = document.getElementById("hint-box");
       h.textContent = "💡 Gợi ý: " + questions[currentQuestion].hint;
       h.classList.toggle("hidden");
-      setQuizMascotReaction("hint");
     };
     document.getElementById("cancel-confirm-button").onclick = () => document.getElementById("confirm-modal").classList.add("hidden");
     document.getElementById("accept-confirm-button").onclick = finishQuiz;
