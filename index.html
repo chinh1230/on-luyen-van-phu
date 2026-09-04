@@ -29,7 +29,7 @@
       overflow-x: hidden;
     }
 
-    /* PHƯỢNG HOÀNG BAY LƯỢN */
+    /* PHƯỢNG HOÀNG BAY */
     .phoenix-sky {
       position: fixed;
       inset: 0;
@@ -213,12 +213,11 @@
       box-shadow: 0 0 0 4px rgba(225, 29, 72, 0.18);
     }
 
-    /* AVATAR PICKER */
     .avatar-btn {
-      width: 44px;
-      height: 44px;
+      width: 42px;
+      height: 42px;
       border-radius: 14px;
-      font-size: 22px;
+      font-size: 20px;
       display: inline-flex;
       align-items: center;
       justify-content: center;
@@ -235,7 +234,27 @@
       background: #ffe4e6;
       border-color: #be123c;
       box-shadow: 0 0 0 3px #f43f5e;
-      transform: scale(1.18);
+      transform: scale(1.15);
+    }
+
+    /* RENDER AVATAR DÙNG CHUNG (EMOJI HOẶC HÌNH ẢNH) */
+    .user-avatar-badge {
+      width: 34px;
+      height: 34px;
+      border-radius: 12px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: #fee2e2;
+      border: 1.5px solid #fecdd3;
+      overflow: hidden;
+      flex-shrink: 0;
+      font-size: 17px;
+    }
+    .user-avatar-badge img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
     }
 
     .view { display: none; }
@@ -306,6 +325,23 @@
     .leader-table th { position: sticky; top: 0; z-index: 2; background: #fff1f2; color: #9f1239; font-weight: 800; }
     .leader-table tr.top-row { background: #fef08a !important; font-weight: bold; color: #854d0e; }
 
+    /* HỘP CHAT RIÊNG TƯ CỐ ĐỊNH GÓC DƯỚI */
+    .private-chat-dock {
+      position: fixed;
+      bottom: 20px;
+      left: 20px;
+      width: 320px;
+      background: #ffffff;
+      border-radius: 20px;
+      border: 2px solid #fecdd3;
+      box-shadow: 0 20px 40px -10px rgba(136, 19, 55, 0.35);
+      z-index: 90;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      animation: viewIn 0.3s ease;
+    }
+
     .toast {
       position: fixed; left: 50%; bottom: 24px; z-index: 60;
       transform: translateX(-50%) translateY(90px);
@@ -319,7 +355,6 @@
   <div id="fb-root"></div>
   <script async defer crossorigin="anonymous" src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v19.0"></script>
 
-  <!-- ĐÀN PHƯỢNG HOÀNG BAY -->
   <div class="phoenix-sky">
     <div class="flying-phoenix phoenix-track-1">
       <svg viewBox="0 0 100 80">
@@ -343,27 +378,21 @@
         <circle cx="50" cy="22" r="3.5" fill="#fde047"/>
       </svg>
     </div>
-    <div class="flying-phoenix phoenix-track-3">
-      <svg viewBox="0 0 100 80">
-        <path fill="url(#phGrad1)" d="M50,30 Q35,5 15,12 Q30,22 42,32 Q20,28 5,38 Q22,42 40,40 Q15,48 2,62 Q20,54 42,46 Q28,65 18,80 Q36,65 48,50 Q54,65 60,80 Q56,60 52,46 Q70,54 90,62 Q75,48 55,40 Q75,42 92,38 Q75,28 55,32 Q68,22 82,12 Q62,5 50,30 Z"/>
-        <circle cx="50" cy="22" r="3.5" fill="#fde047"/>
-      </svg>
-    </div>
   </div>
 
   <div class="app-shell">
     <div class="main-wrapper">
       
-      <!-- CỘT TRÁI: THI ĐUA & BẠN BÈ ĐÃ KẾT NỐI -->
+      <!-- CỘT TRÁI -->
       <aside class="side-panel space-y-5">
-        <!-- DANH SÁCH BẠN HỌC ĐÃ KẾT NỐI -->
+        <!-- BẠN BÈ ĐÃ KẾT NỐI -->
         <div class="side-card">
           <div class="flex items-center justify-between mb-3 text-rose-800 font-extrabold border-b border-rose-100 pb-2 text-sm">
             <span class="inline-flex items-center gap-1.5"><i data-lucide="user-check" class="h-4 w-4 text-emerald-600"></i> BẠN BÈ CỦA EM</span>
             <span id="friends-count-badge" class="px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-800 text-[11px] font-black">0 bạn</span>
           </div>
-          <div id="friends-list" class="space-y-2 max-h-44 overflow-y-auto">
-            <p class="text-xs text-slate-400 italic text-center py-2">Chưa kết bạn với ai. Hãy bấm "Kết bạn" ở mục bên phải nhé!</p>
+          <div id="friends-list" class="space-y-2 max-h-48 overflow-y-auto">
+            <p class="text-xs text-slate-400 italic text-center py-2">Chưa có bạn học nào. Hãy kết bạn ở cột bên phải nhé!</p>
           </div>
         </div>
 
@@ -379,7 +408,7 @@
             </div>
             <div class="p-2.5 rounded-xl bg-amber-50 border border-amber-200">
               <p class="font-extrabold text-amber-900">📚 Vượt cấp xoắn ốc</p>
-              <p class="mt-1">Khối trên thường xuyên được ôn lại kiến thức cốt lõi của các khối lớp dưới.</p>
+              <p class="mt-1">Củng cố liên tục các kiến thức nền tảng của các khối lớp dưới.</p>
             </div>
           </div>
         </div>
@@ -422,24 +451,39 @@
           <section id="setup-view" class="view active">
             <div class="mb-4 border-b border-rose-100 pb-2.5">
               <h2 class="text-lg sm:text-xl font-black text-rose-950">Thông tin học sinh tham gia</h2>
-              <p class="text-xs sm:text-sm font-medium text-slate-500">Mô hình xoắn ốc: củng cố kiến thức các lớp dưới, rèn luyện kỹ năng toàn diện.</p>
+              <p class="text-xs sm:text-sm font-medium text-slate-500">Mô hình xoắn ốc: củng cố kiến thức các lớp dưới, phát triển năng lực tự học.</p>
             </div>
 
-            <!-- MỤC CHỌN ẢNH ĐẠI DIỆN -->
-            <div class="mb-4 p-3.5 rounded-2xl bg-rose-50/70 border-2 border-rose-200">
-              <label class="block text-xs font-black uppercase text-rose-900 tracking-wider mb-2">
-                🎨 Chọn Ảnh đại diện của em:
+            <!-- CHỌN AVATAR HOẶC TẢI ẢNH CÁ NHÂN -->
+            <div class="mb-4 p-4 rounded-2xl bg-gradient-to-r from-rose-50 to-pink-50 border-2 border-rose-200">
+              <label class="block text-xs font-black uppercase text-rose-900 tracking-wider mb-2.5">
+                📷 Ảnh đại diện (Tải ảnh của em hoặc chọn biểu tượng):
               </label>
-              <div id="avatar-selector" class="flex flex-wrap items-center gap-2">
-                <button type="button" class="avatar-btn selected" data-avatar="👦">👦</button>
-                <button type="button" class="avatar-btn" data-avatar="👧">👧</button>
-                <button type="button" class="avatar-btn" data-avatar="🧑‍🎓">🧑‍🎓</button>
-                <button type="button" class="avatar-btn" data-avatar="🐱">🐱</button>
-                <button type="button" class="avatar-btn" data-avatar="🐶">🐶</button>
-                <button type="button" class="avatar-btn" data-avatar="🦁">🦁</button>
-                <button type="button" class="avatar-btn" data-avatar="🐼">🐼</button>
-                <button type="button" class="avatar-btn" data-avatar="🚀">🚀</button>
-                <button type="button" class="avatar-btn" data-avatar="⭐">⭐</button>
+              
+              <div class="flex flex-wrap items-center gap-3">
+                <div class="relative flex-shrink-0">
+                  <div id="avatar-preview-box" class="w-14 h-14 rounded-2xl border-2 border-rose-400 bg-white overflow-hidden flex items-center justify-center text-3xl shadow-md">
+                    👦
+                  </div>
+                </div>
+
+                <label class="action-button cursor-pointer inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-white border-2 border-rose-300 text-xs font-black text-rose-800 shadow-sm hover:bg-rose-50">
+                  <i data-lucide="upload" class="h-4 w-4 text-rose-600"></i>
+                  Tải ảnh từ máy / điện thoại
+                  <input id="avatar-file-input" type="file" accept="image/*" class="hidden" onchange="handleCustomAvatarUpload(event)">
+                </label>
+
+                <span class="text-xs text-slate-400 font-bold">hoặc chọn:</span>
+
+                <div id="avatar-selector" class="flex flex-wrap items-center gap-1.5">
+                  <button type="button" class="avatar-btn selected" data-avatar="👦" onclick="selectPresetAvatar('👦', this)">👦</button>
+                  <button type="button" class="avatar-btn" data-avatar="👧" onclick="selectPresetAvatar('👧', this)">👧</button>
+                  <button type="button" class="avatar-btn" data-avatar="🧑‍🎓" onclick="selectPresetAvatar('🧑‍🎓', this)">🧑‍🎓</button>
+                  <button type="button" class="avatar-btn" data-avatar="🐱" onclick="selectPresetAvatar('🐱', this)">🐱</button>
+                  <button type="button" class="avatar-btn" data-avatar="🐶" onclick="selectPresetAvatar('🐶', this)">🐶</button>
+                  <button type="button" class="avatar-btn" data-avatar="🦁" onclick="selectPresetAvatar('🦁', this)">🦁</button>
+                  <button type="button" class="avatar-btn" data-avatar="🚀" onclick="selectPresetAvatar('🚀', this)">🚀</button>
+                </div>
               </div>
             </div>
 
@@ -511,7 +555,7 @@
           <section id="quiz-view" class="view">
             <div id="palette" class="mb-4 flex flex-wrap justify-center gap-1.5"></div>
             <div class="mb-3 flex flex-wrap items-center justify-between gap-2">
-              <span id="quiz-info" class="rounded-xl border-2 border-rose-200 bg-rose-50 px-3 py-1.5 text-xs font-black text-rose-900 flex items-center gap-1.5"></span>
+              <span id="quiz-info" class="rounded-xl border-2 border-rose-200 bg-rose-50 px-3 py-1.5 text-xs font-black text-rose-900 flex items-center gap-2"></span>
               <span id="timer" class="inline-flex items-center gap-1.5 rounded-xl border-2 border-rose-400 bg-rose-100 px-3 py-1.5 text-sm font-black text-rose-700 shadow-sm animate-pulse"><i data-lucide="timer" class="h-4 w-4"></i>10:00</span>
               <span id="level-badge" class="rounded-xl border-2 border-amber-300 bg-amber-50 px-3 py-1.5 text-xs font-black text-amber-900"></span>
             </div>
@@ -612,9 +656,8 @@
         </footer>
       </div>
 
-      <!-- CỘT PHẢI: ONLINE, KẾT BẠN & KÊNH CHAT TRỰC TUYẾN -->
+      <!-- CỘT PHẢI: ONLINE, KẾT BẠN & CHAT TOÀN TRƯỜNG -->
       <aside class="side-panel space-y-4">
-        <!-- DANH SÁCH ĐANG ONLINE + NÚT KẾT BẠN -->
         <div class="side-card">
           <div class="flex items-center justify-between mb-2.5 border-b border-rose-100 pb-2">
             <div class="flex items-center gap-1.5 text-rose-800 font-extrabold text-sm">
@@ -625,23 +668,22 @@
               0 online
             </span>
           </div>
-          <div id="online-users-list" class="space-y-2 max-h-40 overflow-y-auto pr-1"></div>
+          <div id="online-users-list" class="space-y-2 max-h-48 overflow-y-auto pr-1"></div>
         </div>
 
-        <!-- KÊNH CHAT BẠN HỌC TOÀN TRƯỜNG -->
         <div class="side-card">
           <div class="flex items-center justify-between mb-2 border-b border-rose-100 pb-2">
             <div class="flex items-center gap-1.5 text-rose-800 font-extrabold text-sm">
               <i data-lucide="message-square" class="h-4 w-4 text-rose-600"></i>
-              KÊNH TRAO ĐỔI BÀI
+              KÊNH TRAO ĐỔI CHUNG
             </div>
             <span class="text-[10px] bg-rose-100 text-rose-800 px-2 py-0.5 rounded-full font-bold">Toàn trường</span>
           </div>
 
           <div id="chat-messages" class="h-48 overflow-y-auto space-y-2 p-1 text-xs"></div>
 
-          <form id="chat-form" class="mt-2 flex gap-1.5" onsubmit="sendChatMessage(event)">
-            <input id="chat-input" type="text" placeholder="Nhắn gì đó với các bạn..." class="form-control text-xs py-1.5 px-2.5 rounded-xl">
+          <form id="chat-form" class="mt-2 flex gap-1.5" onsubmit="sendPublicChatMessage(event)">
+            <input id="chat-input" type="text" placeholder="Nhắn gì đó với cả trường..." class="form-control text-xs py-1.5 px-2.5 rounded-xl">
             <button type="submit" class="action-button bg-rose-600 hover:bg-rose-700 text-white rounded-xl px-3 flex items-center justify-center font-bold">
               <i data-lucide="send" class="h-3.5 w-3.5"></i>
             </button>
@@ -650,6 +692,33 @@
       </aside>
 
     </div>
+  </div>
+
+  <!-- CỬA SỔ NHẮN TIN RIÊNG TƯ (CHAT 1-1) -->
+  <div id="private-chat-dock" class="private-chat-dock hidden">
+    <div class="bg-gradient-to-r from-rose-700 to-red-600 p-3 text-white flex items-center justify-between">
+      <div class="flex items-center gap-2">
+        <div id="private-chat-avatar" class="w-8 h-8 rounded-full overflow-hidden bg-white flex items-center justify-center text-sm border border-yellow-300"></div>
+        <div>
+          <p id="private-chat-name" class="font-extrabold text-xs leading-tight"></p>
+          <span class="text-[10px] text-rose-200 flex items-center gap-1">
+            <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span> Đang trực tuyến
+          </span>
+        </div>
+      </div>
+      <button onclick="closePrivateChat()" class="p-1 rounded-lg hover:bg-rose-800 text-rose-200 hover:text-white">
+        <i data-lucide="x" class="h-4 w-4"></i>
+      </button>
+    </div>
+    
+    <div id="private-chat-box" class="h-56 overflow-y-auto p-3 space-y-2 text-xs bg-slate-50"></div>
+
+    <form class="p-2 border-t border-rose-100 flex gap-1 bg-white" onsubmit="sendPrivateMessage(event)">
+      <input id="private-chat-input" type="text" placeholder="Nhắn riêng tư..." class="form-control py-1 px-2.5 text-xs rounded-xl">
+      <button type="submit" class="bg-rose-600 text-white px-3 rounded-xl font-bold hover:bg-rose-700">
+        <i data-lucide="send" class="h-3.5 w-3.5"></i>
+      </button>
+    </form>
   </div>
 
   <aside aria-label="Địa chỉ trường" class="vp-fixed-bottom-address">
@@ -672,31 +741,59 @@
 
   <script>
     const TOTAL_QUESTIONS = 10;
-    let selectedAvatar = "👦";
+    let selectedAvatar = "👦"; // Có thể là Emoji hoặc chuỗi DataURL Base64 ảnh thật
+    let isImageAvatar = false;
     let myFriends = JSON.parse(localStorage.getItem('vh_friends') || "[]");
+    let activePrivateTarget = null; // Người đang chat 1-1
+    let privateChatHistory = {}; // Lưu lịch sử chat riêng
 
-    // Khởi tạo danh sách online
     let onlineUsers = [
-      { id: "u1", avatar: "👧", name: "Trần Bảo Ngọc", className: "5A2", action: "Đang làm bài" },
-      { id: "u2", avatar: "🧑‍🎓", name: "Nguyễn Minh Khang", className: "5A1", action: "Đang làm bài" },
-      { id: "u3", avatar: "🦁", name: "Lê Gia Huy", className: "4A3", action: "Đang ôn tập" },
-      { id: "u4", avatar: "🐱", name: "Phạm Thảo My", className: "3A2", action: "Đang xem gợi ý" }
+      { id: "u1", avatar: "👧", isImg: false, name: "Trần Bảo Ngọc", className: "5A2", action: "Đang làm bài" },
+      { id: "u2", avatar: "🧑‍🎓", isImg: false, name: "Nguyễn Minh Khang", className: "5A1", action: "Đang làm bài" },
+      { id: "u3", avatar: "🦁", isImg: false, name: "Lê Gia Huy", className: "4A3", action: "Đang ôn tập" },
+      { id: "u4", avatar: "🐱", isImg: false, name: "Phạm Thảo My", className: "3A2", action: "Đang xem gợi ý" }
     ];
 
-    // Khởi tạo tin nhắn chat mẫu
-    let chatLog = [
-      { avatar: "🧑‍🎓", name: "Minh Khang", className: "5A1", text: "Chào các bạn trường Văn Phú nhé! Đề Toán hôm nay rất thú vị." },
-      { avatar: "👧", name: "Bảo Ngọc", className: "5A2", text: "Câu Tiếng Anh phân biệt số nhiều cần đọc kỹ một chút nha!" }
+    let publicChatLog = [
+      { avatar: "🧑‍🎓", isImg: false, name: "Minh Khang", className: "5A1", text: "Chào các bạn trường Văn Phú nhé!" },
+      { avatar: "👧", isImg: false, name: "Bảo Ngọc", className: "5A2", text: "Các bạn bấm vào tên nhau để nhắn tin riêng trao đổi bài học nhé!" }
     ];
 
-    // Cài đặt Avatar Picker
-    document.querySelectorAll(".avatar-btn").forEach(btn => {
-      btn.addEventListener("click", () => {
+    function createAvatarHtml(avatarData, isImg) {
+      if (isImg || (avatarData && avatarData.startsWith("data:image/"))) {
+        return `<img src="${avatarData}" alt="Avatar" class="w-full h-full object-cover">`;
+      }
+      return `<span>${avatarData || '👦'}</span>`;
+    }
+
+    // Xử lý upload ảnh cá nhân
+    function handleCustomAvatarUpload(e) {
+      const file = e.target.files[0];
+      if (!file) return;
+
+      if (file.size > 2 * 1024 * 1024) {
+        showToast("⚠️ Dung lượng ảnh không được vượt quá 2MB!");
+        return;
+      }
+
+      const reader = new FileReader();
+      reader.onload = function(evt) {
+        selectedAvatar = evt.target.result;
+        isImageAvatar = true;
         document.querySelectorAll(".avatar-btn").forEach(b => b.classList.remove("selected"));
-        btn.classList.add("selected");
-        selectedAvatar = btn.getAttribute("data-avatar");
-      });
-    });
+        document.getElementById("avatar-preview-box").innerHTML = `<img src="${selectedAvatar}" class="w-full h-full object-cover">`;
+        showToast("📸 Đã chọn ảnh đại diện của em thành công!");
+      };
+      reader.readAsDataURL(file);
+    }
+
+    function selectPresetAvatar(emoji, btn) {
+      selectedAvatar = emoji;
+      isImageAvatar = false;
+      document.querySelectorAll(".avatar-btn").forEach(b => b.classList.remove("selected"));
+      btn.classList.add("selected");
+      document.getElementById("avatar-preview-box").innerHTML = emoji;
+    }
 
     function renderOnlineUsers() {
       const root = document.getElementById("online-users-list");
@@ -710,28 +807,33 @@
         const isFriend = myFriends.some(f => f.name === user.name);
         const item = document.createElement("div");
         item.className = "flex items-center justify-between p-2 rounded-xl bg-rose-50/70 border border-rose-100 text-xs";
+        
         item.innerHTML = `
-          <div class="flex items-center gap-1.5 min-w-0 pr-1">
-            <span class="text-base">${user.avatar || '👦'}</span>
+          <div class="flex items-center gap-2 min-w-0 pr-1">
+            <div class="user-avatar-badge">${createAvatarHtml(user.avatar, user.isImg)}</div>
             <div class="truncate">
               <span class="font-extrabold text-slate-800 block truncate leading-tight">${user.name}</span>
               <span class="text-[10px] text-rose-700 font-bold">${user.className}</span>
             </div>
           </div>
-          <div>
+          <div class="flex items-center gap-1">
+            <button type="button" onclick="openPrivateChat('${user.name}', '${user.avatar}', ${user.isImg || false})" title="Nhắn tin riêng" class="p-1 rounded-lg bg-white border border-rose-200 text-rose-600 hover:bg-rose-100">
+              <i data-lucide="message-circle" class="h-3.5 w-3.5"></i>
+            </button>
             ${isFriend 
-              ? `<span class="text-[10px] text-emerald-700 font-black bg-emerald-50 px-2 py-1 rounded-lg border border-emerald-200">Bạn bè</span>`
-              : `<button type="button" onclick="addFriend('${user.name}', '${user.className}', '${user.avatar || '👦'}')" class="text-[10px] font-black bg-rose-600 hover:bg-rose-700 text-white px-2 py-1 rounded-lg shadow-sm">Kết bạn</button>`
+              ? `<span class="text-[10px] text-emerald-700 font-black bg-emerald-50 px-1.5 py-1 rounded-lg border border-emerald-200">Bạn</span>`
+              : `<button type="button" onclick="addFriend('${user.name}', '${user.className}', '${user.avatar}', ${user.isImg || false})" class="text-[10px] font-black bg-rose-600 hover:bg-rose-700 text-white px-2 py-1 rounded-lg">Kết bạn</button>`
             }
           </div>
         `;
         root.appendChild(item);
       });
+      lucide.createIcons();
     }
 
-    function addFriend(name, className, avatar) {
+    function addFriend(name, className, avatar, isImg) {
       if (myFriends.some(f => f.name === name)) return;
-      myFriends.push({ name, className, avatar });
+      myFriends.push({ name, className, avatar, isImg });
       localStorage.setItem('vh_friends', JSON.stringify(myFriends));
       renderFriendsList();
       renderOnlineUsers();
@@ -745,7 +847,7 @@
 
       badge.textContent = `${myFriends.length} bạn`;
       if (myFriends.length === 0) {
-        root.innerHTML = `<p class="text-xs text-slate-400 italic text-center py-2">Chưa có bạn học nào. Hãy bấm "Kết bạn" nhé!</p>`;
+        root.innerHTML = `<p class="text-xs text-slate-400 italic text-center py-2">Chưa có bạn học nào. Hãy kết bạn nhé!</p>`;
         return;
       }
 
@@ -755,36 +857,45 @@
         div.className = "flex items-center justify-between p-1.5 rounded-xl bg-emerald-50/80 border border-emerald-100 text-xs";
         div.innerHTML = `
           <div class="flex items-center gap-2">
-            <span class="text-base">${friend.avatar || '👦'}</span>
-            <span class="font-black text-slate-800">${friend.name}</span>
+            <div class="user-avatar-badge">${createAvatarHtml(friend.avatar, friend.isImg)}</div>
+            <div>
+              <span class="font-black text-slate-800 block leading-tight">${friend.name}</span>
+              <span class="text-[10px] text-emerald-800 font-bold">${friend.className}</span>
+            </div>
           </div>
-          <span class="text-[10px] bg-emerald-200/80 text-emerald-900 px-1.5 py-0.5 rounded-md font-bold">${friend.className}</span>
+          <button type="button" onclick="openPrivateChat('${friend.name}', '${friend.avatar}', ${friend.isImg || false})" class="text-[10px] font-black bg-emerald-600 hover:bg-emerald-700 text-white px-2 py-1 rounded-lg">
+            Nhắn tin
+          </button>
         `;
         root.appendChild(div);
       });
     }
 
-    function renderChat() {
+    // CHAT CHUNG
+    function renderPublicChat() {
       const root = document.getElementById("chat-messages");
       if (!root) return;
       root.innerHTML = "";
-      chatLog.forEach(chat => {
+      publicChatLog.forEach(chat => {
         const msg = document.createElement("div");
-        msg.className = "p-2 rounded-xl bg-white border border-rose-100 shadow-sm leading-tight";
+        msg.className = "p-2 rounded-xl bg-white border border-rose-100 shadow-sm leading-tight flex items-start gap-2";
         msg.innerHTML = `
-          <div class="flex items-center justify-between mb-1">
-            <span class="font-black text-rose-950 flex items-center gap-1">
-              <span>${chat.avatar || '👦'}</span> ${chat.name} <span class="text-[10px] text-rose-600 font-semibold">(${chat.className})</span>
-            </span>
+          <div class="user-avatar-badge w-6 h-6 text-xs">${createAvatarHtml(chat.avatar, chat.isImg)}</div>
+          <div class="min-w-0 flex-1">
+            <div class="flex items-center justify-between mb-0.5">
+              <span class="font-black text-rose-950 text-[11px]">
+                ${chat.name} <span class="text-[9px] text-rose-600 font-semibold">(${chat.className})</span>
+              </span>
+            </div>
+            <p class="text-slate-700 text-xs">${chat.text}</p>
           </div>
-          <p class="text-slate-700 text-xs">${chat.text}</p>
         `;
         root.appendChild(msg);
       });
       root.scrollTop = root.scrollHeight;
     }
 
-    function sendChatMessage(e) {
+    function sendPublicChatMessage(e) {
       e.preventDefault();
       const input = document.getElementById("chat-input");
       const text = input.value.trim();
@@ -793,15 +904,76 @@
       const studentName = currentStudent ? currentStudent.studentName : (document.getElementById("student-name").value.trim() || "Học sinh");
       const className = currentStudent ? currentStudent.className : (document.getElementById("class-name").value.trim() || "5A1");
 
-      chatLog.push({
+      publicChatLog.push({
         avatar: selectedAvatar,
+        isImg: isImageAvatar,
         name: studentName,
         className: className,
         text: text
       });
 
       input.value = "";
-      renderChat();
+      renderPublicChat();
+    }
+
+    // CHAT RIÊNG TƯ (1-1)
+    function openPrivateChat(targetName, avatar, isImg) {
+      activePrivateTarget = { name: targetName, avatar, isImg };
+      document.getElementById("private-chat-name").textContent = targetName;
+      document.getElementById("private-chat-avatar").innerHTML = createAvatarHtml(avatar, isImg);
+      document.getElementById("private-chat-dock").classList.remove("hidden");
+      
+      if (!privateChatHistory[targetName]) {
+        privateChatHistory[targetName] = [
+          { sender: targetName, text: `Chào bạn! Mình có thể trao đổi bài học với nhau nhé.` }
+        ];
+      }
+      renderPrivateMessages();
+    }
+
+    function closePrivateChat() {
+      document.getElementById("private-chat-dock").classList.add("hidden");
+      activePrivateTarget = null;
+    }
+
+    function renderPrivateMessages() {
+      if (!activePrivateTarget) return;
+      const root = document.getElementById("private-chat-box");
+      root.innerHTML = "";
+      const history = privateChatHistory[activePrivateTarget.name] || [];
+
+      history.forEach(m => {
+        const isMe = m.sender === "me";
+        const msg = document.createElement("div");
+        msg.className = `flex ${isMe ? 'justify-end' : 'justify-start'}`;
+        msg.innerHTML = `
+          <div class="max-w-[78%] p-2 rounded-2xl ${isMe ? 'bg-rose-600 text-white rounded-br-none' : 'bg-white border border-rose-100 text-slate-800 rounded-bl-none'} shadow-sm">
+            <p class="text-xs leading-snug">${m.text}</p>
+          </div>
+        `;
+        root.appendChild(msg);
+      });
+      root.scrollTop = root.scrollHeight;
+    }
+
+    function sendPrivateMessage(e) {
+      e.preventDefault();
+      const input = document.getElementById("private-chat-input");
+      const text = input.value.trim();
+      if (!text || !activePrivateTarget) return;
+
+      if (!privateChatHistory[activePrivateTarget.name]) privateChatHistory[activePrivateTarget.name] = [];
+      privateChatHistory[activePrivateTarget.name].push({ sender: "me", text: text });
+      input.value = "";
+      renderPrivateMessages();
+
+      // Mô phỏng bạn học trả lời lại sau 1.5s
+      setTimeout(() => {
+        if (activePrivateTarget) {
+          privateChatHistory[activePrivateTarget.name].push({ sender: activePrivateTarget.name, text: "Tuyệt vời, chúc bạn ôn tập thật tốt và đạt điểm 10 nha! 🌟" });
+          renderPrivateMessages();
+        }
+      }, 1400);
     }
 
     const SUBJECT_QUESTION_VAULT = {
@@ -942,7 +1114,10 @@
 
     function renderQuestion() {
       const q = questions[currentQuestion];
-      document.getElementById("quiz-info").innerHTML = `<span>${currentStudent.avatar || '👦'}</span> <span>${currentStudent.studentName} • Lớp ${currentStudent.className}</span>`;
+      document.getElementById("quiz-info").innerHTML = `
+        <div class="user-avatar-badge w-6 h-6 text-xs">${createAvatarHtml(currentStudent.avatar, currentStudent.isImg)}</div>
+        <span>${currentStudent.studentName} • Lớp ${currentStudent.className}</span>
+      `;
       document.getElementById("level-badge").textContent = `Cấp độ ${currentLevel}`;
       document.getElementById("question-number").textContent = `Câu ${currentQuestion + 1} / ${TOTAL_QUESTIONS}`;
       document.getElementById("question-source-tag").textContent = q.sourceLabel;
@@ -998,6 +1173,7 @@
         grade: Number(grade),
         className: className,
         avatar: selectedAvatar,
+        isImg: isImageAvatar,
         semester: document.getElementById("semester").value,
         subject: document.getElementById("subject").value
       };
@@ -1005,11 +1181,12 @@
       onlineUsers = onlineUsers.filter(u => u.name !== name);
       onlineUsers.unshift({
         avatar: selectedAvatar,
+        isImg: isImageAvatar,
         name: name,
         className: className,
         action: "Đang ôn luyện"
       });
-      if (onlineUsers.length > 7) onlineUsers.pop();
+      if (onlineUsers.length > 8) onlineUsers.pop();
       renderOnlineUsers();
 
       currentLevel = 1;
@@ -1042,7 +1219,8 @@
       const acc = Math.round((correct / TOTAL_QUESTIONS) * 100);
 
       const record = {
-        avatar: currentStudent.avatar || '👦',
+        avatar: currentStudent.avatar,
+        isImg: currentStudent.isImg,
         school: currentStudent.school,
         student_name: currentStudent.studentName,
         grade: currentStudent.grade,
@@ -1088,8 +1266,9 @@
         if (i === 0) row.className = "top-row";
         row.innerHTML = `
           <td><b>#${i + 1}</b></td>
-          <td class="font-bold text-rose-950 text-left flex items-center gap-1.5 justify-center">
-            <span>${r.avatar || '👦'}</span> <span>${r.student_name}</span>
+          <td class="font-bold text-rose-950 text-left flex items-center gap-2 justify-center">
+            <div class="user-avatar-badge w-6 h-6 text-xs">${createAvatarHtml(r.avatar, r.isImg)}</div>
+            <span>${r.student_name}</span>
           </td>
           <td>${r.school}</td>
           <td>${r.class_name}</td>
@@ -1127,7 +1306,7 @@
     renderLeaderboard();
     renderOnlineUsers();
     renderFriendsList();
-    renderChat();
+    renderPublicChat();
   </script>
 </body>
 </html>
