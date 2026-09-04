@@ -29,7 +29,6 @@
       overflow-x: hidden;
     }
 
-    /* PHƯỢNG HOÀNG BAY */
     .phoenix-sky {
       position: fixed;
       inset: 0;
@@ -216,7 +215,6 @@
       transform: scale(1.15);
     }
 
-    /* CÁC CẤP ĐỘ KHUNG VIỀN AVATAR ĐẶC BIỆT */
     .user-avatar-badge {
       width: 36px;
       height: 36px;
@@ -229,26 +227,10 @@
       overflow: hidden;
       flex-shrink: 0;
       font-size: 17px;
-      position: relative;
     }
     .user-avatar-badge.tier-gold {
       border-color: #f59e0b;
       box-shadow: 0 0 0 2px #fef08a, 0 0 12px rgba(245, 158, 11, 0.6);
-    }
-    .user-avatar-badge.tier-phoenix {
-      border-color: #e11d48;
-      box-shadow: 0 0 0 2.5px #fbbf24, 0 0 16px rgba(225, 29, 72, 0.8);
-      animation: phoenixPulse 2s infinite ease-in-out;
-    }
-    @keyframes phoenixPulse {
-      0%, 100% { filter: brightness(1); }
-      50% { filter: brightness(1.2); }
-    }
-
-    .user-avatar-badge img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
     }
 
     .view { display: none; }
@@ -301,23 +283,53 @@
       background: linear-gradient(90deg, #ffe4e6 0%, #fecdd3 100%);
     }
 
-    .modal-backdrop {
-      position: fixed; inset: 0; z-index: 50;
-      display: flex; align-items: center; justify-content: center;
-      padding: 16px; background: rgba(76, 5, 25, 0.65); backdrop-filter: blur(8px);
+    /* GAME THẺ NHỚ TRÍ TUỆ */
+    .memory-card {
+      aspect-ratio: 1;
+      perspective: 1000px;
+      cursor: pointer;
     }
-    .modal-backdrop.hidden { display: none !important; }
-    .modal-box {
-      width: min(100%, 720px); max-height: 85vh; overflow-y: auto;
-      border-radius: 24px; background: #fff; padding: 24px;
+    .memory-inner {
+      width: 100%;
+      height: 100%;
+      border-radius: 18px;
+      transform-style: preserve-3d;
+      transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      position: relative;
+    }
+    .memory-card.flipped .memory-inner, .memory-card.matched .memory-inner {
+      transform: rotateY(180deg);
+    }
+    .memory-front, .memory-back {
+      position: absolute;
+      inset: 0;
+      border-radius: 18px;
+      backface-visibility: hidden;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 8px;
+    }
+    .memory-front {
+      background: linear-gradient(135deg, #be123c, #e11d48);
+      color: #fef08a;
+      border: 2px solid #fef08a;
+      box-shadow: 0 4px 12px rgba(225, 29, 72, 0.2);
+    }
+    .memory-back {
+      background: #ffffff;
       border: 2px solid #fecdd3;
+      color: #881337;
+      transform: rotateY(180deg);
+      box-shadow: 0 4px 14px rgba(0,0,0,0.06);
     }
-
-    .leader-table th, .leader-table td {
-      border-bottom: 1px solid #fee2e2; padding: 10px 8px; text-align: center; font-size: 13px;
+    .memory-card.matched .memory-back {
+      background: #ecfdf5;
+      border-color: #10b981;
+      color: #065f46;
     }
-    .leader-table th { position: sticky; top: 0; z-index: 2; background: #fff1f2; color: #9f1239; font-weight: 800; }
-    .leader-table tr.top-row { background: #fef08a !important; font-weight: bold; color: #854d0e; }
 
     .private-chat-dock {
       position: fixed;
@@ -345,9 +357,6 @@
   </style>
 </head>
 <body>
-  <div id="fb-root"></div>
-  <script async defer crossorigin="anonymous" src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v19.0"></script>
-
   <div class="phoenix-sky">
     <div class="flying-phoenix phoenix-track-1">
       <svg viewBox="0 0 100 80">
@@ -376,9 +385,8 @@
   <div class="app-shell">
     <div class="main-wrapper">
       
-      <!-- CỘT TRÁI: THÀNH TÍCH CÁ NHÂN & MỞ KHÓA TÍNH NĂNG -->
+      <!-- CỘT TRÁI -->
       <aside class="side-panel space-y-4">
-        <!-- HỌC BẠ VINH DANH & KHOE THÀNH TÍCH -->
         <div class="side-card">
           <div class="flex items-center justify-between mb-3 text-rose-800 font-extrabold border-b border-rose-100 pb-2 text-sm">
             <span class="inline-flex items-center gap-1.5"><i data-lucide="medal" class="h-4 w-4 text-amber-500"></i> HỌC BẠ THÀNH TÍCH</span>
@@ -415,23 +423,6 @@
               <i data-lucide="share-2" class="h-3.5 w-3.5"></i> Khoe thành tích vào Chat
             </button>
           </div>
-
-          <!-- DANH SÁCH TÍNH NĂNG MỞ KHÓA -->
-          <div class="space-y-2 text-xs">
-            <p class="font-extrabold text-slate-700 uppercase tracking-wider text-[10.5px]">Đặc quyền chăm học:</p>
-            <div id="perk-lv2" class="p-2 rounded-xl border flex items-center justify-between bg-slate-50 text-slate-400 border-slate-200">
-              <span class="font-bold flex items-center gap-1.5">🏆 Avatar Cúp Vàng & Vương Miện</span>
-              <span class="text-[10px] font-black px-1.5 py-0.5 rounded bg-slate-200 text-slate-600">Cần 20 câu</span>
-            </div>
-            <div id="perk-lv3" class="p-2 rounded-xl border flex items-center justify-between bg-slate-50 text-slate-400 border-slate-200">
-              <span class="font-bold flex items-center gap-1.5">🎉 Bắn pháo hoa trong Chat</span>
-              <span class="text-[10px] font-black px-1.5 py-0.5 rounded bg-slate-200 text-slate-600">Cần 50 câu</span>
-            </div>
-            <div id="perk-lv4" class="p-2 rounded-xl border flex items-center justify-between bg-slate-50 text-slate-400 border-slate-200">
-              <span class="font-bold flex items-center gap-1.5">👑 Viền Avatar Hoàng Gia phát sáng</span>
-              <span class="text-[10px] font-black px-1.5 py-0.5 rounded bg-slate-200 text-slate-600">Cần 100 câu</span>
-            </div>
-          </div>
         </div>
 
         <div class="side-card">
@@ -467,11 +458,11 @@
               <span class="w-2.5 h-2.5 rounded-full bg-rose-600 animate-ping"></span>
               Chủ biên: Thầy Nguyễn Phan Duy Chinh
             </p>
-            <div class="flex gap-2">
-              <button id="open-stats-button" class="action-button inline-flex items-center gap-1 rounded-xl border-2 border-rose-300 bg-rose-50 px-3 py-1.5 text-xs font-black text-rose-900 shadow-sm" type="button">
-                <i data-lucide="bar-chart-3" class="h-4 w-4 text-rose-600"></i> Thống kê 15 lớp
+            <div class="flex flex-wrap gap-2">
+              <button id="open-game-button" class="action-button inline-flex items-center gap-1 rounded-xl border-2 border-emerald-300 bg-emerald-50 px-3 py-1.5 text-xs font-black text-emerald-900 shadow-sm" type="button" onclick="startMemoryGame()">
+                <i data-lucide="gamepad-2" class="h-4 w-4 text-emerald-600"></i> Trò chơi trí tuệ
               </button>
-              <button id="home-button" class="action-button inline-flex items-center gap-1 rounded-xl border-2 border-amber-300 bg-amber-50 px-3 py-1.5 text-xs font-black text-amber-900 shadow-sm" type="button">
+              <button id="home-button" class="action-button inline-flex items-center gap-1 rounded-xl border-2 border-amber-300 bg-amber-50 px-3 py-1.5 text-xs font-black text-amber-900 shadow-sm" type="button" onclick="showView(setupView)">
                 <i data-lucide="home" class="h-4 w-4 text-amber-600"></i> Trang chủ
               </button>
             </div>
@@ -479,13 +470,13 @@
         </header>
 
         <main class="px-5 pb-6 pt-4 sm:px-7 sm:pb-7">
+          <!-- VIEW 1: FORM THÔNG TIN -->
           <section id="setup-view" class="view active">
             <div class="mb-4 border-b border-rose-100 pb-2.5">
               <h2 class="text-lg sm:text-xl font-black text-rose-950">Thông tin học sinh tham gia</h2>
-              <p class="text-xs sm:text-sm font-medium text-slate-500">Trả lời càng nhiều câu hỏi, em sẽ mở khóa càng nhiều tính năng và danh hiệu độc quyền!</p>
+              <p class="text-xs sm:text-sm font-medium text-slate-500">Hoàn thành bài kiểm tra để tích lũy kinh nghiệm mở khóa đặc quyền và game trí tuệ!</p>
             </div>
 
-            <!-- CHỌN AVATAR HOẶC TẢI ẢNH CÁ NHÂN -->
             <div class="mb-4 p-4 rounded-2xl bg-gradient-to-r from-rose-50 to-pink-50 border-2 border-rose-200">
               <label class="block text-xs font-black uppercase text-rose-900 tracking-wider mb-2.5">
                 📷 Ảnh đại diện (Tải ảnh từ máy hoặc chọn biểu tượng):
@@ -498,9 +489,9 @@
                   </div>
                 </div>
 
-                <label class="action-button cursor-pointer inline-flex items-center gap-1.5 px-3 py-2 rounded-xl bg-white border-2 border-rose-300 text-xs font-black text-rose-800 shadow-sm hover:bg-rose-50">
+                <label class="action-button cursor-pointer inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-white border-2 border-rose-300 text-xs font-black text-rose-800 shadow-sm hover:bg-rose-50">
                   <i data-lucide="upload" class="h-4 w-4 text-rose-600"></i>
-                  Tải ảnh từ máy / điện thoại
+                  Tải ảnh
                   <input id="avatar-file-input" type="file" accept="image/*" class="hidden" onchange="handleCustomAvatarUpload(event)">
                 </label>
 
@@ -510,9 +501,6 @@
                   <button type="button" class="avatar-btn" data-avatar="🧑‍🎓" onclick="selectPresetAvatar('🧑‍🎓', this)">🧑‍🎓</button>
                   <button type="button" class="avatar-btn" data-avatar="🐱" onclick="selectPresetAvatar('🐱', this)">🐱</button>
                   <button type="button" class="avatar-btn" data-avatar="🦁" onclick="selectPresetAvatar('🦁', this)">🦁</button>
-                  <!-- Avatar mở khóa thưởng cho học sinh chăm chỉ -->
-                  <button id="locked-avatar-1" type="button" class="avatar-btn opacity-40 cursor-not-allowed" data-avatar="🏆" title="Mở khóa ở Cấp 2" onclick="selectLockedAvatar('🏆', 2, this)">🔒</button>
-                  <button id="locked-avatar-2" type="button" class="avatar-btn opacity-40 cursor-not-allowed" data-avatar="👑" title="Mở khóa ở Cấp 4" onclick="selectLockedAvatar('👑', 4, this)">🔒</button>
                 </div>
               </div>
             </div>
@@ -527,17 +515,12 @@
                     <option value="Trường TH 19-8">Trường TH 19-8</option>
                     <option value="Trường TH Tân Trào">Trường TH Tân Trào</option>
                     <option value="Trường TH Phan Thiết">Trường TH Phan Thiết</option>
-                    <option value="other">Trường / điểm trường khác</option>
                   </select>
                 </div>
                 <div>
                   <label class="mb-1 block text-xs font-bold text-slate-700">Họ và tên học sinh</label>
                   <input id="student-name" class="form-control" type="text" placeholder="Ví dụ: Nguyễn Văn An" oninput="updateCurrentStudentName(this.value)">
                 </div>
-              </div>
-              <div id="custom-school-wrap" class="mt-2.5 hidden">
-                <label class="mb-1 block text-xs font-bold text-slate-700">Nhập tên trường của em</label>
-                <input id="custom-school" class="form-control" type="text" placeholder="Tên trường...">
               </div>
               <div class="mt-3 grid gap-3.5 sm:grid-cols-2">
                 <div>
@@ -551,7 +534,7 @@
                   </select>
                 </div>
                 <div>
-                  <label class="mb-1 block text-xs font-bold text-slate-700">Tên lớp học (Chuẩn 15 lớp TH Văn Phú)</label>
+                  <label class="mb-1 block text-xs font-bold text-slate-700">Tên lớp học</label>
                   <input id="class-name" class="form-control" type="text" placeholder="Ví dụ: 5A1">
                 </div>
               </div>
@@ -570,18 +553,17 @@
                     <option value="Toán">Chuyên đề Toán học</option>
                     <option value="Tiếng Việt">Chuyên đề Tiếng Việt</option>
                     <option value="Tiếng Anh">Chuyên đề Tiếng Anh (English)</option>
-                    <option value="Khoa học - Tự nhiên">Khoa học / Tự nhiên & Xã hội</option>
-                    <option value="Lịch sử - Địa lí">Lịch sử & Địa lí</option>
                   </select>
                 </div>
               </div>
               <p id="setup-error" class="mt-3 hidden rounded-xl border-2 border-rose-300 bg-rose-50 p-3 text-xs font-bold text-rose-700"></p>
               <button id="start-button" class="action-button mt-4 flex w-full items-center justify-center gap-2 rounded-2xl py-3.5 font-black text-white text-base shadow-xl shadow-rose-600/30" type="button" onclick="startQuizAction()" style="background: linear-gradient(135deg, #be123c 0%, #e11d48 50%, #f43f5e 100%);">
-                <i data-lucide="play-circle" class="h-5 w-5"></i> Bắt đầu ôn luyện tích lũy kinh nghiệm
+                <i data-lucide="play-circle" class="h-5 w-5"></i> Bắt đầu ôn luyện (Bộ đề 10 câu)
               </button>
             </form>
           </section>
 
+          <!-- VIEW 2: LÀM BÀI ÔN LUYỆN -->
           <section id="quiz-view" class="view">
             <div id="palette" class="mb-4 flex flex-wrap justify-center gap-1.5"></div>
             <div class="mb-3 flex flex-wrap items-center justify-between gap-2">
@@ -613,13 +595,13 @@
             </div>
           </section>
 
+          <!-- VIEW 3: KẾT QUẢ & NÚT VÀO GAME -->
           <section id="result-view" class="view">
             <div class="rounded-3xl border-2 border-rose-100 bg-gradient-to-b from-rose-50/70 via-white to-white p-6 text-center shadow-lg">
               <div class="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-gradient-to-tr from-amber-400 to-yellow-200 text-amber-900 mb-2 shadow-lg shadow-amber-300/40 border-2 border-white animate-bounce">
                 <i data-lucide="trophy" class="h-8 w-8"></i>
               </div>
-              <h2 class="text-xl sm:text-2xl font-black text-slate-900">Em đã hoàn thành xuất sắc!</h2>
-              <p id="result-rank" class="mt-1 font-extrabold text-rose-700 text-sm"></p>
+              <h2 class="text-xl sm:text-2xl font-black text-slate-900">Em đã hoàn thành bài ôn luyện!</h2>
               <div class="mt-5 grid grid-cols-2 gap-2 sm:grid-cols-4">
                 <div class="rounded-2xl border-2 border-rose-100 bg-white p-3 shadow-sm">
                   <p id="score-value" class="text-2xl font-black text-rose-600"></p>
@@ -638,43 +620,53 @@
                   <p class="text-xs font-black text-slate-400 mt-0.5">CHÍNH XÁC</p>
                 </div>
               </div>
-              <p id="rating-pill" class="mt-4 inline-block rounded-full px-5 py-1.5 text-sm font-black shadow-sm"></p>
-              <p id="rating-comment" class="mt-2 text-sm font-bold text-slate-600"></p>
-            </div>
-            <div class="mt-4 grid gap-2 sm:grid-cols-3">
-              <button id="continue-button" class="action-button rounded-xl bg-gradient-to-r from-emerald-500 to-teal-600 py-3 font-black text-white shadow-md" type="button">🔥 Ôn thêm câu tích lũy cấp</button>
-              <button id="report-button" class="action-button rounded-xl bg-gradient-to-r from-purple-500 to-indigo-600 py-3 font-black text-white shadow-md" type="button">📊 Xuất Excel</button>
-              <button class="action-button rounded-xl bg-gradient-to-r from-rose-500 to-red-600 py-3 font-black text-white shadow-md" type="button" onclick="showView(setupView)">🏠 Về trang chủ</button>
-            </div>
-            <div class="mt-5 flex flex-wrap items-center justify-between gap-2">
-              <h3 class="font-black text-slate-800 text-base">👑 Bảng vinh danh ôn luyện</h3>
-              <div class="flex items-center gap-2">
-                <label class="text-xs font-extrabold text-slate-600">Lọc theo lớp:</label>
-                <select id="class-filter" class="form-control w-auto py-1 px-2 text-xs font-black border-2 border-rose-300 bg-rose-50 text-rose-950">
-                  <option value="all">Tất cả các lớp</option>
-                  <option value="1A1">Lớp 1A1</option><option value="1A2">Lớp 1A2</option><option value="1A3">Lớp 1A3</option><option value="1A4">Lớp 1A4</option>
-                  <option value="2A1">Lớp 2A1</option><option value="2A2">Lớp 2A2</option><option value="2A3">Lớp 2A3</option>
-                  <option value="3A1">Lớp 3A1</option><option value="3A2">Lớp 3A2</option><option value="3A3">Lớp 3A3</option>
-                  <option value="4A1">Lớp 4A1</option><option value="4A2">Lớp 4A2</option><option value="4A3">Lớp 4A3</option>
-                  <option value="5A1">Lớp 5A1</option><option value="5A2">Lớp 5A2</option><option value="5A3">Lớp 5A3</option>
-                </select>
+
+              <!-- KHUNG KÊU GỌI THƯ GIÃN VỚI TRÒ CHƠI TRÍ TUỆ -->
+              <div class="mt-5 p-4 rounded-2xl bg-gradient-to-r from-amber-50 to-orange-50 border-2 border-amber-300 text-center">
+                <p class="text-xs font-black text-amber-950 uppercase tracking-wide">🎮 Phần thưởng thư giãn sau giờ học:</p>
+                <p class="text-xs text-amber-800 font-semibold mt-0.5">Thử thách trí nhớ ghép cặp kiến thức để rèn luyện tư duy!</p>
+                <button type="button" onclick="startMemoryGame()" class="action-button mt-3 inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-gradient-to-r from-amber-500 to-orange-500 text-white font-black text-sm shadow-lg shadow-orange-500/30">
+                  <i data-lucide="play" class="h-4 w-4 fill-white"></i> Chơi Game Trí Tuệ Ngay
+                </button>
               </div>
             </div>
-            <div class="mt-3 max-h-72 overflow-auto rounded-2xl border-2 border-rose-100 shadow-sm">
-              <table class="leader-table w-full">
-                <thead>
-                  <tr>
-                    <th>Hạng</th>
-                    <th>Học sinh</th>
-                    <th>Danh hiệu</th>
-                    <th>Trường</th>
-                    <th>Lớp</th>
-                    <th>Điểm</th>
-                    <th>Thời gian</th>
-                  </tr>
-                </thead>
-                <tbody id="leaderboard-body"></tbody>
-              </table>
+
+            <div class="mt-4 grid gap-2 sm:grid-cols-2">
+              <button id="continue-button" class="action-button rounded-xl bg-gradient-to-r from-emerald-500 to-teal-600 py-3 font-black text-white shadow-md" type="button">🔥 Ôn tiếp đề mới</button>
+              <button class="action-button rounded-xl bg-gradient-to-r from-rose-500 to-red-600 py-3 font-black text-white shadow-md" type="button" onclick="showView(setupView)">🏠 Về trang chủ</button>
+            </div>
+          </section>
+
+          <!-- VIEW 4: TRÒ CHƠI TRÍ TUỆ (GHÉP THẺ BÀI HỌC) -->
+          <section id="game-view" class="view">
+            <div class="rounded-3xl border-2 border-emerald-200 bg-white p-5 shadow-lg">
+              <div class="flex flex-wrap items-center justify-between gap-3 border-b border-emerald-100 pb-3 mb-4">
+                <div>
+                  <h2 class="text-lg sm:text-xl font-black text-emerald-950 flex items-center gap-2">
+                    <span>🧠</span> Trò Chơi Trí Tuệ: Ghép Đôi Tri Thức
+                  </h2>
+                  <p class="text-xs text-slate-500 font-medium">Lật 2 thẻ tương ứng (Ví dụ: "5 + 5" ghép với "10", "Apple" ghép với "Quả táo").</p>
+                </div>
+                <div class="flex items-center gap-3">
+                  <span class="px-3 py-1 rounded-xl bg-emerald-100 text-emerald-900 text-xs font-black border border-emerald-300">
+                    Lượt lật: <span id="game-moves">0</span>
+                  </span>
+                  <button type="button" onclick="startMemoryGame()" class="action-button px-3 py-1.5 rounded-xl bg-amber-100 text-amber-900 border border-amber-300 font-black text-xs hover:bg-amber-200">
+                    🔄 Chơi lại
+                  </button>
+                  <button type="button" onclick="showView(setupView)" class="action-button px-3 py-1.5 rounded-xl bg-rose-100 text-rose-900 border border-rose-300 font-black text-xs hover:bg-rose-200">
+                    ✕ Thoát
+                  </button>
+                </div>
+              </div>
+
+              <!-- LƯỚI THẺ BÀI -->
+              <div id="memory-grid" class="grid grid-cols-3 sm:grid-cols-4 gap-3 max-w-lg mx-auto"></div>
+
+              <div id="game-win-banner" class="mt-4 p-4 rounded-2xl bg-gradient-to-r from-emerald-500 to-teal-600 text-white text-center font-black hidden">
+                <p class="text-base">🎉 CHÚC MỪNG EM ĐÃ HOÀN THÀNH XUẤT SẮC TRÒ CHƠI!</p>
+                <p class="text-xs font-medium text-emerald-100 mt-1">Trí nhớ của em rất tuyệt vời. Hãy tiếp tục giữ vững tinh thần chăm chỉ nhé!</p>
+              </div>
             </div>
           </section>
         </main>
@@ -713,9 +705,6 @@
 
           <form id="chat-form" class="mt-2 flex gap-1.5" onsubmit="sendPublicChatMessage(event)">
             <input id="chat-input" type="text" placeholder="Nhắn gì đó với cả trường..." class="form-control text-xs py-1.5 px-2.5 rounded-xl">
-            <button id="confetti-chat-btn" type="button" onclick="triggerChatCelebration()" title="Bắn pháo hoa vinh danh (Mở ở Cấp 3)" class="bg-amber-100 text-amber-800 hover:bg-amber-200 rounded-xl px-2.5 flex items-center justify-center font-bold opacity-40 cursor-not-allowed">
-              🎉
-            </button>
             <button type="submit" class="action-button bg-rose-600 hover:bg-rose-700 text-white rounded-xl px-3 flex items-center justify-center font-bold">
               <i data-lucide="send" class="h-3.5 w-3.5"></i>
             </button>
@@ -726,7 +715,7 @@
     </div>
   </div>
 
-  <!-- CỬA SỔ NHẮN TIN RIÊNG TƯ (CHAT 1-1) -->
+  <!-- CỬA SỔ NHẮN TIN RIÊNG -->
   <div id="private-chat-dock" class="private-chat-dock hidden">
     <div class="bg-gradient-to-r from-rose-700 to-red-600 p-3 text-white flex items-center justify-between">
       <div class="flex items-center gap-2">
@@ -742,9 +731,7 @@
         <i data-lucide="x" class="h-4 w-4"></i>
       </button>
     </div>
-    
     <div id="private-chat-box" class="h-56 overflow-y-auto p-3 space-y-2 text-xs bg-slate-50"></div>
-
     <form class="p-2 border-t border-rose-100 flex gap-1 bg-white" onsubmit="sendPrivateMessage(event)">
       <input id="private-chat-input" type="text" placeholder="Nhắn riêng tư..." class="form-control py-1 px-2.5 text-xs rounded-xl">
       <button type="submit" class="bg-rose-600 text-white px-3 rounded-xl font-bold hover:bg-rose-700">
@@ -779,7 +766,140 @@
     let activePrivateTarget = null;
     let privateChatHistory = {};
 
-    // HỆ THỐNG TIẾN TRÌNH & THÀNH TÍCH (LƯU TRỮ VÀ MỞ KHÓA TÍNH NĂNG)
+    const setupView = document.getElementById("setup-view");
+    const quizView = document.getElementById("quiz-view");
+    const resultView = document.getElementById("result-view");
+    const gameView = document.getElementById("game-view");
+
+    function showView(view) {
+      [setupView, quizView, resultView, gameView].forEach(item => item.classList.remove("active"));
+      view.classList.add("active");
+    }
+
+    // DỮ LIỆU GAME TRÍ TUỆ GHÉP ĐÔI (MEMORY MATCH)
+    const GAME_PAIRS = [
+      { id: 1, val: "6 x 7", match: "42" },
+      { id: 2, val: "Cat", match: "Con mèo" },
+      { id: 3, val: "Nước sôi", match: "100°C" },
+      { id: 4, val: "Sun", match: "Mặt trời" },
+      { id: 5, val: "8 x 9", match: "72" },
+      { id: 6, val: "Chữ nhật", match: "4 góc vuông" }
+    ];
+
+    let memoryCards = [];
+    let flippedCards = [];
+    let matchedCount = 0;
+    let gameMoves = 0;
+    let lockBoard = false;
+
+    function startMemoryGame() {
+      showView(gameView);
+      const grid = document.getElementById("memory-grid");
+      const winBanner = document.getElementById("game-win-banner");
+      grid.innerHTML = "";
+      winBanner.classList.add("hidden");
+      
+      matchedCount = 0;
+      gameMoves = 0;
+      document.getElementById("game-moves").textContent = "0";
+      flippedCards = [];
+      lockBoard = false;
+
+      let deck = [];
+      GAME_PAIRS.forEach(p => {
+        deck.push({ pairId: p.id, text: p.val });
+        deck.push({ pairId: p.id, text: p.match });
+      });
+      deck.sort(() => Math.random() - 0.5);
+
+      deck.forEach((cardData, idx) => {
+        const card = document.createElement("div");
+        card.className = "memory-card";
+        card.dataset.pairId = cardData.pairId;
+        card.innerHTML = `
+          <div class="memory-inner">
+            <div class="memory-front">
+              <span class="text-xl">✨</span>
+              <span class="text-[10px] font-black mt-1">VĂN PHÚ</span>
+            </div>
+            <div class="memory-back">
+              <span class="font-extrabold text-xs leading-tight">${cardData.text}</span>
+            </div>
+          </div>
+        `;
+        card.onclick = () => flipMemoryCard(card);
+        grid.appendChild(card);
+      });
+    }
+
+    function flipMemoryCard(card) {
+      if (lockBoard || card.classList.contains("flipped") || card.classList.contains("matched")) return;
+
+      card.classList.add("flipped");
+      flippedCards.push(card);
+      playDingSound(600);
+
+      if (flippedCards.length === 2) {
+        gameMoves++;
+        document.getElementById("game-moves").textContent = gameMoves;
+        checkMemoryMatch();
+      }
+    }
+
+    function checkMemoryMatch() {
+      lockBoard = true;
+      const [c1, c2] = flippedCards;
+      const isMatch = c1.dataset.pairId === c2.dataset.pairId;
+
+      if (isMatch) {
+        setTimeout(() => {
+          c1.classList.add("matched");
+          c2.classList.add("matched");
+          matchedCount++;
+          playDingSound(900);
+
+          if (matchedCount === GAME_PAIRS.length) {
+            document.getElementById("game-win-banner").classList.remove("hidden");
+            if (typeof confetti === "function") confetti({ particleCount: 140, spread: 80, origin: { y: 0.6 } });
+          }
+          flippedCards = [];
+          lockBoard = false;
+        }, 400);
+      } else {
+        setTimeout(() => {
+          c1.classList.remove("flipped");
+          c2.classList.remove("flipped");
+          flippedCards = [];
+          lockBoard = false;
+        }, 900);
+      }
+    }
+
+    let audioCtx = null;
+    function playDingSound(freq = 600) {
+      try {
+        const AudioContext = window.AudioContext || window.webkitAudioContext;
+        if (!audioCtx) audioCtx = new AudioContext();
+        if (audioCtx.state === 'suspended') audioCtx.resume();
+
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+
+        osc.type = 'sine';
+        osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
+        osc.frequency.exponentialRampToValueAtTime(freq * 1.5, audioCtx.currentTime + 0.1);
+
+        gain.gain.setValueAtTime(0, audioCtx.currentTime);
+        gain.gain.linearRampToValueAtTime(0.3, audioCtx.currentTime + 0.02);
+        gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.25);
+
+        osc.connect(gain);
+        gain.connect(audioCtx.destination);
+        osc.start();
+        osc.stop(audioCtx.currentTime + 0.25);
+      } catch(e) {}
+    }
+
     let myStats = JSON.parse(localStorage.getItem('vh_my_stats') || JSON.stringify({
       totalAnswered: 0,
       totalCorrect: 0,
@@ -810,7 +930,6 @@
       avBox.className = `user-avatar-badge w-14 h-14 mx-auto mb-1.5 text-2xl shadow-md ${tier.badgeClass}`;
       avBox.innerHTML = createAvatarHtml(selectedAvatar, isImageAvatar);
 
-      // Thanh tiến trình XP
       let nextGoal = 20;
       if (myStats.totalAnswered >= 100) nextGoal = 200;
       else if (myStats.totalAnswered >= 50) nextGoal = 100;
@@ -820,123 +939,37 @@
       document.getElementById("xp-bar").style.width = pct + "%";
       document.getElementById("xp-text").textContent = `${myStats.totalAnswered} / ${nextGoal} câu`;
 
-      // Kiểm tra mở khóa đặc quyền Cấp 2: Avatar Cúp Vàng
-      const lockAv1 = document.getElementById("locked-avatar-1");
-      const perkLv2 = document.getElementById("perk-lv2");
-      if (myStats.totalAnswered >= 20) {
-        lockAv1.classList.remove("opacity-40", "cursor-not-allowed");
-        lockAv1.textContent = "🏆";
-        lockAv1.title = "Đã mở khóa Avatar Cúp Vàng!";
-        perkLv2.className = "p-2 rounded-xl border flex items-center justify-between bg-emerald-50 text-emerald-900 border-emerald-300 font-black";
-        perkLv2.lastElementChild.textContent = "✓ Đã mở";
-        perkLv2.lastElementChild.className = "text-[10px] font-black px-1.5 py-0.5 rounded bg-emerald-200 text-emerald-900";
-      }
-
-      // Kiểm tra mở khóa đặc quyền Cấp 3: Bắn pháo hoa trong chat
-      const confettiBtn = document.getElementById("confetti-chat-btn");
-      const perkLv3 = document.getElementById("perk-lv3");
-      if (myStats.totalAnswered >= 50) {
-        confettiBtn.classList.remove("opacity-40", "cursor-not-allowed");
-        confettiBtn.title = "Bắn pháo hoa vinh danh!";
-        perkLv3.className = "p-2 rounded-xl border flex items-center justify-between bg-emerald-50 text-emerald-900 border-emerald-300 font-black";
-        perkLv3.lastElementChild.textContent = "✓ Đã mở";
-        perkLv3.lastElementChild.className = "text-[10px] font-black px-1.5 py-0.5 rounded bg-emerald-200 text-emerald-900";
-      }
-
-      // Kiểm tra mở khóa đặc quyền Cấp 4: Vương miện & Khung Avatar Hoàng Gia
-      const lockAv2 = document.getElementById("locked-avatar-2");
-      const perkLv4 = document.getElementById("perk-lv4");
-      if (myStats.totalAnswered >= 100) {
-        lockAv2.classList.remove("opacity-40", "cursor-not-allowed");
-        lockAv2.textContent = "👑";
-        lockAv2.title = "Đã mở khóa Avatar Vương Miện Hoàng Gia!";
-        perkLv4.className = "p-2 rounded-xl border flex items-center justify-between bg-emerald-50 text-emerald-900 border-emerald-300 font-black";
-        perkLv4.lastElementChild.textContent = "✓ Đã mở";
-        perkLv4.lastElementChild.className = "text-[10px] font-black px-1.5 py-0.5 rounded bg-emerald-200 text-emerald-900";
-      }
-
       localStorage.setItem('vh_my_stats', JSON.stringify(myStats));
-    }
-
-    function selectLockedAvatar(emoji, requiredLevel, btn) {
-      const tier = getTierInfo(myStats.totalAnswered);
-      if (tier.level < requiredLevel) {
-        showToast(`🔒 Em cần đạt Cấp ${requiredLevel} để mở khóa biểu tượng này!`);
-        return;
-      }
-      selectPresetAvatar(emoji, btn);
-    }
-
-    function triggerChatCelebration() {
-      if (myStats.totalAnswered < 50) {
-        showToast("🔒 Em cần trả lời tích lũy từ 50 câu để mở tính năng Pháo hoa!");
-        return;
-      }
-      if (typeof confetti === "function") {
-        confetti({ particleCount: 100, spread: 70, origin: { y: 0.7 } });
-        showToast("🎉 Pháo hoa vinh danh đã được kích hoạt!");
-      }
     }
 
     function shareAchievementToChat() {
       const studentName = currentStudent ? currentStudent.studentName : (document.getElementById("student-name").value.trim() || "Em");
-      const text = `🎖️ Mình vừa đạt danh hiệu "${myStats.tierTitle}" (Cấp ${myStats.level}) với ${myStats.totalAnswered} câu đã luyện! Cùng cố gắng nhé các bạn! 🚀`;
+      const text = `🎖️ Mình vừa đạt danh hiệu "${myStats.tierTitle}" (Cấp ${myStats.level}) với ${myStats.totalAnswered} câu đã làm! Chúc các bạn học vui nhé! 🌟`;
 
       publicChatLog.push({
         avatar: selectedAvatar,
         isImg: isImageAvatar,
         name: studentName,
         className: currentStudent ? currentStudent.className : "5A1",
-        tierClass: myStats.badgeClass,
         text: text
       });
 
       renderPublicChat();
-      playMessageNotificationSound();
-      if (typeof confetti === "function") confetti({ particleCount: 60, spread: 60, origin: { y: 0.8 } });
-      showToast("✨ Đã khoe thành tích vào Kênh trao đổi chung!");
+      playDingSound(700);
+      showToast("✨ Đã chia sẻ vào Kênh chung!");
     }
 
     function updateCurrentStudentName(name) {
-      const display = name.trim() || "Em hãy nhập tên";
-      document.getElementById("side-profile-name").textContent = display;
-    }
-
-    // Âm thanh thông báo
-    let audioCtx = null;
-    function playMessageNotificationSound() {
-      try {
-        const AudioContext = window.AudioContext || window.webkitAudioContext;
-        if (!audioCtx) audioCtx = new AudioContext();
-        if (audioCtx.state === 'suspended') audioCtx.resume();
-
-        const osc = audioCtx.createOscillator();
-        const gainNode = audioCtx.createGain();
-
-        osc.type = 'sine';
-        osc.frequency.setValueAtTime(587.33, audioCtx.currentTime);
-        osc.frequency.exponentialRampToValueAtTime(880.00, audioCtx.currentTime + 0.1);
-
-        gainNode.gain.setValueAtTime(0, audioCtx.currentTime);
-        gainNode.gain.linearRampToValueAtTime(0.35, audioCtx.currentTime + 0.02);
-        gainNode.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.35);
-
-        osc.connect(gainNode);
-        gainNode.connect(audioCtx.destination);
-        osc.start(audioCtx.currentTime);
-        osc.stop(audioCtx.currentTime + 0.35);
-      } catch (err) {}
+      document.getElementById("side-profile-name").textContent = name.trim() || "Em hãy nhập tên";
     }
 
     let onlineUsers = [
-      { id: "u1", avatar: "👧", isImg: false, name: "Trần Bảo Ngọc", className: "5A2", tier: "👑 Trạng nguyên nhí", tierClass: "tier-gold" },
-      { id: "u2", avatar: "🧑‍🎓", isImg: false, name: "Nguyễn Minh Khang", className: "5A1", tier: "⚔️ Chiến binh", tierClass: "" },
-      { id: "u3", avatar: "🦁", isImg: false, name: "Lê Gia Huy", className: "4A3", tier: "🐝 Ong chăm chỉ", tierClass: "" }
+      { id: "u1", avatar: "👧", isImg: false, name: "Trần Bảo Ngọc", className: "5A2", tier: "👑 Trạng nguyên" },
+      { id: "u2", avatar: "🧑‍🎓", isImg: false, name: "Nguyễn Minh Khang", className: "5A1", tier: "⚔️ Chiến binh" }
     ];
 
     let publicChatLog = [
-      { avatar: "🧑‍🎓", isImg: false, name: "Minh Khang", className: "5A1", tierClass: "", text: "Chào các bạn! Ai mở được khung hoàng gia chưa?" },
-      { avatar: "👧", isImg: false, name: "Bảo Ngọc", className: "5A2", tierClass: "tier-gold", text: "Mình vừa luyện đủ 100 câu mở được viền vàng rồi nè! 👑" }
+      { avatar: "🧑‍🎓", isImg: false, name: "Minh Khang", className: "5A1", text: "Sau giờ kiểm tra các bạn nhớ chơi Game ghép thẻ trí tuệ nhé!" }
     ];
 
     function createAvatarHtml(avatarData, isImg) {
@@ -949,16 +982,12 @@
     function handleCustomAvatarUpload(e) {
       const file = e.target.files[0];
       if (!file) return;
-      if (file.size > 2 * 1024 * 1024) return showToast("⚠️ Dung lượng ảnh không quá 2MB!");
-
       const reader = new FileReader();
       reader.onload = function(evt) {
         selectedAvatar = evt.target.result;
         isImageAvatar = true;
-        document.querySelectorAll(".avatar-btn").forEach(b => b.classList.remove("selected"));
         document.getElementById("avatar-preview-box").innerHTML = `<img src="${selectedAvatar}" class="w-full h-full object-cover">`;
         updateAchievementUI();
-        showToast("📸 Đã cập nhật ảnh đại diện!");
       };
       reader.readAsDataURL(file);
     }
@@ -981,68 +1010,23 @@
       root.innerHTML = "";
 
       onlineUsers.forEach(user => {
-        const isFriend = myFriends.some(f => f.name === user.name);
         const item = document.createElement("div");
         item.className = "flex items-center justify-between p-2 rounded-xl bg-rose-50/70 border border-rose-100 text-xs";
-        
         item.innerHTML = `
           <div class="flex items-center gap-2 min-w-0 pr-1">
-            <div class="user-avatar-badge ${user.tierClass || ''}">${createAvatarHtml(user.avatar, user.isImg)}</div>
+            <div class="user-avatar-badge">${createAvatarHtml(user.avatar, user.isImg)}</div>
             <div class="truncate">
               <span class="font-extrabold text-slate-800 block truncate leading-tight">${user.name}</span>
               <span class="text-[10px] text-amber-700 font-black">${user.tier || 'Cấp 1'} • ${user.className}</span>
             </div>
           </div>
-          <div class="flex items-center gap-1">
-            <button type="button" onclick="openPrivateChat('${user.name}', '${user.avatar}', ${user.isImg || false})" title="Nhắn tin riêng" class="p-1 rounded-lg bg-white border border-rose-200 text-rose-600 hover:bg-rose-100">
-              <i data-lucide="message-circle" class="h-3.5 w-3.5"></i>
-            </button>
-            ${isFriend 
-              ? `<span class="text-[10px] text-emerald-700 font-black bg-emerald-50 px-1.5 py-1 rounded-lg border border-emerald-200">Bạn</span>`
-              : `<button type="button" onclick="addFriend('${user.name}', '${user.className}', '${user.avatar}', ${user.isImg || false})" class="text-[10px] font-black bg-rose-600 hover:bg-rose-700 text-white px-2 py-1 rounded-lg">Kết bạn</button>`
-            }
-          </div>
+          <button type="button" onclick="openPrivateChat('${user.name}', '${user.avatar}', ${user.isImg || false})" title="Nhắn tin" class="p-1 rounded-lg bg-white border border-rose-200 text-rose-600 hover:bg-rose-100">
+            <i data-lucide="message-circle" class="h-3.5 w-3.5"></i>
+          </button>
         `;
         root.appendChild(item);
       });
       lucide.createIcons();
-    }
-
-    function addFriend(name, className, avatar, isImg) {
-      if (myFriends.some(f => f.name === name)) return;
-      myFriends.push({ name, className, avatar, isImg });
-      localStorage.setItem('vh_friends', JSON.stringify(myFriends));
-      renderFriendsList();
-      renderOnlineUsers();
-      showToast(`Đã kết bạn với ${name}! 🎉`);
-    }
-
-    function renderFriendsList() {
-      const root = document.getElementById("friends-list");
-      const badge = document.getElementById("friends-count-badge");
-      if (!root || !badge) return;
-
-      badge.textContent = `${myFriends.length} bạn`;
-      if (myFriends.length === 0) {
-        root.innerHTML = `<p class="text-xs text-slate-400 italic text-center py-2">Chưa có bạn học nào.</p>`;
-        return;
-      }
-
-      root.innerHTML = "";
-      myFriends.forEach(friend => {
-        const div = document.createElement("div");
-        div.className = "flex items-center justify-between p-1.5 rounded-xl bg-emerald-50/80 border border-emerald-100 text-xs";
-        div.innerHTML = `
-          <div class="flex items-center gap-2 truncate">
-            <div class="user-avatar-badge w-6 h-6 text-xs">${createAvatarHtml(friend.avatar, friend.isImg)}</div>
-            <span class="font-black text-slate-800 truncate">${friend.name}</span>
-          </div>
-          <button type="button" onclick="openPrivateChat('${friend.name}', '${friend.avatar}', ${friend.isImg || false})" class="text-[10px] font-black bg-emerald-600 text-white px-2 py-0.5 rounded-lg flex-shrink-0">
-            Nhắn
-          </button>
-        `;
-        root.appendChild(div);
-      });
     }
 
     function renderPublicChat() {
@@ -1053,14 +1037,12 @@
         const msg = document.createElement("div");
         msg.className = "p-2 rounded-xl bg-white border border-rose-100 shadow-sm leading-tight flex items-start gap-2";
         msg.innerHTML = `
-          <div class="user-avatar-badge w-6 h-6 text-xs ${chat.tierClass || ''}">${createAvatarHtml(chat.avatar, chat.isImg)}</div>
+          <div class="user-avatar-badge w-6 h-6 text-xs">${createAvatarHtml(chat.avatar, chat.isImg)}</div>
           <div class="min-w-0 flex-1">
-            <div class="flex items-center justify-between mb-0.5">
-              <span class="font-black text-rose-950 text-[11px]">
-                ${chat.name} <span class="text-[9px] text-rose-600 font-semibold">(${chat.className})</span>
-              </span>
-            </div>
-            <p class="text-slate-700 text-xs">${chat.text}</p>
+            <span class="font-black text-rose-950 text-[11px] block">
+              ${chat.name} <span class="text-[9px] text-rose-600">(${chat.className})</span>
+            </span>
+            <p class="text-slate-700 text-xs mt-0.5">${chat.text}</p>
           </div>
         `;
         root.appendChild(msg);
@@ -1074,21 +1056,17 @@
       const text = input.value.trim();
       if (!text) return;
 
-      const studentName = currentStudent ? currentStudent.studentName : (document.getElementById("student-name").value.trim() || "Học sinh");
-      const className = currentStudent ? currentStudent.className : (document.getElementById("class-name").value.trim() || "5A1");
-
       publicChatLog.push({
         avatar: selectedAvatar,
         isImg: isImageAvatar,
-        name: studentName,
-        className: className,
-        tierClass: myStats.badgeClass,
+        name: currentStudent ? currentStudent.studentName : "Học sinh",
+        className: currentStudent ? currentStudent.className : "5A1",
         text: text
       });
 
       input.value = "";
       renderPublicChat();
-      playMessageNotificationSound();
+      playDingSound(800);
     }
 
     function openPrivateChat(targetName, avatar, isImg) {
@@ -1098,9 +1076,7 @@
       document.getElementById("private-chat-dock").classList.remove("hidden");
       
       if (!privateChatHistory[targetName]) {
-        privateChatHistory[targetName] = [
-          { sender: targetName, text: `Chào bạn! Chúng mình cùng nhau luyện tập đạt danh hiệu cao nhé!` }
-        ];
+        privateChatHistory[targetName] = [{ sender: targetName, text: `Chào bạn! Làm bài xong cùng chơi Game trí tuệ nhé!` }];
       }
       renderPrivateMessages();
     }
@@ -1140,45 +1116,30 @@
       privateChatHistory[activePrivateTarget.name].push({ sender: "me", text: text });
       input.value = "";
       renderPrivateMessages();
-      playMessageNotificationSound();
-
-      setTimeout(() => {
-        if (activePrivateTarget) {
-          privateChatHistory[activePrivateTarget.name].push({ 
-            sender: activePrivateTarget.name, 
-            text: "Cảm ơn bạn nhé! Chúc bạn sớm mở được khung Avatar Hoàng Gia! 🌟" 
-          });
-          renderPrivateMessages();
-          playMessageNotificationSound();
-        }
-      }, 1400);
+      playDingSound(750);
     }
 
     const SUBJECT_QUESTION_VAULT = {
       1: [
-        { sub: "Toán", q: "Kết quả của phép tính: 5 + 4 = ?", opt: ["9", "8", "10", "7"], a: "9", h: "Đếm thêm 4 đơn vị từ số 5." },
-        { sub: "Tiếng Việt", q: "Chọn từ viết ĐÚNG chính tả:", opt: ["xinh xắn", "sinh xắn", "xinh sắn", "sinh sắn"], a: "xinh xắn", h: "Âm đầu là x." },
-        { sub: "Tiếng Anh", q: "Từ tiếng Anh nào có nghĩa là 'Quả táo'?", opt: ["Apple", "Banana", "Cat", "Dog"], a: "Apple", h: "Bắt đầu bằng chữ 'A'." }
+        { sub: "Toán", q: "Kết quả của phép tính: 5 + 4 = ?", opt: ["9", "8", "10", "7"], a: "9", h: "Đếm thêm 4 từ số 5." },
+        { sub: "Tiếng Việt", q: "Chọn từ viết ĐÚNG chính tả:", opt: ["xinh xắn", "sinh xắn", "xinh sắn", "sinh sắn"], a: "xinh xắn", h: "Bắt đầu bằng x." },
+        { sub: "Tiếng Anh", q: "Từ tiếng Anh nào có nghĩa là 'Quả táo'?", opt: ["Apple", "Banana", "Cat", "Dog"], a: "Apple", h: "Bắt đầu bằng chữ A." }
       ],
       2: [
-        { sub: "Toán", q: "Tính kết quả phép tính: 48 + 26 = ?", opt: ["74", "72", "64", "76"], a: "74", h: "8 cộng 6 bằng 14, viết 4 nhớ 1." },
-        { sub: "Tiếng Việt", q: "Cặp từ nào sau đây có nghĩa TRÁI NGHƯỢC nhau?", opt: ["Chăm chỉ - Lười biếng", "Hiền hậu - Ngoan ngoãn", "Thật thà - Thẳng thắn", "Nhanh nhẹn - Khéo léo"], a: "Chăm chỉ - Lười biếng", h: "Hai thái cực đối lập." },
+        { sub: "Toán", q: "Tính kết quả: 48 + 26 = ?", opt: ["74", "72", "64", "76"], a: "74", h: "8 + 6 = 14 nhớ 1." },
         { sub: "Tiếng Anh", q: "Từ nào chỉ màu 'Đỏ' trong tiếng Anh?", opt: ["Red", "Blue", "Green", "Yellow"], a: "Red", h: "Màu đỏ." }
       ],
       3: [
-        { sub: "Toán", q: "Tính nhanh: 8 x 7 = ?", opt: ["56", "54", "64", "48"], a: "56", h: "Áp dụng bảng nhân 8." },
-        { sub: "Tiếng Việt", q: "Trong câu: 'Những đám mây trắng xốp như bông', tác giả dùng biện pháp gì?", opt: ["So sánh", "Nhân hóa", "Điệp từ", "Ẩn dụ"], a: "So sánh", h: "Có từ 'như'." },
-        { sub: "Tiếng Anh", q: "What can you do? - I can ______.", opt: ["swim", "swimming", "swims", "swam"], a: "swim", h: "Sau 'can' dùng động từ nguyên thể." }
+        { sub: "Toán", q: "Tính nhanh: 8 x 7 = ?", opt: ["56", "54", "64", "48"], a: "56", h: "Bảng nhân 8." },
+        { sub: "Tiếng Anh", q: "What can you do? - I can ______.", opt: ["swim", "swimming", "swims", "swam"], a: "swim", h: "Sau can dùng nguyên thể." }
       ],
       4: [
-        { sub: "Toán", q: "Diện tích hình bình hành có đáy 14 cm và chiều cao 6 cm là:", opt: ["84 cm²", "42 cm²", "40 cm²", "94 cm²"], a: "84 cm²", h: "S = Đáy x Chiều cao." },
-        { sub: "Tiếng Việt", q: "Từ nào đồng nghĩa với từ 'trung thực'?", opt: ["Ngay thẳng", "Gian dối", "Chăm chỉ", "Hiền lành"], a: "Ngay thẳng", h: "Thật thà, ngay thẳng." },
-        { sub: "Tiếng Anh", q: "Where ______ you from? - I am from Vietnam.", opt: ["are", "is", "am", "be"], a: "are", h: "Chủ ngữ 'you' đi với 'are'." }
+        { sub: "Toán", q: "Diện tích hình bình hành đáy 14 cm, chiều cao 6 cm là:", opt: ["84 cm²", "42 cm²", "40 cm²", "94 cm²"], a: "84 cm²", h: "Đáy x chiều cao." },
+        { sub: "Tiếng Việt", q: "Từ nào đồng nghĩa với từ 'trung thực'?", opt: ["Ngay thẳng", "Gian dối", "Chăm chỉ", "Hiền lành"], a: "Ngay thẳng", h: "Thật thà ngay thẳng." }
       ],
       5: [
-        { sub: "Toán", q: "Một ô tô đi vận tốc 50 km/h trong 2,5 giờ. Quãng đường đi được là:", opt: ["125 km", "100 km", "120 km", "150 km"], a: "125 km", h: "s = v x t = 50 x 2,5." },
-        { sub: "Tiếng Việt", q: "Cặp quan hệ từ trong câu: 'Mặc dù trời mưa to nhưng Lan vẫn đi học đúng giờ.' biểu thị quan hệ gì?", opt: ["Tương phản", "Nguyên nhân - kết quả", "Giả thiết - kết quả", "Tăng tiến"], a: "Tương phản", h: "'Mặc dù ... nhưng'." },
-        { sub: "Tiếng Anh", q: "What did you do yesterday? - I ______ football with my brother.", opt: ["played", "play", "plays", "playing"], a: "played", h: "Dấu hiệu quá khứ 'yesterday'." }
+        { sub: "Toán", q: "Ô tô đi 50 km/h trong 2,5 giờ. Quãng đường là:", opt: ["125 km", "100 km", "120 km", "150 km"], a: "125 km", h: "s = v x t." },
+        { sub: "Tiếng Anh", q: "What did you do yesterday? - I ______ football.", opt: ["played", "play", "plays", "playing"], a: "played", h: "Quá khứ đơn." }
       ]
     };
 
@@ -1191,15 +1152,6 @@
     let timerId = null;
     let timeLeft = 600;
     let startedAt = 0;
-
-    const setupView = document.getElementById("setup-view");
-    const quizView = document.getElementById("quiz-view");
-    const resultView = document.getElementById("result-view");
-
-    function showView(view) {
-      [setupView, quizView, resultView].forEach(item => item.classList.remove("active"));
-      view.classList.add("active");
-    }
 
     function showToast(message) {
       const toast = document.getElementById("toast");
@@ -1227,7 +1179,6 @@
     function buildQuiz() {
       const g = currentStudent.grade;
       const sub = currentStudent.subject;
-
       let eligibleGrades = [];
       for (let k = 1; k <= g; k++) eligibleGrades.push(k);
 
@@ -1261,10 +1212,10 @@
           const b = Math.floor(Math.random() * 20) + 1;
           const ans = a + b;
           questions.push({
-            question: `Tính nhẩm nhanh: ${a} + ${b} = ?`,
+            question: `Tính nhẩm: ${a} + ${b} = ?`,
             options: [String(ans), String(ans + 2), String(Math.max(1, ans - 3)), String(ans + 5)].sort(() => Math.random() - 0.5),
             answer: String(ans),
-            hint: "Cộng dồn các số.",
+            hint: "Cộng hai số lại.",
             sourceLabel: `Số học (Khối ${g})`
           });
         }
@@ -1293,7 +1244,7 @@
     function renderQuestion() {
       const q = questions[currentQuestion];
       document.getElementById("quiz-info").innerHTML = `
-        <div class="user-avatar-badge w-6 h-6 text-xs ${myStats.badgeClass || ''}">${createAvatarHtml(currentStudent.avatar, currentStudent.isImg)}</div>
+        <div class="user-avatar-badge w-6 h-6 text-xs">${createAvatarHtml(currentStudent.avatar, currentStudent.isImg)}</div>
         <span>${currentStudent.studentName} • ${myStats.tierTitle}</span>
       `;
       document.getElementById("level-badge").textContent = `Cấp độ ${currentLevel}`;
@@ -1338,7 +1289,7 @@
 
     function startQuizAction() {
       const name = document.getElementById("student-name").value.trim();
-      const school = document.getElementById("school").value === "other" ? document.getElementById("custom-school").value.trim() : document.getElementById("school").value;
+      const school = document.getElementById("school").value;
       const grade = document.getElementById("grade").value;
       const className = document.getElementById("class-name").value.trim() || `${grade}A1`;
 
@@ -1362,10 +1313,8 @@
         isImg: isImageAvatar,
         name: name,
         className: className,
-        tier: myStats.tierTitle,
-        tierClass: myStats.badgeClass
+        tier: myStats.tierTitle
       });
-      if (onlineUsers.length > 8) onlineUsers.pop();
       renderOnlineUsers();
 
       currentLevel = 1;
@@ -1380,7 +1329,7 @@
       const modal = document.getElementById("confirm-modal");
       const msg = document.getElementById("confirm-message");
       const count = Object.values(answers).filter(a => a && a !== "SKIPPED").length;
-      msg.textContent = count < TOTAL_QUESTIONS ? `Em mới làm ${count}/${TOTAL_QUESTIONS} câu. Em có muốn nộp bài luôn không?` : "Em đã hoàn thành các câu hỏi. Bấm nộp bài để tích lũy điểm kinh nghiệm.";
+      msg.textContent = count < TOTAL_QUESTIONS ? `Em mới hoàn thành ${count}/${TOTAL_QUESTIONS} câu. Em có muốn nộp bài luôn không?` : "Em đã trả lời các câu hỏi. Bấm nộp bài để xem điểm.";
       modal.classList.remove("hidden");
     }
 
@@ -1395,7 +1344,6 @@
         if (answers[i] === q.answer) correct++;
       });
 
-      // Cập nhật điểm kinh nghiệm thành tích
       myStats.totalAnswered += answeredCount;
       myStats.totalCorrect += correct;
       updateAchievementUI();
@@ -1404,68 +1352,13 @@
       const duration = Math.max(1, Math.round((Date.now() - startedAt) / 1000));
       const acc = Math.round((correct / TOTAL_QUESTIONS) * 100);
 
-      const record = {
-        avatar: currentStudent.avatar,
-        isImg: currentStudent.isImg,
-        tierTitle: myStats.tierTitle,
-        tierClass: myStats.badgeClass,
-        school: currentStudent.school,
-        student_name: currentStudent.studentName,
-        grade: currentStudent.grade,
-        class_name: currentStudent.className,
-        semester: currentStudent.semester,
-        level: currentLevel,
-        score: score,
-        duration_seconds: duration
-      };
-
-      records.push(record);
-      localStorage.setItem('vh_records', JSON.stringify(records));
-
       document.getElementById("score-value").textContent = score + " đ";
       document.getElementById("time-value").textContent = duration + "s";
       document.getElementById("correct-value").textContent = `${correct}/${TOTAL_QUESTIONS}`;
       document.getElementById("accuracy-value").textContent = acc + "%";
 
-      const pill = document.getElementById("rating-pill");
-      const comment = document.getElementById("rating-comment");
-      if (acc >= 90) {
-        pill.textContent = "Xuất sắc"; pill.className = "mt-4 inline-block rounded-full px-6 py-1.5 text-sm font-black bg-gradient-to-r from-emerald-400 to-teal-500 text-white shadow-md";
-        comment.textContent = `Em đã tích lũy thêm ${answeredCount} câu và tiến gần hơn đến mốc mở khóa tính năng mới!`;
-        if (typeof confetti === "function") confetti({ particleCount: 150, spread: 80, origin: { y: 0.6 } });
-      } else {
-        pill.textContent = "Hoàn thành tốt"; pill.className = "mt-4 inline-block rounded-full px-6 py-1.5 text-sm font-black bg-gradient-to-r from-sky-400 to-blue-500 text-white shadow-md";
-        comment.textContent = "Em hãy tiếp tục chăm chỉ ôn luyện mỗi ngày để tăng thứ hạng nhé!";
-      }
-
-      renderLeaderboard();
       showView(resultView);
-      showToast("🎉 Nộp bài thành công! Điểm kinh nghiệm đã được cộng dồn!");
-    }
-
-    function renderLeaderboard() {
-      const filter = document.getElementById("class-filter").value;
-      const filtered = records.filter(r => filter === "all" || r.class_name === filter).sort((a, b) => b.score - a.score || a.duration_seconds - b.duration_seconds);
-      const tbody = document.getElementById("leaderboard-body");
-      tbody.innerHTML = "";
-
-      filtered.forEach((r, i) => {
-        const row = document.createElement("tr");
-        if (i === 0) row.className = "top-row";
-        row.innerHTML = `
-          <td><b>#${i + 1}</b></td>
-          <td class="font-bold text-rose-950 text-left flex items-center gap-2 justify-center">
-            <div class="user-avatar-badge w-6 h-6 text-xs ${r.tierClass || ''}">${createAvatarHtml(r.avatar, r.isImg)}</div>
-            <span>${r.student_name}</span>
-          </td>
-          <td class="text-xs font-bold text-amber-800">${r.tierTitle || '🌱 Hạt mầm'}</td>
-          <td>${r.school}</td>
-          <td>${r.class_name}</td>
-          <td><b class="text-rose-600">${r.score} đ</b></td>
-          <td>${r.duration_seconds}s</td>
-        `;
-        tbody.appendChild(row);
-      });
+      showToast("🎉 Nộp bài thành công!");
     }
 
     document.getElementById("previous-button").onclick = () => { if (currentQuestion > 0) { currentQuestion--; renderQuestion(); } };
@@ -1478,7 +1371,6 @@
     };
     document.getElementById("cancel-confirm-button").onclick = () => document.getElementById("confirm-modal").classList.add("hidden");
     document.getElementById("accept-confirm-button").onclick = finishQuiz;
-    document.getElementById("home-button").onclick = () => showView(setupView);
     document.getElementById("continue-button").onclick = () => {
       currentLevel++;
       buildQuiz();
@@ -1487,13 +1379,10 @@
       renderQuestion();
       showView(quizView);
     };
-    document.getElementById("class-filter").onchange = renderLeaderboard;
 
     lucide.createIcons();
     updateAchievementUI();
-    renderLeaderboard();
     renderOnlineUsers();
-    renderFriendsList();
     renderPublicChat();
   </script>
 </body>
