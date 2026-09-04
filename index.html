@@ -112,7 +112,7 @@
       width: 100%;
       max-width: 1440px;
       display: grid;
-      grid-template-columns: 280px 1fr 300px;
+      grid-template-columns: 280px 1fr 310px;
       gap: 22px;
       align-items: start;
     }
@@ -455,7 +455,7 @@
   <div class="app-shell">
     <div class="main-wrapper">
       
-      <!-- CỘT TRÁI -->
+      <!-- CỘT TRÁI: PHONG TRÀO THI ĐUA & QUY ĐỊNH -->
       <aside class="side-panel space-y-5">
         <div class="side-card">
           <div class="flex items-center gap-2 mb-3 text-rose-800 font-extrabold border-b border-rose-100 pb-2 text-sm">
@@ -716,8 +716,22 @@
         </footer>
       </div>
 
-      <!-- CỘT PHẢI -->
+      <!-- CỘT PHẢI: HOẠT ĐỘNG, HỌC SINH ĐANG ONLINE & 15 LỚP -->
       <aside class="side-panel space-y-5">
+        <!-- BẢNG HIỂN THỊ NGƯỜI ĐANG ONLINE -->
+        <div class="side-card">
+          <div class="flex items-center justify-between mb-3 border-b border-rose-100 pb-2">
+            <div class="flex items-center gap-2 text-rose-800 font-extrabold text-sm">
+              <i data-lucide="radio" class="h-4 w-4 text-emerald-600 animate-pulse"></i>
+              ĐANG TRỰC TUYẾN
+            </div>
+            <span id="online-badge-count" class="inline-flex items-center px-2 py-0.5 rounded-full text-[11px] font-black bg-emerald-100 text-emerald-800 border border-emerald-300">
+              <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 mr-1 animate-ping"></span> 5 online
+            </span>
+          </div>
+          <div id="online-users-list" class="space-y-2 max-h-52 overflow-y-auto pr-1"></div>
+        </div>
+
         <div class="side-card">
           <div class="flex items-center gap-2 mb-3 text-rose-800 font-extrabold border-b border-rose-100 pb-2 text-sm">
             <i data-lucide="image" class="h-5 w-5 text-rose-600"></i>
@@ -732,7 +746,7 @@
               data-href="https://www.facebook.com/TieuhocVanPhu/" 
               data-tabs="timeline" 
               data-width="260" 
-              data-height="380" 
+              data-height="340" 
               data-small-header="false" 
               data-adapt-container-width="true" 
               data-hide-cover="false" 
@@ -809,6 +823,41 @@
   <script>
     const TOTAL_QUESTIONS = 10;
     const VAN_PHU_CLASSES = ["1A1","1A2","1A3","1A4","2A1","2A2","2A3","3A1","3A2","3A3","4A1","4A2","4A3","5A1","5A2","5A3"];
+
+    let onlineUsers = [
+      { name: "Nguyễn Minh Khang", className: "5A1", action: "Đang làm bài" },
+      { name: "Trần Bảo Ngọc", className: "5A2", action: "Đang làm bài" },
+      { name: "Lê Gia Huy", className: "4A3", action: "Đang ôn tập" },
+      { name: "Phạm Thảo My", className: "3A2", action: "Đang xem gợi ý" },
+      { name: "Hoàng Tuấn Kiệt", className: "2A1", action: "Vừa tham gia" }
+    ];
+
+    function renderOnlineUsers() {
+      const root = document.getElementById("online-users-list");
+      const badge = document.getElementById("online-badge-count");
+      if (!root || !badge) return;
+
+      badge.innerHTML = `<span class="w-1.5 h-1.5 rounded-full bg-emerald-500 mr-1 animate-ping"></span> ${onlineUsers.length} online`;
+      root.innerHTML = "";
+
+      onlineUsers.forEach(user => {
+        const item = document.createElement("div");
+        item.className = "flex items-center justify-between p-2 rounded-xl bg-rose-50/60 border border-rose-100 text-xs transition-all hover:bg-rose-100/70";
+        item.innerHTML = `
+          <div class="flex items-center gap-2 min-w-0 pr-1">
+            <span class="relative flex h-2.5 w-2.5 flex-shrink-0">
+              <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+              <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500"></span>
+            </span>
+            <span class="font-extrabold text-slate-800 truncate">${user.name}</span>
+          </div>
+          <div class="flex items-center gap-1.5 flex-shrink-0">
+            <span class="px-1.5 py-0.5 rounded-md bg-rose-200/80 text-rose-900 font-black text-[11px]">${user.className}</span>
+          </div>
+        `;
+        root.appendChild(item);
+      });
+    }
 
     const SUBJECT_QUESTION_VAULT = {
       1: [
@@ -1062,6 +1111,15 @@
         subject: document.getElementById("subject").value
       };
 
+      onlineUsers = onlineUsers.filter(u => u.name !== name);
+      onlineUsers.unshift({
+        name: name,
+        className: className,
+        action: "Đang ôn luyện"
+      });
+      if (onlineUsers.length > 7) onlineUsers.pop();
+      renderOnlineUsers();
+
       currentLevel = 1;
       buildQuiz();
       startedAt = Date.now();
@@ -1227,6 +1285,7 @@
 
     lucide.createIcons();
     renderLeaderboard();
+    renderOnlineUsers();
   </script>
 </body>
 </html>
