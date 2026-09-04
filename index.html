@@ -29,7 +29,7 @@
       overflow-x: hidden;
     }
 
-    /* BẦU TRỜI PHƯỢNG HOÀNG BAY LƯỢN UY NGHI, RỰC RỠ VÀ KÍCH THƯỚC LỚN */
+    /* BẦU TRỜI PHƯỢNG HOÀNG BAY LƯỢN */
     .phoenix-sky {
       position: fixed;
       inset: 0;
@@ -97,7 +97,6 @@
       100% { right: 105vw; transform: scaleX(-1) translateY(0) rotate(4deg) scale(0.9); }
     }
 
-    /* BỐ CỤC 3 CỘT */
     .app-shell {
       width: 100%;
       min-height: 100vh;
@@ -141,7 +140,6 @@
       border: 1px solid rgba(254, 205, 211, 0.7);
     }
 
-    /* BANNER TẬP TRUNG TÂM ĐIỂM TÊN TRƯỜNG */
     .vanphu-flagship-banner {
       position: relative;
       background: linear-gradient(135deg, #881337 0%, #be123c 38%, #e11d48 72%, #f43f5e 100%);
@@ -218,7 +216,6 @@
       margin: 0;
     }
 
-    /* ĐỊA CHỈ NẰM CỐ ĐỊNH Ở GÓC DƯỚI CÙNG BÊN PHẢI */
     .vp-fixed-bottom-address {
       position: fixed;
       bottom: 16px;
@@ -243,7 +240,6 @@
       box-shadow: 0 10px 28px rgba(136, 19, 55, 0.5), 0 0 16px rgba(254, 240, 138, 0.6);
     }
 
-    /* DẢI CHÂM NGÔN */
     .ticker-container {
       margin-top: 12px;
       background: linear-gradient(90deg, #9f1239 0%, #be123c 50%, #9f1239 100%);
@@ -412,9 +408,7 @@
   <div id="fb-root"></div>
   <script async defer crossorigin="anonymous" src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v19.0"></script>
 
-  <!-- ĐÀN PHƯỢNG HOÀNG BAY LƯỢN THƯỚT THA & UY NGHI TRÊN BẦU TRỜI -->
   <div class="phoenix-sky">
-    <!-- Phượng Hoàng 1: Rực rỡ, sải cánh lớn -->
     <div class="flying-phoenix phoenix-track-1">
       <svg viewBox="0 0 100 80">
         <defs>
@@ -425,18 +419,14 @@
             <stop offset="100%" stop-color="#9f1239" />
           </linearGradient>
         </defs>
-        <!-- Cánh & Thân Phượng Hoàng dạng Vector cách điệu nghệ thuật -->
         <path fill="url(#phGrad1)" d="M50,30 Q35,5 15,12 Q30,22 42,32 Q20,28 5,38 Q22,42 40,40 Q15,48 2,62 Q20,54 42,46 Q28,65 18,80 Q36,65 48,50 Q54,65 60,80 Q56,60 52,46 Q70,54 90,62 Q75,48 55,40 Q75,42 92,38 Q75,28 55,32 Q68,22 82,12 Q62,5 50,30 Z"/>
-        <!-- Đuôi dài mềm mại uốn lượn -->
         <path fill="none" stroke="#f59e0b" stroke-width="2.5" stroke-linecap="round" d="M48,50 Q40,70 28,88 Q20,78 35,68"/>
         <path fill="none" stroke="#e11d48" stroke-width="2" stroke-linecap="round" d="M52,50 Q58,72 70,88 Q78,78 62,68"/>
-        <!-- Đầu và mào phát sáng -->
         <circle cx="50" cy="22" r="3.5" fill="#fde047"/>
         <path fill="#fde047" d="M50,18 Q48,10 44,6 Q52,10 50,18 Z"/>
       </svg>
     </div>
 
-    <!-- Phượng Hoàng 2 -->
     <div class="flying-phoenix phoenix-track-2">
       <svg viewBox="0 0 100 80">
         <use href="#phGrad1"/>
@@ -446,7 +436,6 @@
       </svg>
     </div>
 
-    <!-- Phượng Hoàng 3 -->
     <div class="flying-phoenix phoenix-track-3">
       <svg viewBox="0 0 100 80">
         <path fill="url(#phGrad1)" d="M50,30 Q35,5 15,12 Q30,22 42,32 Q20,28 5,38 Q22,42 40,40 Q15,48 2,62 Q20,54 42,46 Q28,65 18,80 Q36,65 48,50 Q54,65 60,80 Q56,60 52,46 Q70,54 90,62 Q75,48 55,40 Q75,42 92,38 Q75,28 55,32 Q68,22 82,12 Q62,5 50,30 Z"/>
@@ -455,11 +444,10 @@
       </svg>
     </div>
 
-    <!-- Phượng Hoàng 4 -->
     <div class="flying-phoenix phoenix-track-4">
       <svg viewBox="0 0 100 80">
         <path fill="url(#phGrad1)" d="M50,30 Q35,5 15,12 Q30,22 42,32 Q20,28 5,38 Q22,42 40,40 Q15,48 2,62 Q20,54 42,46 Q28,65 18,80 Q36,65 48,50 Q54,65 60,80 Q56,60 52,46 Q70,54 90,62 Q75,48 55,40 Q75,42 92,38 Q75,28 55,32 Q68,22 82,12 Q62,5 50,30 Z"/>
-        <circle cx="50" cy="22" r="3" fill="#fde047"/>
+        <circle cx="50" cy="22" r="3.5" fill="#fde047"/>
       </svg>
     </div>
   </div>
@@ -467,7 +455,7 @@
   <div class="app-shell">
     <div class="main-wrapper">
       
-      <!-- CỘT TRÁI: PHONG TRÀO THI ĐUA & QUY ĐỊNH -->
+      <!-- CỘT TRÁI -->
       <aside class="side-panel space-y-5">
         <div class="side-card">
           <div class="flex items-center gap-2 mb-3 text-rose-800 font-extrabold border-b border-rose-100 pb-2 text-sm">
@@ -499,10 +487,9 @@
         </div>
       </aside>
 
-      <!-- KHUNG TRUNG TÂM: LÀM BÀI ÔN LUYỆN -->
+      <!-- KHUNG TRUNG TÂM -->
       <div class="study-card">
         <header class="bg-white px-5 pt-5 sm:px-7 sm:pt-7">
-          <!-- BANNER NỔI BẬT TÊN TRƯỜNG & KHẲNG ĐỊNH THƯƠNG HIỆU -->
           <div class="vanphu-flagship-banner">
             <div class="relative z-10 w-full flex flex-col items-center">
               <div class="vp-seal-tag">
@@ -517,7 +504,6 @@
             </div>
           </div>
 
-          <!-- DẢI CHÂM NGÔN CHẠY CHỮ -->
           <div class="ticker-container">
             <div class="ticker-label">
               <span>📖</span> KHẨU HIỆU
@@ -610,9 +596,10 @@
                 <div>
                   <label class="mb-1 block text-sm font-bold text-slate-700">Môn học ôn luyện</label>
                   <select id="subject" class="form-control">
-                    <option value="Tất cả các môn">Tất cả các môn (Toán, Tiếng Việt, TN&XH/Khoa học, Lịch sử - Địa lí, Đạo đức)</option>
+                    <option value="Tất cả các môn">Tất cả các môn (Toán, Tiếng Việt, Tiếng Anh, TN&XH/Khoa học, Lịch sử - Địa lí, Đạo đức)</option>
                     <option value="Toán">Chuyên đề Toán học</option>
                     <option value="Tiếng Việt">Chuyên đề Tiếng Việt</option>
+                    <option value="Tiếng Anh">Chuyên đề Tiếng Anh (English)</option>
                     <option value="Khoa học - Tự nhiên">Khoa học / Tự nhiên & Xã hội</option>
                     <option value="Lịch sử - Địa lí">Lịch sử & Địa lí</option>
                   </select>
@@ -729,7 +716,7 @@
         </footer>
       </div>
 
-      <!-- CỘT PHẢI: NHÚNG TỰ ĐỘNG FANPAGE & ALBUM ẢNH FACEBOOK -->
+      <!-- CỘT PHẢI -->
       <aside class="side-panel space-y-5">
         <div class="side-card">
           <div class="flex items-center gap-2 mb-3 text-rose-800 font-extrabold border-b border-rose-100 pb-2 text-sm">
@@ -786,7 +773,6 @@
     </div>
   </div>
 
-  <!-- ĐỊA CHỈ TRƯỜNG ĐẶT HẲN XUỐNG GÓC DƯỚI CÙNG BÊN PHẢI TOÀN TRANG -->
   <aside aria-label="Địa chỉ trường" class="vp-fixed-bottom-address">
     <i data-lucide="map-pin" class="h-3.5 w-3.5 text-yellow-300"></i>
     <span>Thôn Đồng Mụng, Xã Hồng Sơn, Tỉnh Tuyên Quang</span>
@@ -831,6 +817,8 @@
         { sub: "Toán", q: "Hình nào sau đây có 3 cạnh và 3 góc?", opt: ["Hình tam giác", "Hình vuông", "Hình tròn", "Hình chữ nhật"], a: "Hình tam giác", h: "Hình tam giác có 3 cạnh." },
         { sub: "Tiếng Việt", q: "Chọn từ viết ĐÚNG chính tả:", opt: ["xinh xắn", "sinh xắn", "xinh sắn", "sinh sắn"], a: "xinh xắn", h: "Âm đầu là x." },
         { sub: "Tiếng Việt", q: "Từ nào chỉ đồ dùng học tập của em?", opt: ["Cái bút", "Cái ghế", "Cái quạt", "Bát cơm"], a: "Cái bút", h: "Đồ vật dùng để viết bài." },
+        { sub: "Tiếng Anh", q: "Từ tiếng Anh nào có nghĩa là 'Quả táo'?", opt: ["Apple", "Banana", "Cat", "Dog"], a: "Apple", h: "Bắt đầu bằng chữ 'A'." },
+        { sub: "Tiếng Anh", q: "Khi muốn chào ai đó bằng tiếng Anh, em nói:", opt: ["Hello", "Goodbye", "Thank you", "Sorry"], a: "Hello", h: "Từ dùng để chào hỏi khi gặp mặt." },
         { sub: "Khoa học - Tự nhiên", q: "(TN&XH 1) Cơ quan nào giúp chúng ta nhìn thấy mọi vật xung quanh?", opt: ["Đôi mắt", "Đôi tai", "Cái mũi", "Cái miệng"], a: "Đôi mắt", h: "Thị giác giúp nhìn thấy cảnh vật." },
         { sub: "Khoa học - Tự nhiên", q: "(TN&XH 1) Để bảo vệ hàm răng chắc khỏe, em cần làm gì?", opt: ["Đánh răng buổi sáng và tối trước khi ngủ", "Ăn nhiều kẹo ngọt", "Uống nước đá lạnh", "Không đánh răng"], a: "Đánh răng buổi sáng và tối trước khi ngủ", h: "Vệ sinh răng miệng đều đặn mỗi ngày." },
         { sub: "Đạo đức", q: "(Đạo đức 1) Khi gặp thầy cô giáo trong sân trường, em cần làm gì?", opt: ["Khoanh tay chào lễ phép", "Lờ đi coi như không thấy", "Chạy trốn thật nhanh", "Nói to không chào"], a: "Khoanh tay chào lễ phép", h: "Kính trọng thầy cô giáo." }
@@ -840,7 +828,9 @@
         { sub: "Toán", q: "Bảng nhân: 5 x 7 = ?", opt: ["35", "30", "40", "45"], a: "35", h: "Áp dụng bảng nhân 5." },
         { sub: "Toán", q: "Một ngày có bao nhiêu giờ?", opt: ["24 giờ", "12 giờ", "48 giờ", "20 giờ"], a: "24 giờ", h: "Một ngày đêm có 24 giờ." },
         { sub: "Tiếng Việt", q: "Điền từ còn thiếu vào thành ngữ: 'Uống nước nhớ ...'", opt: ["nguồn", "sông", "suối", "cội"], a: "nguồn", h: "Đạo lý uống nước nhớ nguồn." },
-        { sub: "Tiếng Việt", q: "Cặp từ nào sau đây có nghĩa TRÁI NGHÈO nhau?", opt: ["Chăm chỉ - Lười biếng", "Hiền hậu - Ngoan ngoãn", "Thật thà - Thẳng thắn", "Nhanh nhẹn - Khéo léo"], a: "Chăm chỉ - Lười biếng", h: "Hai từ biểu đạt hai thái cực đối lập." },
+        { sub: "Tiếng Việt", q: "Cặp từ nào sau đây có nghĩa TRÁI NGHƯỢC nhau?", opt: ["Chăm chỉ - Lười biếng", "Hiền hậu - Ngoan ngoãn", "Thật thà - Thẳng thắn", "Nhanh nhẹn - Khéo léo"], a: "Chăm chỉ - Lười biếng", h: "Hai từ biểu đạt hai thái cực đối lập." },
+        { sub: "Tiếng Anh", q: "How old are you? - I am seven ______ old.", opt: ["years", "year", "old", "days"], a: "years", h: "Số 7 là số nhiều nên dùng 'years'." },
+        { sub: "Tiếng Anh", q: "Từ nào chỉ màu 'Đỏ' trong tiếng Anh?", opt: ["Red", "Blue", "Green", "Yellow"], a: "Red", h: "Màu cờ đỏ thắm." },
         { sub: "Khoa học - Tự nhiên", q: "(TN&XH 2) Cơ quan nào sau đây là cơ quan bài tiết nước tiểu?", opt: ["Thận và bàng quang", "Tim và mạch máu", "Dạ dày và ruột", "Khí quản và phổi"], a: "Thận và bàng quang", h: "Thận lọc máu tạo nước tiểu chứa ở bàng quang." },
         { sub: "Đạo đức", q: "(Đạo đức 2) Khi lỡ làm rơi đồ dùng của bạn, em nên làm gì?", opt: ["Nhặt lên và nói lời xin lỗi", "Bỏ đi không quan tâm", "Cười đùa trêu bạn", "Đổ lỗi cho người khác"], a: "Nhặt lên và nói lời xin lỗi", h: "Dũng cảm nhận lỗi khi làm sai." }
       ],
@@ -850,6 +840,8 @@
         { sub: "Toán", q: "Một hình vuông có cạnh dài 7 cm. Chu vi hình vuông đó là:", opt: ["28 cm", "49 cm", "21 cm", "14 cm"], a: "28 cm", h: "Chu vi hình vuông = Cạnh x 4." },
         { sub: "Tiếng Việt", q: "Trong câu: 'Những đám mây trắng xốp như bông', tác giả dùng biện pháp gì?", opt: ["So sánh", "Nhân hóa", "Điệp từ", "Ẩn dụ"], a: "So sánh", h: "Có từ so sánh 'như'." },
         { sub: "Tiếng Việt", q: "Từ nào dưới đây là từ chỉ ĐẶC ĐIỂM?", opt: ["Dịu dàng", "Chạy nhảy", "Bông hoa", "Đọc sách"], a: "Dịu dàng", h: "Chỉ tính nết, phẩm chất." },
+        { sub: "Tiếng Anh", q: "What is this? - It is ______ pencil.", opt: ["a", "an", "the", "two"], a: "a", h: "'Pencil' bắt đầu bằng một phụ âm." },
+        { sub: "Tiếng Anh", q: "What can you do? - I can ______.", opt: ["swim", "swimming", "swims", "swam"], a: "swim", h: "Sau 'can' dùng động từ nguyên thể." },
         { sub: "Khoa học - Tự nhiên", q: "(TN&XH 3) Cơ quan nào trong cơ thể chúng ta thực hiện chức năng tuần hoàn máu?", opt: ["Tim và các mạch máu", "Phổi và khí quản", "Dạ dày và ruột", "Bộ não"], a: "Tim và các mạch máu", h: "Tim co bóp đẩy máu đi khắp cơ thể." },
         { sub: "Khoa học - Tự nhiên", q: "(TN&XH 3) Đâu là cơ quan hô hấp của thực vật?", opt: ["Lá cây", "Rễ cây", "Thân cây", "Hoa"], a: "Lá cây", h: "Lá cây quang hợp và hô hấp qua khí khổng." }
       ],
@@ -859,6 +851,8 @@
         { sub: "Toán", q: "Số trung bình cộng của 30, 40 và 50 là:", opt: ["40", "35", "45", "120"], a: "40", h: "Lấy tổng ba số chia cho 3." },
         { sub: "Tiếng Việt", q: "Xác định chủ ngữ: 'Những chú chim sẻ chuyền cành líu lo.'", opt: ["Những chú chim sẻ", "chuyền cành líu lo", "líu lo", "chim sẻ"], a: "Những chú chim sẻ", h: "Chủ ngữ trả lời cho câu hỏi: Con gì?" },
         { sub: "Tiếng Việt", q: "Từ nào đồng nghĩa với từ 'trung thực'?", opt: ["Ngay thẳng", "Gian dối", "Chăm chỉ", "Hiền lành"], a: "Ngay thẳng", h: "Thật thà, không gian dối." },
+        { sub: "Tiếng Anh", q: "Where ______ you from? - I am from Vietnam.", opt: ["are", "is", "am", "be"], a: "are", h: "Chủ ngữ 'you' đi kèm với 'are'." },
+        { sub: "Tiếng Anh", q: "What is your favorite subject? - I like ______.", opt: ["English", "cat", "apple", "blue"], a: "English", h: "Câu hỏi về môn học yêu thích (subject)." },
         { sub: "Khoa học - Tự nhiên", q: "(Khoa học 4) Nước có thể tồn tại ở những thể nào?", opt: ["Rắn, lỏng và khí", "Chỉ ở thể lỏng", "Chỉ ở thể rắn và lỏng", "Chỉ ở thể khí"], a: "Rắn, lỏng và khí", h: "Nước đá (rắn), nước (lỏng), hơi nước (khí)." },
         { sub: "Lịch sử - Địa lí", q: "(LS&ĐL 4) Dãy núi cao và đồ sộ nhất nước ta là dãy núi nào?", opt: ["Hoàng Liên Sơn", "Trường Sơn Bắc", "Trường Sơn Nam", "Bạch Mã"], a: "Hoàng Liên Sơn", h: "Nơi có đỉnh Fansipan cao 3143m." },
         { sub: "Lịch sử - Địa lí", q: "(LS&ĐL 4) Chiến thắng Bạch Đằng năm 938 gắn liền với vị anh hùng nào?", opt: ["Ngô Quyền", "Đinh Bộ Lĩnh", "Lê Lợi", "Quang Trung"], a: "Ngô Quyền", h: "Chiến thuật cọc ngầm trên sông Bạch Đằng." }
@@ -869,6 +863,8 @@
         { sub: "Toán", q: "Diện tích hình thang có hai đáy là 6 cm và 4 cm, chiều cao 5 cm là:", opt: ["25 cm²", "50 cm²", "20 cm²", "30 cm²"], a: "25 cm²", h: "S = [(a + b) x h] : 2." },
         { sub: "Tiếng Việt", q: "Cặp quan hệ từ trong câu: 'Mặc dù trời mưa to nhưng Lan vẫn đi học đúng giờ.' biểu thị quan hệ gì?", opt: ["Tương phản", "Nguyên nhân - kết quả", "Giả thiết - kết quả", "Tăng tiến"], a: "Tương phản", h: "'Mặc dù ... nhưng' biểu thị sự tương phản." },
         { sub: "Tiếng Việt", q: "Từ 'ngọt' trong câu 'Cô giáo em nói năng rất ngọt ngào' mang nghĩa gì?", opt: ["Nghĩa chuyển", "Nghĩa gốc", "Nghĩa đồng âm", "Từ trái nghĩa"], a: "Nghĩa chuyển", h: "Chuyển từ vị giác sang thính giác." },
+        { sub: "Tiếng Anh", q: "What did you do yesterday? - I ______ football with my brother.", opt: ["played", "play", "plays", "playing"], a: "played", h: "Dấu hiệu 'yesterday' chỉ thì quá khứ đơn." },
+        { sub: "Tiếng Anh", q: "What would you like to be in the future? - I'd like to be a ______ because I want to teach children.", opt: ["teacher", "doctor", "pilot", "farmer"], a: "teacher", h: "Người dạy học cho trẻ em là 'teacher'." },
         { sub: "Khoa học - Tự nhiên", q: "(Khoa học 5) Nguồn năng lượng nào sau đây là năng lượng sạch, tái tạo được?", opt: ["Năng lượng mặt trời, gió", "Năng lượng than đá", "Năng lượng dầu mỏ", "Khí đốt tự nhiên"], a: "Năng lượng mặt trời, gió", h: "Nguồn năng lượng tự nhiên vô tận và thân thiện môi trường." },
         { sub: "Lịch sử - Địa lí", q: "(LS&ĐL 5) Di tích lịch sử Tân Trào (Tuyên Quang) gắn liền với sự kiện trọng đại nào?", opt: ["Quốc dân Đại hội Tân Trào (Cách mạng Tháng Tám 1945)", "Chiến thắng Điện Biên Phủ 1954", "Khởi nghĩa Lam Sơn", "Hiệp định Giơ-ne-vơ"], a: "Quốc dân Đại hội Tân Trào (Cách mạng Tháng Tám 1945)", h: "Thủ đô kháng chiến Tân Trào - Tuyên Quang." },
         { sub: "Lịch sử - Địa lí", q: "(LS&ĐL 5) Châu lục nào có diện tích lớn nhất và đông dân nhất thế giới?", opt: ["Châu Á", "Châu Âu", "Châu Phi", "Châu Mỹ"], a: "Châu Á", h: "Châu lục rộng lớn nhất trên Trái Đất." }
@@ -955,17 +951,33 @@
           });
           idx++;
         } else {
-          const maxVal = g === 1 ? 10 : (g === 2 ? 50 : 100);
-          const a = Math.floor(Math.random() * (maxVal / 2)) + 2;
-          const b = Math.floor(Math.random() * (maxVal / 2)) + 1;
-          const ans = a + b;
-          questions.push({
-            question: `Tính nhẩm nhanh: ${a} + ${b} = ?`,
-            options: [String(ans), String(ans + 2), String(Math.max(1, ans - 3)), String(ans + 5)].sort(() => Math.random() - 0.5),
-            answer: String(ans),
-            hint: "Thực hiện phép tính từ phải sang trái.",
-            sourceLabel: `Ôn tập Số học (Khối ${g})`
-          });
+          if (sub === "Tiếng Anh") {
+            const sampleEng = [
+              { q: "What color is the sky?", opt: ["Blue", "Green", "Red", "Yellow"], a: "Blue", h: "Bầu trời màu xanh da trời." },
+              { q: "How many days are there in a week?", opt: ["7", "5", "6", "8"], a: "7", h: "Một tuần có 7 ngày." },
+              { q: "Which animal says 'Meow'?", opt: ["Cat", "Dog", "Bird", "Fish"], a: "Cat", h: "Con mèo." }
+            ];
+            const pick = sampleEng[Math.floor(Math.random() * sampleEng.length)];
+            questions.push({
+              question: pick.q,
+              options: [...pick.opt].sort(() => Math.random() - 0.5),
+              answer: pick.a,
+              hint: pick.h,
+              sourceLabel: `Ôn tập Tiếng Anh (Khối ${g})`
+            });
+          } else {
+            const maxVal = g === 1 ? 10 : (g === 2 ? 50 : 100);
+            const a = Math.floor(Math.random() * (maxVal / 2)) + 2;
+            const b = Math.floor(Math.random() * (maxVal / 2)) + 1;
+            const ans = a + b;
+            questions.push({
+              question: `Tính nhẩm nhanh: ${a} + ${b} = ?`,
+              options: [String(ans), String(ans + 2), String(Math.max(1, ans - 3)), String(ans + 5)].sort(() => Math.random() - 0.5),
+              answer: String(ans),
+              hint: "Thực hiện phép tính từ phải sang trái.",
+              sourceLabel: `Ôn tập Số học (Khối ${g})`
+            });
+          }
         }
       }
 
